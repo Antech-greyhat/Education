@@ -10,6 +10,18 @@ const searchTags = document.querySelectorAll('.search-tag');
 const languageCards = document.querySelectorAll('.language-card');
 const currentYear = document.getElementById('currentYear');
 
+// Modal Elements
+const loginBtn = document.getElementById('loginBtn');
+const registerBtn = document.getElementById('registerBtn');
+const loginModal = document.getElementById('loginModal');
+const registerModal = document.getElementById('registerModal');
+const closeLogin = document.getElementById('closeLogin');
+const closeRegister = document.getElementById('closeRegister');
+const loginForm = document.getElementById('loginForm');
+const registerForm = document.getElementById('registerForm');
+const switchToRegister = document.getElementById('switchToRegister');
+const switchToLogin = document.getElementById('switchToLogin');
+
 // Theme Management
 function initTheme() {
     const savedTheme = localStorage.getItem('theme') || 'light';
@@ -27,6 +39,39 @@ function toggleTheme() {
 function updateThemeIcon(theme) {
     const icon = themeToggle.querySelector('i');
     icon.className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+}
+
+// Modal Functions
+function openLoginModal() {
+    loginModal.style.display = 'block';
+}
+
+function openRegisterModal() {
+    registerModal.style.display = 'block';
+}
+
+function closeModal(modal) {
+    modal.style.display = 'none';
+}
+
+function handleLogin(e) {
+    e.preventDefault();
+    // Placeholder for login logic
+    alert('Login functionality not implemented yet.');
+    closeModal(loginModal);
+}
+
+function handleRegister(e) {
+    e.preventDefault();
+    const password = document.getElementById('registerPassword').value;
+    const confirmPassword = document.getElementById('registerConfirmPassword').value;
+    if (password !== confirmPassword) {
+        alert('Passwords do not match.');
+        return;
+    }
+    // Placeholder for register logic
+    alert('Registration functionality not implemented yet.');
+    closeModal(registerModal);
 }
 
 // Mobile Navigation Toggle
@@ -276,4 +321,20 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
+});
+
+// Modal Event Listeners
+loginBtn.addEventListener('click', openLoginModal);
+registerBtn.addEventListener('click', openRegisterModal);
+closeLogin.addEventListener('click', () => closeModal(loginModal));
+closeRegister.addEventListener('click', () => closeModal(registerModal));
+loginForm.addEventListener('submit', handleLogin);
+registerForm.addEventListener('submit', handleRegister);
+switchToRegister.addEventListener('click', () => { closeModal(loginModal); openRegisterModal(); });
+switchToLogin.addEventListener('click', () => { closeModal(registerModal); openLoginModal(); });
+
+// Close modal when clicking outside
+window.addEventListener('click', (e) => {
+    if (e.target === loginModal) closeModal(loginModal);
+    if (e.target === registerModal) closeModal(registerModal);
 });

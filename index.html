@@ -34,8 +34,8 @@
                     <button id="themeToggle" class="theme-toggle" aria-label="Toggle dark/light mode">
                         <i class="fas fa-moon"></i>
                     </button>
-                    <a href="#" class="btn btn-secondary nav-btn">Log In</a>
-                    <a href="#" class="btn btn-primary nav-btn">Register</a>
+                    <a href="#" id="loginBtn" class="btn btn-secondary nav-btn">Log In</a>
+                    <a href="#" id="registerBtn" class="btn btn-primary nav-btn">Register</a>
                     <div class="hamburger" id="hamburger">
                         <span class="bar"></span>
                         <span class="bar"></span>
@@ -268,6 +268,54 @@ function startJourney() {
             </div>
         </div>
     </footer>
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close" id="closeLogin">&times;</span>
+            <h2>Log In</h2>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="loginEmail">Email</label>
+                    <input type="email" id="loginEmail" required>
+                </div>
+                <div class="form-group">
+                    <label for="loginPassword">Password</label>
+                    <input type="password" id="loginPassword" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Log In</button>
+            </form>
+            <p>Don't have an account? <button id="switchToRegister" class="link-btn">Register</button></p>
+        </div>
+    </div>
+
+    <!-- Register Modal -->
+    <div id="registerModal" class="modal">
+        <div class="modal-content">
+            <span class="close" id="closeRegister">&times;</span>
+            <h2>Register</h2>
+            <form id="registerForm">
+                <div class="form-group">
+                    <label for="registerName">Full Name</label>
+                    <input type="text" id="registerName" required>
+                </div>
+                <div class="form-group">
+                    <label for="registerEmail">Email</label>
+                    <input type="email" id="registerEmail" required>
+                </div>
+                <div class="form-group">
+                    <label for="registerPassword">Password</label>
+                    <input type="password" id="registerPassword" required>
+                </div>
+                <div class="form-group">
+                    <label for="registerConfirmPassword">Confirm Password</label>
+                    <input type="password" id="registerConfirmPassword" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Register</button>
+            </form>
+            <p>Already have an account? <button id="switchToLogin" class="link-btn">Log In</button></p>
+        </div>
+    </div>
 
     <script src="edu.js"></script>
 </body>
