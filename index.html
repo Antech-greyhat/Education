@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodeLearn - Master Programming Easily</title>
+    <link rel="stylesheet" href="edu.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>👨‍💻</text></svg>">
+</head>
+<body>
+    <!-- Header with Navigation -->
+    <header class="header">
+        <div class="container">
+            <nav class="navbar">
+                <a href="index.html" class="logo">
+                    <i class="fas fa-code"></i>
+                    <span>CodeLearn</span>
+                </a>
+                
+                <ul class="nav-menu">
+                    <li class="nav-item"><a href="index.html" class="nav-link active">Home</a></li>
+                    <li class="nav-item"><a href="#languages" class="nav-link">Languages</a></li>
+                    <li class="nav-item"><a href="#comparison" class="nav-link">Guide</a></li>
+                    <li class="nav-item"><a href="#about" class="nav-link">About</a></li>
+                    <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
+                </ul>
+                
+                <div class="nav-controls">
+                    <div class="search-container">
+                        <input type="text" id="searchInput" placeholder="Search languages...">
+                        <button id="searchBtn"><i class="fas fa-search"></i></button>
+                    </div>
+                    <button id="themeToggle" class="theme-toggle" aria-label="Toggle dark/light mode">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                    <div class="hamburger" id="hamburger">
+                        <span class="bar"></span>
+                        <span class="bar"></span>
+                        <span class="bar"></span>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">Learn Programming <span class="highlight">The Right Way</span></h1>
+                <p class="hero-subtitle">Start your coding journey with our structured, beginner-friendly tutorials and resources. Master in-demand programming languages and build real-world projects.</p>
+                <div class="hero-buttons">
+                    <a href="#languages" class="btn btn-primary">Explore Languages</a>
+                    <a href="#comparison" class="btn btn-secondary">Where to Start?</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="code-snippet">
+                    <pre><code>// Welcome to CodeLearn
+function startJourney() {
+  console.log("Happy coding!");
+  return "Success";
+}</code></pre>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Search Bar Section -->
+    <section class="search-section">
+        <div class="container">
+            <h2 class="section-title">Find Your Programming Language</h2>
+            <div class="search-bar">
+                <input type="text" id="mainSearch" placeholder="Search for HTML, CSS, JavaScript, Python...">
+                <button id="mainSearchBtn" class="search-btn">
+                    <i class="fas fa-search"></i> Search
+                </button>
+            </div>
+            <div class="search-tags">
+                <span class="search-tag" data-search="html">HTML</span>
+                <span class="search-tag" data-search="css">CSS</span>
+                <span class="search-tag" data-search="javascript">JavaScript</span>
+                <span class="search-tag" data-search="python">Python</span>
+                <span class="search-tag" data-search="web development">Web Development</span>
+                <span class="search-tag" data-search="beginner">Beginner Friendly</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Programming Languages Section -->
+    <section class="languages-section" id="languages">
+        <div class="container">
+            <h2 class="section-title">Popular Programming Languages</h2>
+            <p class="section-subtitle">Choose a language to start your learning journey</p>
+            
+            <div class="languages-grid">
+                <!-- HTML Card -->
+                <div class="language-card" data-language="html">
+                    <div class="card-icon">
+                        <i class="fab fa-html5"></i>
+                    </div>
+                    <h3 class="card-title">HTML</h3>
+                    <p class="card-description">The standard markup language for creating web pages and web applications.</p>
+                    <div class="card-details">
+                        <p><strong>Common Uses:</strong> Web structure, content organization, semantic markup</p>
+                        <p><strong>Who Should Learn:</strong> Absolute beginners, web developers, content creators</p>
+                    </div>
+                    <a href="language-pages/html.html" class="card-link">Start Learning HTML <i class="fas fa-arrow-right"></i></a>
+                </div>
+                
+                <!-- CSS Card -->
+                <div class="language-card" data-language="css">
+                    <div class="card-icon">
+                        <i class="fab fa-css3-alt"></i>
+                    </div>
+                    <h3 class="card-title">CSS</h3>
+                    <p class="card-description">Stylesheet language used to describe the presentation of HTML documents.</p>
+                    <div class="card-details">
+                        <p><strong>Common Uses:</strong> Web design, responsive layouts, animations, UI/UX</p>
+                        <p><strong>Who Should Learn:</strong> Web designers, frontend developers, UI/UX specialists</p>
+                    </div>
+                    <a href="language-pages/css.html" class="card-link">Start Learning CSS <i class="fas fa-arrow-right"></i></a>
+                </div>
+                
+                <!-- JavaScript Card -->
+                <div class="language-card" data-language="javascript">
+                    <div class="card-icon">
+                        <i class="fab fa-js-square"></i>
+                    </div>
+                    <h3 class="card-title">JavaScript</h3>
+                    <p class="card-description">A versatile programming language for creating interactive web content.</p>
+                    <div class="card-details">
+                        <p><strong>Common Uses:</strong> Web interactivity, frontend frameworks, backend (Node.js)</p>
+                        <p><strong>Who Should Learn:</strong> Frontend/backend developers, full-stack engineers</p>
+                    </div>
+                    <a href="language-pages/javascript.html" class="card-link">Start Learning JavaScript <i class="fas fa-arrow-right"></i></a>
+                </div>
+                
+                <!-- Python Card -->
+                <div class="language-card" data-language="python">
+                    <div class="card-icon">
+                        <i class="fab fa-python"></i>
+                    </div>
+                    <h3 class="card-title">Python</h3>
+                    <p class="card-description">A high-level, general-purpose programming language known for its readability.</p>
+                    <div class="card-details">
+                        <p><strong>Common Uses:</strong> Data science, automation, web development, AI/ML</p>
+                        <p><strong>Who Should Learn:</strong> Beginners, data scientists, automation engineers</p>
+                    </div>
+                    <a href="language-pages/python.html" class="card-link">Start Learning Python <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Comparison & Guide Section -->
+    <section class="comparison-section" id="comparison">
+        <div class="container">
+            <h2 class="section-title">Which Language Should You Start With?</h2>
+            <p class="section-subtitle">Helpful guidance for choosing your first programming language</p>
+            
+            <div class="comparison-content">
+                <div class="comparison-card">
+                    <h3><i class="fas fa-user-graduate"></i> For Absolute Beginners</h3>
+                    <p><strong>Python</strong> is often recommended as a first language due to its simple syntax and readability. It's versatile and used in many fields.</p>
+                    <p><strong>HTML/CSS</strong> are great for visual learners who want to see immediate results in web browsers.</p>
+                </div>
+                
+                <div class="comparison-card">
+                    <h3><i class="fas fa-briefcase"></i> Career Paths</h3>
+                    <p><strong>Frontend Development:</strong> HTML → CSS → JavaScript → React/Angular/Vue</p>
+                    <p><strong>Backend Development:</strong> Python → Django/Flask or JavaScript → Node.js</p>
+                    <p><strong>Data Science:</strong> Python → Pandas, NumPy, Scikit-learn → Machine Learning</p>
+                </div>
+                
+                <div class="comparison-card">
+                    <h3><i class="fas fa-globe"></i> Real-World Applications</h3>
+                    <p><strong>Web Development:</strong> HTML, CSS, JavaScript (Full Stack)</p>
+                    <p><strong>Mobile Apps:</strong> JavaScript (React Native), Python (Kivy)</p>
+                    <p><strong>Data Analysis:</strong> Python, R</p>
+                    <p><strong>Automation:</strong> Python, Bash scripting</p>
+                </div>
+            </div>
+            
+            <div class="learning-path">
+                <h3>Suggested Learning Path</h3>
+                <div class="path-steps">
+                    <div class="path-step">
+                        <span class="step-number">1</span>
+                        <h4>Start with HTML & CSS</h4>
+                        <p>Learn to structure and style web pages</p>
+                    </div>
+                    <div class="path-step">
+                        <span class="step-number">2</span>
+                        <h4>Add JavaScript</h4>
+                        <p>Make your websites interactive</p>
+                    </div>
+                    <div class="path-step">
+                        <span class="step-number">3</span>
+                        <h4>Choose a Specialization</h4>
+                        <p>Frontend, Backend, Data Science, etc.</p>
+                    </div>
+                    <div class="path-step">
+                        <span class="step-number">4</span>
+                        <h4>Build Projects</h4>
+                        <p>Apply your knowledge to real projects</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer" id="about">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <a href="index.html" class="logo">
+                        <i class="fas fa-code"></i>
+                        <span>CodeLearn</span>
+                    </a>
+                    <p class="footer-tagline">Empowering the next generation of developers through accessible, high-quality programming education.</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="#languages">Languages</a></li>
+                        <li><a href="#comparison">Learning Guide</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links" id="contact">
+                    <h3>Resources</h3>
+                    <ul>
+                        <li><a href="#">Documentation</a></li>
+                        <li><a href="#">Code Examples</a></li>
+                        <li><a href="#">Practice Exercises</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Community</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-newsletter">
+                    <h3>Stay Updated</h3>
+                    <p>Subscribe to our newsletter for new tutorials and updates.</p>
+                    <div class="newsletter-form">
+                        <input type="email" placeholder="Your email address">
+                        <button type="submit">Subscribe</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; <span id="currentYear"></span> CodeLearn. All rights reserved. Made with <i class="fas fa-heart"></i> for aspiring developers.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="edu.js"></script>
+</body>
+</html>

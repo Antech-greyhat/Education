@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learn HTML - CodeLearn</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>👨‍💻</text></svg>">
+    <style>
+        .language-header {
+            background: linear-gradient(135deg, #E34F26 0%, #EF652A 100%);
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+        }
+        
+        .language-content {
+            padding: 3rem 0;
+        }
+        
+        .content-container {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+        }
+        
+        .sidebar {
+            background-color: var(--light-gray);
+            padding: 2rem;
+            border-radius: var(--border-radius-md);
+            height: fit-content;
+        }
+        
+        .sidebar h3 {
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+        }
+        
+        .sidebar ul {
+            list-style: none;
+        }
+        
+        .sidebar li {
+            margin-bottom: 0.75rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+        }
+        
+        .dark-theme .sidebar li {
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .topic-card {
+            background-color: var(--light-color);
+            padding: 1.5rem;
+            border-radius: var(--border-radius-md);
+            margin-bottom: 1.5rem;
+            box-shadow: var(--shadow-md);
+        }
+        
+        .topic-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        
+        .code-example {
+            background-color: var(--dark-color);
+            color: #f8f8f2;
+            padding: 1.5rem;
+            border-radius: var(--border-radius-md);
+            margin: 1.5rem 0;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+        }
+        
+        .dark-theme .code-example {
+            background-color: #1a1a1a;
+        }
+        
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            margin-bottom: 2rem;
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+        
+        .back-button i {
+            margin-right: 0.5rem;
+        }
+        
+        @media (max-width: 768px) {
+            .content-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header with Navigation -->
+    <header class="header">
+        <div class="container">
+            <nav class="navbar">
+                <a href="../index.html" class="logo">
+                    <i class="fas fa-code"></i>
+                    <span>CodeLearn</span>
+                </a>
+                
+                <ul class="nav-menu">
+                    <li class="nav-item"><a href="../index.html" class="nav-link">Home</a></li>
+                    <li class="nav-item"><a href="../index.html#languages" class="nav-link">Languages</a></li>
+                    <li class="nav-item"><a href="../index.html#comparison" class="nav-link">Guide</a></li>
+                    <li class="nav-item"><a href="../index.html#about" class="nav-link">About</a></li>
+                    <li class="nav-item"><a href="../index.html#contact" class="nav-link">Contact</a></li>
+                </ul>
+                
+                <div class="nav-controls">
+                    <button id="themeToggle" class="theme-toggle" aria-label="Toggle dark/light mode">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                    <div class="hamburger" id="hamburger">
+                        <span class="bar"></span>
+                        <span class="bar"></span>
+                        <span class="bar"></span>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Language Header -->
+    <section class="language-header">
+        <div class="container">
+            <a href="../index.html" class="back-button">
+                <i class="fas fa-arrow-left"></i> Back to Languages
+            </a>
+            <div class="language-icon">
+                <i class="fab fa-html5" style="font-size: 4rem; margin-bottom: 1rem;"></i>
+            </div>
+            <h1>Learn HTML</h1>
+            <p class="section-subtitle" style="color: rgba(255,255,255,0.9); max-width: 700px; margin: 0 auto;">HyperText Markup Language is the standard markup language for documents designed to be displayed in a web browser.</p>
+        </div>
+    </section>
+
+    <!-- Language Content -->
+    <section class="language-content">
+        <div class="container">
+            <div class="content-container">
+                <div class="main-content">
+                    <!-- Introduction -->
+                    <div class="topic-card">
+                        <h2>Introduction to HTML</h2>
+                        <p>HTML (HyperText Markup Language) is the code that is used to structure a web page and its content. For example, content could be structured within a set of paragraphs, a list of bulleted points, or using images and data tables.</p>
+                        <p>HTML is not a programming language; it is a markup language that defines the structure of your content. HTML consists of a series of elements, which you use to enclose, or wrap, different parts of the content to make it appear a certain way, or act a certain way.</p>
+                    </div>
+                    
+                    <!-- Basic Structure -->
+                    <div class="topic-card">
+                        <h3>Basic HTML Document Structure</h3>
+                        <p>Every HTML document has a basic structure that includes the following elements:</p>
+                        <div class="code-example">
+                            <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;Document Title&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;!-- Content goes here --&gt;
+    &lt;h1&gt;This is a Heading&lt;/h1&gt;
+    &lt;p&gt;This is a paragraph.&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                        </div>
+                    </div>
+                    
+                    <!-- Common Elements -->
+                    <div class="topic-card">
+                        <h3>Common HTML Elements</h3>
+                        <p>HTML provides various elements for different types of content:</p>
+                        <ul>
+                            <li><strong>Headings:</strong> &lt;h1&gt; to &lt;h6&gt; for different heading levels</li>
+                            <li><strong>Paragraphs:</strong> &lt;p&gt; for text paragraphs</li>
+                            <li><strong>Links:</strong> &lt;a href="url"&gt; for hyperlinks</li>
+                            <li><strong>Images:</strong> &lt;img src="image.jpg" alt="description"&gt;</li>
+                            <li><strong>Lists:</strong> &lt;ul&gt;, &lt;ol&gt;, &lt;li&gt; for unordered and ordered lists</li>
+                            <li><strong>Divisions:</strong> &lt;div&gt; for content division</li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Coming Soon -->
+                    <div class="topic-card">
+                        <h3>More Content Coming Soon!</h3>
+                        <p>We're actively developing comprehensive learning materials for HTML. Check back soon for:</p>
+                        <ul>
+                            <li>Interactive HTML tutorials</li>
+                            <li>Practice exercises with solutions</li>
+                            <li>HTML5 new features and semantics</li>
+                            <li>Form building with HTML</li>
+                            <li>Accessibility best practices</li>
+                            <li>HTML validation and debugging</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Sidebar -->
+                <div class="sidebar">
+                    <h3>HTML Learning Path</h3>
+                    <ul>
+                        <li><strong>Basics:</strong> Tags, Elements, Attributes</li>
+                        <li><strong>Structure:</strong> Document Outline, Semantic HTML</li>
+                        <li><strong>Forms:</strong> Inputs, Validation, Submission</li>
+                        <li><strong>Multimedia:</strong> Images, Audio, Video</li>
+                        <li><strong>HTML5:</strong> New Elements and APIs</li>
+                        <li><strong>Accessibility:</strong> ARIA, Screen Readers</li>
+                    </ul>
+                    
+                    <h3 style="margin-top: 2rem;">Quick Resources</h3>
+                    <ul>
+                        <li><a href="#">HTML Cheat Sheet</a></li>
+                        <li><a href="#">Common HTML Mistakes</a></li>
+                        <li><a href="#">HTML Validator Tool</a></li>
+                        <li><a href="#">Practice Projects</a></li>
+                        <li><a href="#">HTML Reference</a></li>
+                    </ul>
+                    
+                    <div style="margin-top: 2rem; padding: 1.5rem; background-color: var(--primary-color); color: white; border-radius: var(--border-radius-md);">
+                        <h4 style="color: white; margin-bottom: 0.5rem;">Next Step: CSS</h4>
+                        <p style="font-size: 0.9rem;">Once you master HTML, learn CSS to style your web pages beautifully.</p>
+                        <a href="css.html" style="color: white; font-weight: 600; display: inline-block; margin-top: 0.5rem;">Learn CSS →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <a href="../index.html" class="logo">
+                        <i class="fas fa-code"></i>
+                        <span>CodeLearn</span>
+                    </a>
+                    <p class="footer-tagline">Empowering the next generation of developers through accessible, high-quality programming education.</p>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="../index.html">Home</a></li>
+                        <li><a href="../index.html#languages">Languages</a></li>
+                        <li><a href="../index.html#comparison">Learning Guide</a></li>
+                        <li><a href="../index.html#about">About Us</a></li>
+                        <li><a href="../index.html#contact">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Language Pages</h3>
+                    <ul>
+                        <li><a href="html.html">HTML</a></li>
+                        <li><a href="css.html">CSS</a></li>
+                        <li><a href="javascript.html">JavaScript</a></li>
+                        <li><a href="python.html">Python</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; <span id="currentYear"></span> CodeLearn. All rights reserved. Made with <i class="fas fa-heart"></i> for aspiring developers.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
+    <script>
+        // Set current year in footer
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('currentYear').textContent = new Date().getFullYear();
+        });
+    </script>
+</body>
+</html>
