@@ -143,6 +143,11 @@ a {
     transform: translateY(-2px);
 }
 
+.nav-btn {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+}
+
 /* Header & Navigation */
 .header {
     background-color: var(--light-color);
@@ -800,6 +805,10 @@ a {
     
     .nav-controls {
         gap: var(--spacing-sm);
+    }
+    
+    .nav-controls .btn {
+        display: none;
     }
     
     .search-container input {
