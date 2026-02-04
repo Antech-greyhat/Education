@@ -754,7 +754,7 @@ a {
 
 .modal-content {
     background-color: var(--light-color);
-    margin: 15% auto;
+    margin: 10% auto;
     padding: var(--spacing-xl);
     border-radius: var(--border-radius-md);
     width: 90%;
@@ -958,6 +958,6 @@ a {
 
 @media (min-width: 768px) and (max-width: 1200px) {
     .modal-content {
-        margin: 8% auto;
+        margin: 5% auto;
     }
 }
