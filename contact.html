@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AntechLearn - Master Programming Easily</title>
+    <title>Contact Us - AntechLearn</title>
     <link rel="stylesheet" href="edu.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>👨‍💻</text></svg>">
@@ -19,18 +19,14 @@
                 </a>
                 
                 <ul class="nav-menu">
-                    <li class="nav-item"><a href="index.html" class="nav-link active">Home</a></li>
+                    <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
                     <li class="nav-item"><a href="languages.html" class="nav-link">Languages</a></li>
                     <li class="nav-item"><a href="guide.html" class="nav-link">Guide</a></li>
                     <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
-                    <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+                    <li class="nav-item"><a href="contact.html" class="nav-link active">Contact</a></li>
                 </ul>
                 
                 <div class="nav-controls">
-                    <div class="search-container">
-                        <input type="text" id="searchInput" placeholder="Search languages...">
-                        <button id="searchBtn" aria-label="Search"><i class="fas fa-search"></i></button>
-                    </div>
                     <button id="themeToggle" class="theme-toggle" aria-label="Toggle dark/light mode">
                         <i class="fas fa-moon"></i>
                     </button>
@@ -46,24 +42,85 @@
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero">
+    <!-- Contact Section -->
+    <section class="contact-section">
         <div class="container">
-            <div class="hero-content">
-                <h1 class="hero-title">Learn Programming <span class="highlight">The Right Way</span></h1>
-                <p class="hero-subtitle">Start your coding journey with our structured, beginner-friendly tutorials and resources. Master in-demand programming languages and build real-world projects.</p>
-                <div class="hero-buttons">
-                    <a href="languages.html" class="btn btn-primary">Explore Languages</a>
-                    <a href="guide.html" class="btn btn-secondary">Where to Start?</a>
+            <h1 class="section-title">Get In Touch</h1>
+            <p class="section-subtitle">Have questions or feedback? We'd love to hear from you!</p>
+            
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h2>Contact Information</h2>
+                    <p>Feel free to reach out to us through any of these channels:</p>
+                    
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <h3>Email</h3>
+                            <p>support@antechlearn.com</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <h3>Phone</h3>
+                            <p>+1 (555) 123-4567</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h3>Location</h3>
+                            <p>123 Code Street<br>Tech City, TC 12345</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-social">
+                        <h3>Follow Us</h3>
+                        <div class="social-links-contact">
+                            <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                            <a href="https://github.com/Antech-greyhat" aria-label="GitHub" target="_blank"><i class="fab fa-github"></i></a>
+                            <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div class="hero-image">
-                <div class="code-snippet">
-                    <pre><code>// Welcome to AntechLearn
-function startJourney() {
-  console.log("Happy coding!");
-  return "Success";
-}</code></pre>
+                
+                <div class="contact-form-container">
+                    <h2>Send Us a Message</h2>
+                    <form id="contactForm" class="contact-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="firstName">First Name</label>
+                                <input type="text" id="firstName" name="firstName" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="lastName">Last Name</label>
+                                <input type="text" id="lastName" name="lastName" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <input type="text" id="subject" name="subject" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" rows="6" required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary btn-full">
+                            <i class="fas fa-paper-plane"></i> Send Message
+                        </button>
+                    </form>
                 </div>
             </div>
         </div>
@@ -82,7 +139,7 @@ function startJourney() {
                     <div class="social-links">
                         <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
                         <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                        <a href="https://github.com/Antech-greyhat" aria-label="GitHub"><i class="fab fa-github" target="_blank"></i></a>
+                        <a href="https://github.com/Antech-greyhat" aria-label="GitHub" target="_blank"><i class="fab fa-github"></i></a>
                         <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
                     </div>
                 </div>
