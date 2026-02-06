@@ -98,6 +98,13 @@
     margin-top: var(--spacing-lg);
 }
 
+/* Hide header search on mobile to prevent overlapping */
+@media (max-width: 768px) {
+    .nav-controls .search-container {
+        display: none;
+    }
+}
+
 .language-card {
     background-color: var(--light-color);
     border-radius: var(--border-radius-md);

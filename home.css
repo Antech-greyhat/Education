@@ -92,6 +92,13 @@
     }
 }
 
+/* Hide header search on mobile to prevent overlapping */
+@media (max-width: 768px) {
+    .nav-controls .search-container {
+        display: none;
+    }
+}
+
 @media (max-width: 576px) {
     .hero {
         padding: var(--spacing-lg) 0;
