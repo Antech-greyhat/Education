@@ -1,18 +1,6 @@
-// DOM Elements
-const themeToggle = document.getElementById('themeToggle');
-const hamburger = document.getElementById('hamburger');
-const navMenu = document.querySelector('.nav-menu');
-const searchInput = document.getElementById('searchInput');
-const mainSearch = document.getElementById('mainSearch');
-const searchBtn = document.getElementById('searchBtn');
-const mainSearchBtn = document.getElementById('mainSearchBtn');
-const searchTags = document.querySelectorAll('.search-tag');
-const languageCards = document.querySelectorAll('.language-card');
-const currentYear = document.getElementById('currentYear');
-
-// Form Elements (for login and register pages)
-const loginForm = document.getElementById('loginForm');
-const registerForm = document.getElementById('registerForm');
+// DOM Elements - will be initialized after DOM loads
+let themeToggle, hamburger, navMenu, searchInput, mainSearch, searchBtn, mainSearchBtn, currentYear, loginForm, registerForm;
+let searchTags, languageCards;
 
 // Theme Management
 function initTheme() {
@@ -222,6 +210,20 @@ function initSmoothScroll() {
 
 // Initialize everything when DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
+    // Initialize DOM elements
+    themeToggle = document.getElementById('themeToggle');
+    hamburger = document.getElementById('hamburger');
+    navMenu = document.querySelector('.nav-menu');
+    searchInput = document.getElementById('searchInput');
+    mainSearch = document.getElementById('mainSearch');
+    searchBtn = document.getElementById('searchBtn');
+    mainSearchBtn = document.getElementById('mainSearchBtn');
+    searchTags = document.querySelectorAll('.search-tag');
+    languageCards = document.querySelectorAll('.language-card');
+    currentYear = document.getElementById('currentYear');
+    loginForm = document.getElementById('loginForm');
+    registerForm = document.getElementById('registerForm');
+    
     // Initialize theme
     initTheme();
     
