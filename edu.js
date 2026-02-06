@@ -10,17 +10,9 @@ const searchTags = document.querySelectorAll('.search-tag');
 const languageCards = document.querySelectorAll('.language-card');
 const currentYear = document.getElementById('currentYear');
 
-// Modal Elements
-const loginBtn = document.getElementById('loginBtn');
-const registerBtn = document.getElementById('registerBtn');
-const loginModal = document.getElementById('loginModal');
-const registerModal = document.getElementById('registerModal');
-const closeLogin = document.getElementById('closeLogin');
-const closeRegister = document.getElementById('closeRegister');
+// Form Elements (for login and register pages)
 const loginForm = document.getElementById('loginForm');
 const registerForm = document.getElementById('registerForm');
-const switchToRegister = document.getElementById('switchToRegister');
-const switchToLogin = document.getElementById('switchToLogin');
 
 // Theme Management
 function initTheme() {
@@ -41,37 +33,43 @@ function updateThemeIcon(theme) {
     icon.className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
 }
 
-// Modal Functions
-function openLoginModal() {
-    loginModal.style.display = 'block';
-}
-
-function openRegisterModal() {
-    registerModal.style.display = 'block';
-}
-
-function closeModal(modal) {
-    modal.style.display = 'none';
-}
-
+// Form Submission Handlers
 function handleLogin(e) {
     e.preventDefault();
+    const email = document.getElementById('loginEmail').value;
+    const password = document.getElementById('loginPassword').value;
+    
     // Placeholder for login logic
-    alert('Login functionality not implemented yet.');
-    closeModal(loginModal);
+    console.log('Login attempt with:', email);
+    alert('Login functionality will be implemented with backend integration.\nEmail: ' + email);
+    // Redirect to dashboard or home page after successful login
+    // window.location.href = 'index.html';
 }
 
 function handleRegister(e) {
     e.preventDefault();
+    const name = document.getElementById('registerName').value;
+    const email = document.getElementById('registerEmail').value;
     const password = document.getElementById('registerPassword').value;
     const confirmPassword = document.getElementById('registerConfirmPassword').value;
+    
     if (password !== confirmPassword) {
-        alert('Passwords do not match.');
+        alert('Passwords do not match. Please try again.');
         return;
     }
-    // Placeholder for register logic
-    alert('Registration functionality not implemented yet.');
-    closeModal(registerModal);
+    
+    if (password.length < 8) {
+        alert('Password must be at least 8 characters long.');
+        return;
+    }
+    
+    // Placeholder for registration logic
+    console.log('Registration attempt:', { name, email });
+    alert('Registration successful!\nWelcome, ' + name + '!\n\nRedirecting to login page...');
+    // Redirect to login page after successful registration
+    setTimeout(() => {
+        window.location.href = 'login.html';
+    }, 1500);
 }
 
 // Mobile Navigation Toggle
@@ -234,21 +232,29 @@ document.addEventListener('DOMContentLoaded', function() {
     initSmoothScroll();
     
     // Event Listeners
-    themeToggle.addEventListener('click', toggleTheme);
-    hamburger.addEventListener('click', toggleMobileMenu);
+    if (themeToggle) themeToggle.addEventListener('click', toggleTheme);
+    if (hamburger) hamburger.addEventListener('click', toggleMobileMenu);
     
-    // Search functionality
-    searchBtn.addEventListener('click', () => performSearch(searchInput.value));
-    mainSearchBtn.addEventListener('click', () => performSearch(mainSearch.value));
+    // Form submission handlers (for login and register pages)
+    if (loginForm) loginForm.addEventListener('submit', handleLogin);
+    if (registerForm) registerForm.addEventListener('submit', handleRegister);
+    
+    // Search functionality (only on home page)
+    if (searchBtn) searchBtn.addEventListener('click', () => performSearch(searchInput.value));
+    if (mainSearchBtn) mainSearchBtn.addEventListener('click', () => performSearch(mainSearch.value));
     
     // Search on Enter key
-    searchInput.addEventListener('keypress', (e) => {
-        if (e.key === 'Enter') performSearch(searchInput.value);
-    });
+    if (searchInput) {
+        searchInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') performSearch(searchInput.value);
+        });
+    }
     
-    mainSearch.addEventListener('keypress', (e) => {
-        if (e.key === 'Enter') performSearch(mainSearch.value);
-    });
+    if (mainSearch) {
+        mainSearch.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') performSearch(mainSearch.value);
+        });
+    }
     
     // Search tags
     searchTags.forEach(tag => {
@@ -259,12 +265,14 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     
     // Close mobile menu when clicking outside
-    document.addEventListener('click', (e) => {
-        if (!hamburger.contains(e.target) && !navMenu.contains(e.target)) {
-            hamburger.classList.remove('active');
-            navMenu.classList.remove('active');
-        }
-    });
+    if (hamburger && navMenu) {
+        document.addEventListener('click', (e) => {
+            if (!hamburger.contains(e.target) && !navMenu.contains(e.target)) {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+            }
+        });
+    }
     
     // Initialize language cards with hover effect
     languageCards.forEach(card => {
@@ -321,20 +329,4 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
-});
-
-// Modal Event Listeners
-loginBtn.addEventListener('click', openLoginModal);
-registerBtn.addEventListener('click', openRegisterModal);
-closeLogin.addEventListener('click', () => closeModal(loginModal));
-closeRegister.addEventListener('click', () => closeModal(registerModal));
-loginForm.addEventListener('submit', handleLogin);
-registerForm.addEventListener('submit', handleRegister);
-switchToRegister.addEventListener('click', () => { closeModal(loginModal); openRegisterModal(); });
-switchToLogin.addEventListener('click', () => { closeModal(registerModal); openLoginModal(); });
-
-// Close modal when clicking outside
-window.addEventListener('click', (e) => {
-    if (e.target === loginModal) closeModal(loginModal);
-    if (e.target === registerModal) closeModal(registerModal);
 });
