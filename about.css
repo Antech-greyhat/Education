@@ -101,6 +101,90 @@
     font-size: 0.95rem;
 }
 
+.contributors-section {
+    margin-top: 4rem;
+    text-align: center;
+}
+
+.contributors-section h2 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.contributors-section p {
+    margin-bottom: 2rem;
+    color: var(--gray-color);
+}
+
+.contributors-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.contributor-card {
+    background-color: var(--light-gray);
+    padding: 2.5rem 2rem;
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-md);
+    transition: all var(--transition-fast);
+    text-align: center;
+}
+
+.dark-theme .contributor-card {
+    background-color: var(--light-gray);
+}
+
+.contributor-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+}
+
+.contributor-avatar {
+    margin-bottom: 1.5rem;
+}
+
+.contributor-avatar i {
+    font-size: 5rem;
+    color: var(--primary-color);
+}
+
+.contributor-name {
+    color: var(--dark-color);
+    margin-bottom: 0.5rem;
+    font-size: 1.5rem;
+}
+
+.contributor-role {
+    color: var(--gray-color);
+    margin-bottom: 1.5rem;
+    font-size: 0.95rem;
+}
+
+.github-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--light-color);
+    background-color: var(--dark-color);
+    text-decoration: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: var(--border-radius-sm);
+    transition: all var(--transition-fast);
+    font-weight: 600;
+}
+
+.github-link:hover {
+    background-color: var(--primary-color);
+    transform: scale(1.05);
+}
+
+.github-link i {
+    font-size: 1.2rem;
+}
+
 .team-section {
     margin-top: 4rem;
     padding: 3rem;
@@ -160,11 +244,24 @@
     .about-stats {
         grid-template-columns: repeat(2, 1fr);
     }
+    
+    .contributors-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
 }
 
 @media (max-width: 576px) {
     .about-stats {
         grid-template-columns: 1fr;
+    }
+    
+    .contributors-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .contributor-card {
+        padding: 2rem 1.5rem;
     }
     
     .social-links-about {
