@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Programming Languages - AntechLearn</title>
+    <link rel="stylesheet" href="edu.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>👨‍💻</text></svg>">
+</head>
+<body>
+    <!-- Header with Navigation -->
+    <header class="header">
+        <div class="container">
+            <nav class="navbar">
+                <a href="index.html" class="logo">
+                    <i class="fas fa-code"></i>
+                    <span>AntechLearn</span>
+                </a>
+                
+                <ul class="nav-menu">
+                    <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+                    <li class="nav-item"><a href="languages.html" class="nav-link active">Languages</a></li>
+                    <li class="nav-item"><a href="guide.html" class="nav-link">Guide</a></li>
+                    <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+                    <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+                </ul>
+                
+                <div class="nav-controls">
+                    <div class="search-container">
+                        <input type="text" id="searchInput" placeholder="Search languages...">
+                        <button id="searchBtn" aria-label="Search"><i class="fas fa-search"></i></button>
+                    </div>
+                    <button id="themeToggle" class="theme-toggle" aria-label="Toggle dark/light mode">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                    <a href="login.html" class="btn btn-secondary nav-btn">Log In</a>
+                    <a href="register.html" class="btn btn-primary nav-btn">Register</a>
+                    <div class="hamburger" id="hamburger">
+                        <span class="bar"></span>
+                        <span class="bar"></span>
+                        <span class="bar"></span>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Search Bar Section -->
+    <section class="search-section">
+        <div class="container">
+            <h2 class="section-title">Find Your Programming Language</h2>
+            <div class="search-bar">
+                <input type="text" id="mainSearch" placeholder="Search for HTML, CSS, JavaScript, Python...">
+                <button id="mainSearchBtn" class="search-btn">
+                    <i class="fas fa-search"></i> Search
+                </button>
+            </div>
+            <div class="search-tags">
+                <span class="search-tag" data-search="html">HTML</span>
+                <span class="search-tag" data-search="css">CSS</span>
+                <span class="search-tag" data-search="javascript">JavaScript</span>
+                <span class="search-tag" data-search="python">Python</span>
+                <span class="search-tag" data-search="web development">Web Development</span>
+                <span class="search-tag" data-search="beginner">Beginner Friendly</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Programming Languages Section -->
+    <section class="languages-section" id="languages">
+        <div class="container">
+            <h2 class="section-title">Popular Programming Languages</h2>
+            <p class="section-subtitle">Choose a language to start your learning journey</p>
+            
+            <div class="languages-grid">
+                <!-- HTML Card -->
+                <div class="language-card" data-language="html">
+                    <div class="card-icon">
+                        <i class="fab fa-html5"></i>
+                    </div>
+                    <h3 class="card-title">HTML</h3>
+                    <p class="card-description">The standard markup language for creating web pages and web applications.</p>
+                    <div class="card-details">
+                        <p><strong>Common Uses:</strong> Web structure, content organization, semantic markup</p>
+                        <p><strong>Who Should Learn:</strong> Absolute beginners, web developers, content creators</p>
+                    </div>
+                    <a href="https://www.freecodecamp.org/learn/responsive-web-design/" class="card-link" target="_blank">Start Learning HTML <i class="fas fa-arrow-right"></i></a>
+                </div>
+                
+                <!-- CSS Card -->
+                <div class="language-card" data-language="css">
+                    <div class="card-icon">
+                        <i class="fab fa-css3-alt"></i>
+                    </div>
+                    <h3 class="card-title">CSS</h3>
+                    <p class="card-description">Stylesheet language used to describe the presentation of HTML documents.</p>
+                    <div class="card-details">
+                        <p><strong>Common Uses:</strong> Web design, responsive layouts, animations, UI/UX</p>
+                        <p><strong>Who Should Learn:</strong> Web designers, frontend developers, UI/UX specialists</p>
+                    </div>
+                    <a href="https://www.freecodecamp.org/learn/responsive-web-design/#css-flexbox" class="card-link" target="_blank">Start Learning CSS <i class="fas fa-arrow-right"></i></a>
+                </div>
+                
+                <!-- JavaScript Card -->
+                <div class="language-card" data-language="javascript">
+                    <div class="card-icon">
+                        <i class="fab fa-js-square"></i>
+                    </div>
+                    <h3 class="card-title">JavaScript</h3>
+                    <p class="card-description">A versatile programming language for creating interactive web content.</p>
+                    <div class="card-details">
+                        <p><strong>Common Uses:</strong> Web interactivity, frontend frameworks, backend (Node.js)</p>
+                        <p><strong>Who Should Learn:</strong> Frontend/backend developers, full-stack engineers</p>
+                    </div>
+                    <a href="https://www.freecodecamp.org/learn/javascript-algorithms-and-data-structures/" class="card-link" target="_blank">Start Learning JavaScript <i class="fas fa-arrow-right"></i></a>
+                </div>
+                
+                <!-- Python Card -->
+                <div class="language-card" data-language="python">
+                    <div class="card-icon">
+                        <i class="fab fa-python"></i>
+                    </div>
+                    <h3 class="card-title">Python</h3>
+                    <p class="card-description">A high-level, general-purpose programming language known for its readability.</p>
+                    <div class="card-details">
+                        <p><strong>Common Uses:</strong> Data science, automation, web development, AI/ML</p>
+                        <p><strong>Who Should Learn:</strong> Beginners, data scientists, automation engineers</p>
+                    </div>
+                    <a href="https://www.freecodecamp.org/learn/scientific-computing-with-python/" class="card-link" target="_blank">Start Learning Python <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <a href="index.html" class="logo">
+                        <i class="fas fa-code"></i>
+                        <span>AntechLearn</span>
+                    </a>
+                    <p class="footer-tagline">Empowering the next generation of developers through accessible, high-quality programming education.</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="https://github.com/Antech-greyhat" aria-label="GitHub" target="_blank"><i class="fab fa-github"></i></a>
+                        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="languages.html">Languages</a></li>
+                        <li><a href="guide.html">Learning Guide</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Resources</h3>
+                    <ul>
+                        <li><a href="#">Documentation</a></li>
+                        <li><a href="#">Code Examples</a></li>
+                        <li><a href="#">Practice Exercises</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Community</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-newsletter">
+                    <h3>Stay Updated</h3>
+                    <p>Subscribe to our newsletter for new tutorials and updates.</p>
+                    <div class="newsletter-form">
+                        <input type="email" placeholder="Your email address">
+                        <button type="submit">Subscribe</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; <span id="currentYear"></span> AntechLearn. All rights reserved. Made with <i class="fas fa-heart"></i> for aspiring developers.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="edu.js"></script>
+</body>
+</html>
