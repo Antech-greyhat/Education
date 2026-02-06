@@ -1,0 +1,135 @@
+/* Guide Page Styles */
+
+.section-title {
+    text-align: center;
+    margin-bottom: var(--spacing-sm);
+}
+
+.section-subtitle {
+    text-align: center;
+    color: var(--gray-color);
+    margin-bottom: var(--spacing-lg);
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Comparison Section */
+.comparison-section {
+    padding: var(--spacing-xl) 0;
+    background-color: var(--light-color);
+}
+
+.comparison-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: var(--spacing-lg);
+    margin-bottom: var(--spacing-xl);
+}
+
+.comparison-card {
+    background-color: var(--light-gray);
+    padding: var(--spacing-lg);
+    border-radius: var(--border-radius-md);
+    transition: transform var(--transition-normal);
+}
+
+.dark-theme .comparison-card {
+    background-color: var(--light-gray);
+}
+
+.comparison-card:hover {
+    transform: translateY(-5px);
+}
+
+.comparison-card h3 {
+    display: flex;
+    align-items: center;
+    margin-bottom: var(--spacing-md);
+    color: var(--primary-color);
+}
+
+.comparison-card h3 i {
+    margin-right: var(--spacing-sm);
+}
+
+.comparison-card p {
+    margin-bottom: var(--spacing-sm);
+    line-height: 1.6;
+}
+
+/* Learning Path */
+.learning-path {
+    background-color: var(--light-gray);
+    padding: var(--spacing-lg);
+    border-radius: var(--border-radius-md);
+}
+
+.dark-theme .learning-path {
+    background-color: var(--light-gray);
+}
+
+.learning-path h3 {
+    text-align: center;
+    margin-bottom: var(--spacing-lg);
+    color: var(--primary-color);
+}
+
+.path-steps {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: var(--spacing-md);
+}
+
+.path-step {
+    flex: 1;
+    min-width: 200px;
+    text-align: center;
+    padding: var(--spacing-md);
+    background-color: var(--light-color);
+    border-radius: var(--border-radius-md);
+    position: relative;
+    transition: transform var(--transition-fast);
+}
+
+.path-step:hover {
+    transform: translateY(-5px);
+}
+
+.step-number {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    background-color: var(--primary-color);
+    color: white;
+    border-radius: 50%;
+    font-weight: 700;
+    margin-bottom: var(--spacing-sm);
+}
+
+.path-step h4 {
+    color: var(--primary-color);
+    margin-bottom: var(--spacing-sm);
+}
+
+.path-step p {
+    color: var(--gray-color);
+    font-size: 0.9rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .comparison-content {
+        grid-template-columns: 1fr;
+    }
+    
+    .path-steps {
+        flex-direction: column;
+    }
+    
+    .path-step {
+        min-width: 100%;
+    }
+}
