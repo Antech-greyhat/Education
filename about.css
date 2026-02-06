@@ -151,6 +151,21 @@
     color: var(--primary-color);
 }
 
+.contributor-img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid var(--primary-color);
+    box-shadow: var(--shadow-md);
+    transition: all var(--transition-fast);
+}
+
+.contributor-card:hover .contributor-img {
+    transform: scale(1.05);
+    box-shadow: var(--shadow-lg);
+}
+
 .contributor-name {
     color: var(--dark-color);
     margin-bottom: 0.5rem;
@@ -262,6 +277,11 @@
     
     .contributor-card {
         padding: 2rem 1.5rem;
+    }
+    
+    .contributor-img {
+        width: 120px;
+        height: 120px;
     }
     
     .social-links-about {
