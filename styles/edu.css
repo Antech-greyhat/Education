@@ -664,7 +664,11 @@ a {
 }
 
 .footer-links a:hover {
-    color: white;
+    color: #ffd700;
+}
+
+.dark-theme .footer-links a:hover {
+    color: var(--primary-color);
 }
 
 .footer-newsletter h3 {
@@ -704,9 +708,22 @@ a {
     color: #adb5bd;
 }
 
+.dark-theme .newsletter-form input {
+    background-color: rgba(0, 0, 0, 0.1);
+    color: #212529;
+}
+
+.dark-theme .newsletter-form input::placeholder {
+    color: #6c757d;
+}
+
 .newsletter-form input:focus {
     outline: none;
     background-color: rgba(255, 255, 255, 0.15);
+}
+
+.dark-theme .newsletter-form input:focus {
+    background-color: rgba(0, 0, 0, 0.15);
 }
 
 .newsletter-form button {
