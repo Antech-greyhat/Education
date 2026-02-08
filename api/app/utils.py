@@ -1,3 +1,4 @@
+subscribe_alert_email = """ 
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -96,3 +97,5 @@
     </div>
 </body>
 </html>
+
+"""
