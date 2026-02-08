@@ -1,7 +1,10 @@
 from flask_restx import Namespace, Resource, fields
 from flask import request
+from threading import Thread
 
 from ..models import Newsletter, db
+
+from ..send_email import send_newsletter
 
 news_ns = Namespace('news', description='Newsletter namespace')
 
@@ -37,6 +40,9 @@ class NewsletterResource(Resource):
     new_sub = Newsletter(email=email)
     db.session.add(new_sub)
     db.session.commit()
+    
+    send_newsletter(email)
+    # Thread(target=send_newsletter, args=(email,)).start()
     
     return {
       'msg':'Successfully subscribed to our newsletter',
