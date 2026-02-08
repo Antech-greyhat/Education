@@ -10,6 +10,7 @@ from .extensions import db
 class Newsletter(db.Model):
   id = db.Column(db.Integer, primary_key=True)
   email = db.Column(db.String(150), unique=True, nullable=False)
+  username = db.Column(db.String(100), nullable=False, index=True)
   user_id = db.Column(db.ForeignKey('user.id'), nullable=True) 
 
   subscribed_at = db.Column(db.DateTime, default=datetime.utcnow)
