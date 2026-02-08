@@ -1,16 +1,18 @@
-blinker==1.9.0
-click==8.3.1
-Flask==3.1.2
-flask-cors==6.0.2
-Flask-DotEnv==0.1.2
-Flask-JWT-Extended==4.7.1
-Flask-Mail==0.10.0
-Flask-SQLAlchemy==3.1.1
-greenlet==3.3.1
-itsdangerous==2.2.0
-Jinja2==3.1.6
-MarkupSafe==3.0.3
-PyJWT==2.11.0
-SQLAlchemy==2.0.46
-typing_extensions==4.15.0
-Werkzeug==3.1.5
+# FastAPI and Core Dependencies
+fastapi==0.104.1
+uvicorn[standard]==0.24.0
+pydantic==2.5.0
+pydantic[email]==2.5.0
+python-multipart==0.0.6
+
+# Email functionality (for production newsletter sending)
+pydantic[email]
+
+# Database (optional, for production use)
+# SQLAlchemy==2.0.23
+# databases==0.8.0
+
+# Authentication (optional, for production use)
+# python-jose[cryptography]==3.3.0
+# passlib[bcrypt]==1.7.4
+# python-multipart==0.0.6
