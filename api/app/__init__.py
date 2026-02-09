@@ -1,13 +1,11 @@
 from flask import Flask
 from flask_restx import Api
 from sqlalchemy_utils import database_exists, create_database
-from flask_jwt_extended import JWTManager
 from flask_cors import CORS
-from flask_mail import Mail
 from dotenv import load_dotenv
 import os
 
-from .models import User, Newsletter, Message, db
+from .extensions import db, mail, jwt
 
 # import Namespace objects
 from .auth.register import register_ns  
@@ -15,7 +13,7 @@ from .auth.admin import admin_ns
 from .auth.login import login_ns
 from .auth.newsletter import news_ns
 
-mail = Mail()
+load_dotenv()
 
 def create_app():
     app = Flask(__name__)
@@ -35,16 +33,16 @@ def create_app():
 
     # Mail server config
     app.config['MAIL_SERVER'] = os.getenv('MAIL_SERVER')
-    app.config['MAIL_PORT'] = os.getenv('MAIL_PORT')
+    app.config['MAIL_PORT'] = 587
     app.config['MAIL_USERNAME'] = os.getenv('MAIL_USERNAME')
     app.config['MAIL_PASSWORD'] = os.getenv('MAIL_PASSWORD')
-    app.config['MAIL_USE_TLS'] = os.getenv('MAIL_USE_TLS')
-    app.config['MAIL_USE_SSL'] = os.getenv('MAIL_USE_SSL')
+    app.config['MAIL_USE_TLS'] = True
+    app.config['MAIL_USE_SSL'] = False
 
     # Initialize extensions
     db.init_app(app)
     mail.init_app(app)
-    JWTManager(app)
+    jwt.init_app(app)
 
     # Create Flask-RESTX API
     api = Api(app, title="AntechLearn API", version="1.0")
