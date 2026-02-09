@@ -29,7 +29,7 @@ def create_app():
     # jwt config
     app.config['JWT_SECRET_KEY'] = os.getenv('JWT_SECRET_KEY')
     app.config['JWT_ACCESS_TOKEN_EXPIRES'] = 18000  # 30 MIN
-    app.config['JWT_REFRESH_TOKEN_EXPIRES'] = 86400  # 1d
+    app.config['JWT_REFRESH_TOKEN_EXPIRES'] = 172800  # 2d
 
     # Mail server config
     app.config['MAIL_SERVER'] = os.getenv('MAIL_SERVER')

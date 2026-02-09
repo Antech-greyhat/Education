@@ -53,9 +53,7 @@ class Admin(db.Model):
     joined_at = db.Column(db.DateTime, default=datetime.utcnow)
 
     def set_admin_password(self, password: str):
-        """Hashes and sets the admin password"""
         self.password = generate_password_hash(password)
 
     def check_admin_password(self, password: str) -> bool:
-        """Checks a plain password against the hashed one"""
         return check_password_hash(self.password, password)
