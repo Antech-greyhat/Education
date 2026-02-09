@@ -6,7 +6,7 @@ from ..models import Newsletter, db
 
 from ..send_email import send_newsletter
 
-news_ns = Namespace('news', description='Newsletter namespace')
+news_ns = Namespace('news', description='Newsletter namespace', path='/news')
 
 newsletter_model = news_ns.model(
   'Newsletter', 
