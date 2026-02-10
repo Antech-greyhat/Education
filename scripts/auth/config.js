@@ -1,1 +1,1 @@
-export apiUrl = 'http://127.0.0.1:2000';
+export API_URL = 'https://antechlearn.ngrok.app';

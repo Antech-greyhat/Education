@@ -1,6 +1,6 @@
 from flask_restx import Namespace, Resource, fields
 
-admin_ns = Namespace('admin', description='Admin login endpoint') 
+admin_ns = Namespace('admin', description='Admin login endpoint', path='/auth') 
 
 @admin_ns.route('/admin')
 class Adminauth(Resource):
