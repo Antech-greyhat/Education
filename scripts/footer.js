@@ -54,7 +54,7 @@ const footerContent = ()=>{
                 <p class="message-display js-message-display">
                 <!-- FOR RESPONSE -->
                 </p>
-                <button type="" class="js-news-button">Subscribe</button>
+                <button type="button" class="js-news-button">Subscribe</button>
               </div>
           </div>
         </div>
