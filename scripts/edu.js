@@ -2,9 +2,6 @@
 let themeToggle, hamburger, navMenu, searchInput, mainSearch, searchBtn, mainSearchBtn, currentYear, loginForm, registerForm;
 let searchTags, languageCards;
 
-// API Configuration
-const API_BASE_URL = 'http://localhost:8000/api';
-
 // Theme Management
 function initTheme() {
     const savedTheme = localStorage.getItem('theme') || 'light';
@@ -22,181 +19,6 @@ function toggleTheme() {
 function updateThemeIcon(theme) {
     const icon = themeToggle.querySelector('i');
     icon.className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
-}
-
-// Form Submission Handlers
-function handleLogin(e) {
-    e.preventDefault();
-    const email = document.getElementById('loginEmail').value;
-    const password = document.getElementById('loginPassword').value;
-    
-    // Placeholder for login logic
-    console.log('Login attempt with:', email);
-    alert('Login functionality will be implemented with backend integration.\nEmail: ' + email);
-    // Redirect to dashboard or home page after successful login
-    // window.location.href = 'index.html';
-}
-
-function handleRegister(e) {
-    e.preventDefault();
-    const name = document.getElementById('registerName').value;
-    const email = document.getElementById('registerEmail').value;
-    const password = document.getElementById('registerPassword').value;
-    const confirmPassword = document.getElementById('registerConfirmPassword').value;
-    
-    if (password !== confirmPassword) {
-        alert('Passwords do not match. Please try again.');
-        return;
-    }
-    
-    if (password.length < 8) {
-        alert('Password must be at least 8 characters long.');
-        return;
-    }
-    
-    // Placeholder for registration logic
-    console.log('Registration attempt:', { name, email });
-    alert('Registration successful!\nWelcome, ' + name + '!\n\nRedirecting to login page...');
-    // Redirect to login page after successful registration
-    setTimeout(() => {
-        window.location.href = 'login.html';
-    }, 1500);
-}
-
-// Newsletter subscription handler
-async function handleNewsletterSubscription(e) {
-    e.preventDefault();
-    const emailInput = e.target.querySelector('input[type="email"]');
-    const email = emailInput.value;
-    const submitBtn = e.target.querySelector('button[type="submit"]');
-    
-    if (!email || !email.includes('@')) {
-        showNotification('Please enter a valid email address.', 'error');
-        return;
-    }
-    
-    // Disable button and show loading state
-    const originalText = submitBtn.innerHTML;
-    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Subscribing...';
-    submitBtn.disabled = true;
-    
-    try {
-        const response = await fetch(`${API_BASE_URL}/subscribers`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                email: email,
-                status: 'active'
-            })
-        });
-        
-        if (response.ok) {
-            showNotification(`Thank you for subscribing! You'll receive updates at ${email}`, 'success');
-            emailInput.value = '';
-        } else {
-            const error = await response.json();
-            showNotification(error.detail || 'Already subscribed or an error occurred.', 'error');
-        }
-    } catch (error) {
-        console.error('Subscription error:', error);
-        // Still show success message even if API is not running
-        showNotification(`Thank you for subscribing! You'll receive updates at ${email}`, 'success');
-        emailInput.value = '';
-    } finally {
-        submitBtn.innerHTML = originalText;
-        submitBtn.disabled = false;
-    }
-}
-
-// Contact form submission handler
-async function handleContactFormSubmission(e) {
-    e.preventDefault();
-    
-    const firstName = document.getElementById('firstName').value;
-    const lastName = document.getElementById('lastName').value;
-    const email = document.getElementById('email').value;
-    const subject = document.getElementById('subject').value;
-    const message = document.getElementById('message').value;
-    const submitBtn = e.target.querySelector('button[type="submit"]');
-    
-    // Validation
-    if (!firstName || !lastName || !email || !subject || !message) {
-        showNotification('Please fill in all fields.', 'error');
-        return;
-    }
-    
-    // Disable button and show loading state
-    const originalText = submitBtn.innerHTML;
-    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
-    submitBtn.disabled = true;
-    
-    try {
-        const response = await fetch(`${API_BASE_URL}/messages`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                first_name: firstName,
-                last_name: lastName,
-                email: email,
-                subject: subject,
-                message: message,
-                status: 'unread'
-            })
-        });
-        
-        if (response.ok) {
-            showNotification('Thank you! Your message has been sent successfully. We\'ll get back to you soon.', 'success');
-            e.target.reset();
-        } else {
-            showNotification('Error sending message. Please try again.', 'error');
-        }
-    } catch (error) {
-        console.error('Contact form error:', error);
-        // Still show success message even if API is not running
-        showNotification('Thank you! Your message has been sent successfully. We\'ll get back to you soon.', 'success');
-        e.target.reset();
-    } finally {
-        submitBtn.innerHTML = originalText;
-        submitBtn.disabled = false;
-    }
-}
-
-// Show notification helper
-function showNotification(message, type = 'info') {
-    // Create notification element
-    const notification = document.createElement('div');
-    notification.style.cssText = `
-        position: fixed;
-        top: 100px;
-        right: 20px;
-        background-color: ${type === 'success' ? 'var(--success-color)' : type === 'error' ? 'var(--danger-color)' : 'var(--primary-color)'};
-        color: white;
-        padding: 1rem 1.5rem;
-        border-radius: var(--border-radius-md);
-        box-shadow: var(--shadow-lg);
-        z-index: 1000;
-        max-width: 400px;
-        animation: slideInRight 0.3s ease;
-    `;
-    
-    notification.innerHTML = `
-        <div style="display: flex; align-items: center; gap: 10px;">
-            <i class="fas fa-${type === 'success' ? 'check-circle' : type === 'error' ? 'exclamation-circle' : 'info-circle'}"></i>
-            <span>${message}</span>
-        </div>
-    `;
-    
-    document.body.appendChild(notification);
-    
-    // Remove notification after 5 seconds
-    setTimeout(() => {
-        notification.style.animation = 'slideOutRight 0.3s ease forwards';
-        setTimeout(() => notification.remove(), 300);
-    }, 5000);
 }
 
 // Mobile Navigation Toggle
@@ -360,8 +182,6 @@ document.addEventListener('DOMContentLoaded', function() {
     searchTags = document.querySelectorAll('.search-tag');
     languageCards = document.querySelectorAll('.language-card');
     currentYear = document.getElementById('currentYear');
-    loginForm = document.getElementById('loginForm');
-    registerForm = document.getElementById('registerForm');
     
     // Initialize theme
     initTheme();
@@ -375,10 +195,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // Event Listeners
     if (themeToggle) themeToggle.addEventListener('click', toggleTheme);
     if (hamburger) hamburger.addEventListener('click', toggleMobileMenu);
-    
-    // Form submission handlers (for login and register pages)
-    if (loginForm) loginForm.addEventListener('submit', handleLogin);
-    if (registerForm) registerForm.addEventListener('submit', handleRegister);
     
     // Search functionality (only on home page)
     if (searchBtn) searchBtn.addEventListener('click', () => performSearch(searchInput.value));
@@ -431,18 +247,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
-    
-    // Newsletter form submission
-    const newsletterForm = document.querySelector('.newsletter-form');
-    if (newsletterForm) {
-        newsletterForm.addEventListener('submit', handleNewsletterSubscription);
-    }
-    
-    // Contact form submission
-    const contactForm = document.getElementById('contactForm');
-    if (contactForm) {
-        contactForm.addEventListener('submit', handleContactFormSubmission);
-    }
     
     // Add active class to current nav link based on scroll position
     window.addEventListener('scroll', function() {

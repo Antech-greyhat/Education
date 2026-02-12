@@ -11,7 +11,7 @@ register_ns = Namespace('register', description='Register route', path='/auth')
 register_models = register_ns.model(
   'User',
   {
-    'full_name': fields.String(required=True),
+    'name': fields.String(required=True),
     'email': fields.String(required=True),
     'password': fields.String(required=True)
   }
@@ -22,13 +22,18 @@ class Register(Resource):
   @register_ns.expect(register_models)
   def post(self): 
     
-    data = request.get_json()
+    data = request.get_json() or {}
     
     # Check naming convetion ie userName from js
-    full_name = data.get('full_name')
+    full_name = data.get('name')
     email = data.get('email')
     password = data.get('password')
     
+    if not full_name or not email or not password:
+      return{
+        'msg': 'All fields are required!'
+      }
+      
     if len(full_name) < 2:
       return{
         'msg': 'full_name must be greater than 2 characters!'
