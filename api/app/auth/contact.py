@@ -23,7 +23,17 @@ class Contact(Resource):
     def post(self):
 
         data = request.get_json()
-        
+       
+from flask import current_app
+
+protected_ns = Namespace('protected', description='Protected jwt endpoint', path='/auth')
+
+@protected_ns.route('/protected')
+class Protect(Resource):
+    def post(self):
+        return{
+
+        } 
         first_name=data.get('first_name')
         last_name = data.get('last_name')
         email = data.get('email')

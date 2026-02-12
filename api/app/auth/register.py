@@ -1,5 +1,6 @@
 from flask_restx import Resource, Namespace, fields
 from flask import request
+from flask_jwt_extended import create_access_token, create_refresh_token
 
 from ..models import User
 from ..extensions import db
@@ -69,6 +70,7 @@ class Register(Resource):
       full_name=full_name,
       email=email
       )
+    access_token = create_access_token(identity=new_user.id)
     new_user.set_password(password)
     
     db.session.add(new_user)
@@ -76,5 +78,6 @@ class Register(Resource):
     db.session.close()
     
     return {
-      'msg':'Account created successfully.'
+      'msg':'Account created successfully.',
+      'access_token': access_token
     }, 201
