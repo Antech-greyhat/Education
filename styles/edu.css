@@ -607,6 +607,10 @@ a {
     margin-bottom: var(--spacing-md);
 }
 
+.dark-theme .footer-brand .logo {
+    color: #212529;
+}
+
 .footer-tagline {
     margin-bottom: var(--spacing-md);
     color: #adb5bd;
