@@ -7,7 +7,6 @@ from ..extensions import db
 import re
 
 register_ns = Namespace('register', description='Register route', path='/auth')
-register_ns = Namespace('register', description='Register route', path='/auth')
 
 register_models = register_ns.model(
   'User',
