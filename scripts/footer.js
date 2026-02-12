@@ -48,12 +48,12 @@ const footerContent = ()=>{
             <h3>Stay Updated</h3>
             <p>Subscribe to our newsletter for new tutorials and updates.</p>
             
-            <!-- ILL CHANGE FROM FORM TAG TO DIV JUST TO AVOID PAGE RELOAD -->
-            <div class="newsletter-form">
-                <input type="email" placeholder="Your email address" required class="js-newsletter-input">
-                <p class="message-display js-message-display">
+            <!-- CHANGED FROM FORM TAG TO DIV TO AVOID PAGE RELOAD -->
+            <p class="message-display js-message-display">
                 <!-- FOR RESPONSE -->
                 </p>
+            <div class="newsletter-form">
+                <input type="email" placeholder="Your email address" required class="js-newsletter-input">
                 <button type="button" class="js-news-button">Subscribe</button>
               </div>
           </div>
