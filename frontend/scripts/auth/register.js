@@ -74,6 +74,7 @@ registerButton.addEventListener('click', async () => {
     emailElement.value = ''
     passwordElement1.value = ''
     passwordElement2.value = ''
+    
 
   } catch (error) {
     showMessage(error.message || 'Registration failed.')
@@ -95,8 +96,16 @@ async function fetchData(name, email, password) {
   const data = await response.json()
 
   if (!response.ok) {
-    throw new Error(data.msg || 'Registration failed')
+    throw new Error(data.msg)
   }
-
-  return data
+  
+  const access_token = data.access_token;
+    
+    localStorage.setItem('access_token', `Barear ${access_token}`);
+    
+    setTimeout(() => {
+      window.location.href = 'languages.html'
+    }, 4000);
+  
+  return data;
 }
