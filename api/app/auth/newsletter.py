@@ -1,6 +1,6 @@
 from flask_restx import Namespace, Resource, fields
 from flask import request
-from threading import Thread
+# from threading import Thread
 
 from ..models import Newsletter, db
 
@@ -33,12 +33,11 @@ class NewsletterResource(Resource):
     if subscriber:
       return{
         "success": False,
-        "message": "This email is already subscribed two our newsletter",
+        "message": "This email is already subscribed to our newsletter",
         "error": "DUPLICATE_ENTRY"
       }, 409
     
     username = email.split('@')[0].split('.')[0].capitalize()
-    name = email.split('@')[0].split('.')[0].capitalize()
     
     new_sub = Newsletter(
       email=email,

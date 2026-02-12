@@ -12,6 +12,7 @@ from .auth.register import register_ns
 from .auth.admin import admin_ns
 from .auth.login import login_ns
 from .auth.newsletter import news_ns
+from .auth.contact import contact_ns
 
 load_dotenv()
 
@@ -48,7 +49,7 @@ def create_app():
     api = Api(app, title="AntechLearn API", version="1.0")
 
     # Add namespaces
-    namespaces = [register_ns, admin_ns, login_ns, news_ns]
+    namespaces = [register_ns, admin_ns, login_ns, news_ns, contact_ns]
     for ns in namespaces:
         api.add_namespace(ns)
 
