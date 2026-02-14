@@ -33,7 +33,7 @@ def create_app():
     app.config['JWT_ACCESS_TOKEN_EXPIRES'] = 18000  # 30 MIN
     app.config['JWT_REFRESH_TOKEN_EXPIRES'] = 172800  # 2d
 
-    # Mail server config
+    # gmail server config
     app.config['MAIL_SERVER'] = os.getenv('MAIL_SERVER')
     app.config['MAIL_PORT'] = 587
     app.config['MAIL_USERNAME'] = os.getenv('MAIL_USERNAME')

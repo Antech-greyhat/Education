@@ -16,27 +16,26 @@ login_model = login_ns.model(
 class Login(Resource):
   @login_ns.expect(login_model)
   def post(self):
+    
     data = request.get_json()
     
     email = data.get('email')
     password = data.get('password')
     
-    # if not email or not password:
-    #   return{
-    #     'msg': 'All fields are required!'
-    #   }, 400
+    if not email or not password:
+      return{
+        'msg': 'All fields are required.'
+      }, 400
       
     user = User.query.filter_by(email=email).first()
     
-    if user and user.check_password(password):
+    if user and user.check_password(password): 
       access_token = create_access_token(identity=user.id)
       return{
         'msg': 'Logged in successfully.',
-        'user_id': user.id,
-        'access_token': access_token,
-        'token_expires': 18000
+        'access_token': access_token
       }, 200
-
+      
     return{
-      'msg':'Invalid credentials!'
-    }, 401
+      'msg': 'Invalid email or password.'
+    }, 400

@@ -1,5 +1,5 @@
+from sqlalchemy import Nullable
 from  werkzeug.security import generate_password_hash, check_password_hash
-from flask_sqlalchemy import SQLAlchemy
 
 from datetime import datetime
 
@@ -11,7 +11,6 @@ class Newsletter(db.Model):
   id = db.Column(db.Integer, primary_key=True)
   email = db.Column(db.String(150), unique=True, nullable=False)
   username = db.Column(db.String(100), nullable=False, index=True)
-  user_id = db.Column(db.ForeignKey('user.id'), nullable=True) 
 
   subscribed_at = db.Column(db.DateTime, default=datetime.utcnow)
 
@@ -26,7 +25,6 @@ class Message(db.Model):
   message = db.Column(db.String(2000), nullable=False)
 
   sent_at = db.Column(db.DateTime, default=datetime.utcnow)
-  sender_id = db.Column(db.ForeignKey('user.id'), nullable=True)
 
 
 # user model
@@ -38,7 +36,18 @@ class User(db.Model):
   password = db.Column(db.String(250))
 
   created_at = db.Column(db.DateTime, default=datetime.utcnow)
+
+  reset_token = db.Column(db.String(100), nullable=True)
+  reset_token_id = db.Column(db.String(20), nullable=True)
+  reset_token_used = db.Column(db.Boolean, default=False)
+  reset_token_expirey_time = db.Column(db.DateTime, nullable=True)
   
+  def set_reset_token(self, reset_token):
+    self.reset_token = generate_password_hash(reset_token)
+
+  def check_reset_token(self, reset_token):
+    return check_password_hash(self.reset_token, reset_token)
+    
   
   def set_password(self, password):
     self.password =generate_password_hash(password)
