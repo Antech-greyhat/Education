@@ -1,11 +1,14 @@
 import { API_URL } from './auth/config.js';
+import { dataSubmit } from './auth/dataSubmit.js';
 
+const url = `${API_URL}/news/newsletter`;
 const emailElement = document.querySelector('.js-newsletter-input');
 const emailButton = document.querySelector('.js-news-button');
 const messageDisplay = document.querySelector('.js-message-display');
 
 let toastTimeout;
 
+/* 
 async function newsletterSub(email) {
   const response = await fetch(`${API_URL}/news/newsletter`, {
     method: 'POST',
@@ -26,7 +29,7 @@ async function newsletterSub(email) {
   
   return data;
 }
-
+*/
 function showToast(message, isError = true) {
   if (toastTimeout) {
     clearTimeout(toastTimeout);
@@ -72,11 +75,17 @@ emailButton.addEventListener('click', async () => {
   }
   messageDisplay.textContent = '';
   messageDisplay.style.display = 'none';
-
+  
+  const details = {
+    email:email
+  };
+  
   try {
-    await newsletterSub(email);
     
-    // Success toast - green, stays for full 5 seconds
+    await dataSubmit(details, url);
+    
+    // await newsletterSub(email);
+
     showToast('Thank you for subscribing!', false);
     emailElement.value = ''; // clear input
     

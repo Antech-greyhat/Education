@@ -26,7 +26,7 @@ def send_newsletter(username, email):
   """Prepare and send newsletter asynchronously"""
   app = current_app._get_current_object()
   msg = Message(
-    subject="🎉 Welcome to AntechLearn Newsletter!",
+    subject="Welcome to AntechLearn Newsletter!",
     sender=app.config.get("MAIL_DEFAULT_SENDER", "newsletter@antechlearn.com"),
     recipients=[email]
   )

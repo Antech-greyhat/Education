@@ -1,4 +1,7 @@
 import { API_URL } from './config.js'
+import { dataSubmit } from './dataSubmit.js';
+
+const url = `${API_URL}/auth/register`;
 
 const nameElement = document.querySelector('.js-full-name')
 const emailElement = document.querySelector('.js-email')
@@ -11,16 +14,12 @@ const messageDisplay = document.querySelector('.js-register-message')
 let messageTimeout;
 
 function showMessage(msg, isError = true) {
-  // clear previous timeout
-  if (messageTimeout) {
-    clearTimeout(messageTimeout);
-  }
+  if (messageTimeout) clearTimeout(messageTimeout);
 
   messageDisplay.textContent = msg;
   messageDisplay.style.color = isError ? '#dc3545' : '#28a745';
   messageDisplay.style.display = 'block';
 
-  // auto hide after 5 seconds
   messageTimeout = setTimeout(() => {
     messageDisplay.textContent = '';
     messageDisplay.style.display = 'none';
@@ -55,57 +54,46 @@ registerButton.addEventListener('click', async () => {
   }
   
   if (!termsCheckbox.checked) {
-    showMessage('You must agree to the terms and conditions.', true);
+    showMessage('You must agree to the terms and conditions.')
     return;
   }
 
   // Loading state
   registerButton.disabled = true
   const originalText = registerButton.textContent
-  registerButton.textContent = 'Creating account...'
-  showMessage('');
+  registerButton.innerHTML = 'Creating account...'
 
+  const details = {
+    name,
+    email,
+    password
+  }
+  
   try {
-    await fetchData(name, email, password)
-    showMessage('Account created successfully.', false)
+    const data = await dataSubmit(details, url);
 
-    // Optional: clear form
+    showMessage(data.msg || 'Account created successfully.', false)
+
+    // store token
+    if (data.access_token) {
+      localStorage.setItem('access_token', `Bearer ${data.access_token}`);
+    }
+
+    // redirect
+    setTimeout(() => {
+      window.location.href = 'languages.html'
+    }, 4000);
+
+    // clear form
     nameElement.value = ''
     emailElement.value = ''
     passwordElement1.value = ''
     passwordElement2.value = ''
-    
 
   } catch (error) {
     showMessage(error.message || 'Registration failed.')
   } finally {
     registerButton.disabled = false
-    registerButton.textContent = originalText
+    registerButton.innerHTML = originalText
   }
-})
-
-async function fetchData(name, email, password) {
-  const response = await fetch(`${API_URL}/auth/register`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({ name, email, password })
-  })
-
-  const data = await response.json()
-
-  if (!response.ok) {
-    throw new Error(data.msg)
-  }
-  
-  const access_token = data.access_token;
-    
-    localStorage.setItem('access_token', `Barear ${access_token}`);
-    
-    setTimeout(() => {
-      window.location.href = 'languages.html'
-    }, 4000);
-  
-  return data;
-}
+});
