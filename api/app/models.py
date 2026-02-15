@@ -61,8 +61,8 @@ class Admin(db.Model):
     password = db.Column(db.String(400), nullable=False)
     joined_at = db.Column(db.DateTime, default=datetime.utcnow)
 
-    def set_admin_password(self, password: str):
+    def set_admin_password(self, password):
         self.password = generate_password_hash(password)
 
-    def check_admin_password(self, password: str) -> bool:
+    def check_admin_password(self, password):
         return check_password_hash(self.password, password)
