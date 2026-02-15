@@ -8,28 +8,6 @@ const messageDisplay = document.querySelector('.js-message-display');
 
 let toastTimeout;
 
-/* 
-async function newsletterSub(email) {
-  const response = await fetch(`${API_URL}/news/newsletter`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({ email })
-  });
-
-  const data = await response.json();
-  
-  if (!response.ok) {
-    const error = new Error(data.message || 'Subscription failed');
-    error.status = response.status;
-    error.data = data;
-    throw error;
-  }
-  
-  return data;
-}
-*/
 function showToast(message, isError = true) {
   if (toastTimeout) {
     clearTimeout(toastTimeout);
