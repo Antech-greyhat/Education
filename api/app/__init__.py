@@ -13,7 +13,9 @@ from .auth.admin import admin_ns
 from .auth.login import login_ns
 from .auth.newsletter import news_ns
 from .auth.contact import contact_ns
+from .auth.seed import seed_admins
 from .protected import protected_ns
+
 
 load_dotenv()
 
@@ -63,4 +65,7 @@ def init_db(app):
     with app.app_context():
         if not database_exists(db.engine.url):
             create_database(db.engine.url)
+            
         db.create_all()
+        seed_admins()
+  
