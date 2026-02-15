@@ -21,6 +21,7 @@ contact_model = contact_ns.model(
 class Protect(Resource):
   def post(self):
     data = request.get_json()
+    
     first_name=data.get('first_name')
     last_name = data.get('last_name')
     email = data.get('email')

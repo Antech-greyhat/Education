@@ -65,37 +65,42 @@
                 
                 <div class="contact-form-container">
                     <h2>Send Us a Message</h2>
-                    <form id="contactForm" class="contact-form">
+                    
+                  <!-- USED DIV TO AVOID PAGE RELOAD -->
+                    <div id="contactForm" class="contact-form">
                         <div class="form-row">
                             <div class="form-group">
                                 <label for="firstName">First Name</label>
-                                <input type="text" id="firstName" name="firstName" required>
+                                <input type="text" id="firstName" name="firstName" required class="js-first-name">
                             </div>
                             <div class="form-group">
                                 <label for="lastName">Last Name</label>
-                                <input type="text" id="lastName" name="lastName" required>
+                                <input type="text" id="lastName" name="lastName" required class="js-last-name">
                             </div>
                         </div>
                         
                         <div class="form-group">
                             <label for="email">Email Address</label>
-                            <input type="email" id="email" name="email" required>
+                            <input type="email" id="email" name="email" required class="js-email">
                         </div>
                         
                         <div class="form-group">
                             <label for="subject">Subject</label>
-                            <input type="text" id="subject" name="subject" required>
+                            <input type="text" id="subject" name="subject" required class="js-subject">
                         </div>
                         
                         <div class="form-group">
                             <label for="message">Message</label>
-                            <textarea id="message" name="message" rows="6" required></textarea>
+                            <textarea id="message" name="message" rows="6" required class="js-message"></textarea>
                         </div>
-                        
-                        <button type="submit" class="btn btn-primary btn-full">
+                      <p class="js-feedback-display">
+                        <!-- FOR DISPLAYING MESSAGES -->
+                      </p>
+                        <button type="button" class="btn btn-primary btn-full js-contact-button">
                             <i class="fas fa-paper-plane"></i> Send Message
                         </button>
-                    </form>
+                    </div>
+                    
                 </div>
             </div>
         </div>
@@ -115,6 +120,8 @@
   <script type="module" src="scripts/newsletter.js"></script>
   
   <script type="module" src="scripts/header.js"></script>
+  
+  <script type="module" src="scripts/auth/contactUs.js"></script>
   
 </body>
 </html>
