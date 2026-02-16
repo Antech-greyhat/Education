@@ -222,7 +222,7 @@
                     </div>
                 </div>
 
-                <!-- Settings Tab -->
+                Settings Tab
                 <div id="settings-tab" class="tab-pane">
                     <div class="admin-card">
                         <div class="card-header">
@@ -283,7 +283,7 @@
         </div>
     </section>
 
-    <!-- Footer -->
+    Footer
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
@@ -322,254 +322,11 @@
     </footer>
 
     <script src="../scripts/edu.js"></script>
+    
+    <!--
     <script src="../admin.js"></script>
-    <script>
-        // Check if admin is logged in
-        document.addEventListener('DOMContentLoaded', () => {
-            const adminToken = localStorage.getItem('adminToken');
-            
-            if (!adminToken) {
-                alert('Please login to access the admin dashboard');
-                window.location.href = 'login.html';
-                return;
-            }
-
-            // Load dashboard data
-            loadDashboardData();
-            loadUsers();
-            loadMessages();
-            loadSubscribers();
-        });
-
-        // Theme Toggle
-        const themeToggle = document.getElementById('themeToggle');
-        const body = document.body;
-        const icon = themeToggle.querySelector('i');
-
-        const currentTheme = localStorage.getItem('theme') || 'light';
-        if (currentTheme === 'dark') {
-            body.classList.add('dark-theme');
-            icon.classList.remove('fa-moon');
-            icon.classList.add('fa-sun');
-        }
-
-        themeToggle.addEventListener('click', () => {
-            body.classList.toggle('dark-theme');
-            
-            if (body.classList.contains('dark-theme')) {
-                icon.classList.remove('fa-moon');
-                icon.classList.add('fa-sun');
-                localStorage.setItem('theme', 'dark');
-            } else {
-                icon.classList.remove('fa-sun');
-                icon.classList.add('fa-moon');
-                localStorage.setItem('theme', 'light');
-            }
-        });
-
-        // Logout
-        document.getElementById('logoutBtn').addEventListener('click', () => {
-            if (confirm('Are you sure you want to logout?')) {
-                localStorage.removeItem('adminToken');
-                localStorage.removeItem('adminRememberMe');
-                window.location.href = 'login.html';
-            }
-        });
-
-        // Tab Switching
-        const tabBtns = document.querySelectorAll('.tab-btn');
-        const tabPanes = document.querySelectorAll('.tab-pane');
-
-        tabBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                const tabName = btn.dataset.tab;
-                
-                // Remove active class from all tabs and panes
-                tabBtns.forEach(b => b.classList.remove('active'));
-                tabPanes.forEach(p => p.classList.remove('active'));
-                
-                // Add active class to clicked tab and corresponding pane
-                btn.classList.add('active');
-                document.getElementById(`${tabName}-tab`).classList.add('active');
-            });
-        });
-
-        // Load Dashboard Data
-        async function loadDashboardData() {
-            try {
-                // Simulate API call - Replace with actual API
-                await new Promise(resolve => setTimeout(resolve, 500));
-                
-                // Demo data
-                document.getElementById('totalUsers').textContent = '1,234';
-                document.getElementById('totalMessages').textContent = '87';
-                document.getElementById('totalSubscribers').textContent = '456';
-            } catch (error) {
-                console.error('Error loading dashboard data:', error);
-            }
-        }
-
-        // Load Users
-        async function loadUsers() {
-            const tbody = document.getElementById('usersTableBody');
-            
-            try {
-                // Simulate API call - Replace with actual API
-                await new Promise(resolve => setTimeout(resolve, 800));
-                
-                // Demo data
-                const users = [
-                    { id: 1, name: 'John Doe', email: 'john@example.com', registered: '2026-01-15', status: 'Active' },
-                    { id: 2, name: 'Jane Smith', email: 'jane@example.com', registered: '2026-01-20', status: 'Active' },
-                    { id: 3, name: 'Bob Johnson', email: 'bob@example.com', registered: '2026-02-01', status: 'Inactive' },
-                ];
-                
-                tbody.innerHTML = users.map(user => `
-                    <tr>
-                        <td>${user.id}</td>
-                        <td>${user.name}</td>
-                        <td>${user.email}</td>
-                        <td>${user.registered}</td>
-                        <td><span class="badge badge-${user.status === 'Active' ? 'success' : 'danger'}">${user.status}</span></td>
-                        <td>
-                            <button class="btn-icon" title="View"><i class="fas fa-eye"></i></button>
-                            <button class="btn-icon" title="Edit"><i class="fas fa-edit"></i></button>
-                            <button class="btn-icon" title="Delete"><i class="fas fa-trash"></i></button>
-                        </td>
-                    </tr>
-                `).join('');
-            } catch (error) {
-                tbody.innerHTML = '<tr><td colspan="6" class="text-center">Error loading users</td></tr>';
-            }
-        }
-
-        // Load Messages
-        async function loadMessages() {
-            const messagesList = document.getElementById('messagesList');
-            
-            try {
-                // Simulate API call
-                await new Promise(resolve => setTimeout(resolve, 800));
-                
-                // Demo data
-                const messages = [
-                    { id: 1, name: 'Alice Cooper', email: 'alice@example.com', subject: 'Question about Python course', date: '2026-02-08', read: false },
-                    { id: 2, name: 'Charlie Brown', email: 'charlie@example.com', subject: 'Enrollment inquiry', date: '2026-02-07', read: true },
-                ];
-                
-                messagesList.innerHTML = messages.map(msg => `
-                    <div class="message-item ${msg.read ? 'read' : 'unread'}">
-                        <div class="message-header">
-                            <strong>${msg.name}</strong>
-                            <span class="message-date">${msg.date}</span>
-                        </div>
-                        <div class="message-subject">${msg.subject}</div>
-                        <div class="message-email">${msg.email}</div>
-                        <div class="message-actions">
-                            <button class="btn btn-sm btn-primary">View</button>
-                            <button class="btn btn-sm btn-secondary">Reply</button>
-                            <button class="btn btn-sm btn-danger">Delete</button>
-                        </div>
-                    </div>
-                `).join('');
-            } catch (error) {
-                messagesList.innerHTML = '<div class="message-item">Error loading messages</div>';
-            }
-        }
-
-        // Load Subscribers
-        async function loadSubscribers() {
-            const tbody = document.getElementById('subscribersTableBody');
-            
-            try {
-                // Simulate API call
-                await new Promise(resolve => setTimeout(resolve, 800));
-                
-                // Demo data
-                const subscribers = [
-                    { id: 1, email: 'subscriber1@example.com', date: '2026-01-10', status: 'Active' },
-                    { id: 2, email: 'subscriber2@example.com', date: '2026-01-15', status: 'Active' },
-                ];
-                
-                tbody.innerHTML = subscribers.map(sub => `
-                    <tr>
-                        <td>${sub.id}</td>
-                        <td>${sub.email}</td>
-                        <td>${sub.date}</td>
-                        <td><span class="badge badge-success">${sub.status}</span></td>
-                        <td>
-                            <button class="btn-icon" title="Remove"><i class="fas fa-trash"></i></button>
-                        </td>
-                    </tr>
-                `).join('');
-            } catch (error) {
-                tbody.innerHTML = '<tr><td colspan="5" class="text-center">Error loading subscribers</td></tr>';
-            }
-        }
-
-        // Newsletter Form
-        document.getElementById('newsletterForm').addEventListener('submit', async (e) => {
-            e.preventDefault();
-            
-            const subject = document.getElementById('newsletterSubject').value;
-            const content = document.getElementById('newsletterContent').value;
-            
-            const btn = e.target.querySelector('button[type="submit"]');
-            const originalText = btn.innerHTML;
-            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
-            btn.disabled = true;
-            
-            try {
-                // Simulate API call
-                await new Promise(resolve => setTimeout(resolve, 2000));
-                
-                alert('Newsletter sent successfully!');
-                e.target.reset();
-            } catch (error) {
-                alert('Error sending newsletter: ' + error.message);
-            } finally {
-                btn.innerHTML = originalText;
-                btn.disabled = false;
-            }
-        });
-
-        // Settings Form
-        document.getElementById('settingsForm').addEventListener('submit', async (e) => {
-            e.preventDefault();
-            
-            const btn = e.target.querySelector('button[type="submit"]');
-            const originalText = btn.innerHTML;
-            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Saving...';
-            btn.disabled = true;
-            
-            try {
-                // Simulate API call
-                await new Promise(resolve => setTimeout(resolve, 1500));
-                
-                alert('Settings saved successfully!');
-            } catch (error) {
-                alert('Error saving settings: ' + error.message);
-            } finally {
-                btn.innerHTML = originalText;
-                btn.disabled = false;
-            }
-        });
-
-        // Hamburger Menu
-        const hamburger = document.getElementById('hamburger');
-        const navMenu = document.querySelector('.nav-menu');
-
-        hamburger.addEventListener('click', () => {
-            hamburger.classList.toggle('active');
-            navMenu.classList.toggle('active');
-        });
-
-        document.querySelectorAll('.nav-link').forEach(link => {
-            link.addEventListener('click', () => {
-                hamburger.classList.remove('active');
-                navMenu.classList.remove('active');
-            });
-        });
-    </script>
+    -->
+    
+    <script type="module" src="./scripts/auth/getData.js"></script>
 </body>
 </html>

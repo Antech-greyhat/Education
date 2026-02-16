@@ -10,7 +10,7 @@ async function protectPage() {
   }
 
   try {
-    const res = await fetch(`${API_URL}/auth/verify`, {
+    const res = await fetch(`${API_URL}/auth/protected`, {
       headers: {
         Authorization: `Bearer ${token}`
       }
@@ -31,5 +31,4 @@ function logout() {
   window.location.href = 'login.html';
 }
 
-// Run immediately
 protectPage();
