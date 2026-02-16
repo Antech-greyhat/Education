@@ -6,9 +6,93 @@
     <title>Admin Login - AntechLearn</title>
     <link rel="stylesheet" href="../styles/edu.css">
     <link rel="stylesheet" href="../styles/login.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer">
     <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>👨‍💻</text></svg>">
     <style>
+        /* Password Input Wrapper Styles */
+        .password-input-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .password-input-wrapper .password-icon {
+            position: absolute;
+            left: 1rem;
+            color: var(--primary-color);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .dark-theme .password-input-wrapper .password-icon {
+            color: var(--accent-color);
+        }
+
+        .password-input-wrapper input {
+            padding-left: 2.8rem !important;
+            padding-right: 3rem !important;
+        }
+
+        .password-input-wrapper .toggle-password {
+            position: absolute;
+            right: 1rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--gray-color);
+            font-size: 1.1rem;
+            padding: 0.3rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: color var(--transition-fast);
+        }
+
+        .password-input-wrapper .toggle-password:hover {
+            color: var(--primary-color);
+        }
+
+        .dark-theme .password-input-wrapper .toggle-password:hover {
+            color: var(--accent-color);
+        }
+
+        /* Checkbox Label Styles */
+        .checkbox-label {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            color: var(--dark-color);
+        }
+
+        .dark-theme .checkbox-label {
+            color: #f8f9fa;
+        }
+
+        .checkbox-label input[type="checkbox"] {
+            width: auto;
+            margin-right: 0.5rem;
+            cursor: pointer;
+        }
+
+        .forgot-password {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color var(--transition-fast);
+        }
+
+        .forgot-password:hover {
+            color: var(--secondary-color);
+            text-decoration: underline;
+        }
+
+        .dark-theme .forgot-password {
+            color: var(--accent-color);
+        }
+
+        .dark-theme .forgot-password:hover {
+            color: var(--primary-color);
+        }
         .admin-badge {
             display: inline-block;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -116,10 +200,9 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="adminPassword">
-                                <i class="fas fa-lock"></i> Password
-                            </label>
+                            <label for="adminPassword">Password</label>
                             <div class="password-input-wrapper">
+                                <i class="fas fa-lock password-icon"></i>
                                 <input 
                                     type="password" 
                                     id="adminPassword" 
@@ -199,6 +282,17 @@
 
     <script src="../scripts/edu.js"></script>
     <script>
+        // Check for saved email and remember me preference on page load
+        window.addEventListener('DOMContentLoaded', () => {
+            const savedEmail = localStorage.getItem('adminRememberEmail');
+            const rememberMe = localStorage.getItem('adminRememberMe') === 'true';
+            
+            if (rememberMe && savedEmail) {
+                document.getElementById('adminEmail').value = savedEmail;
+                document.getElementById('rememberMe').checked = true;
+            }
+        });
+
         // Theme Toggle Functionality
         const themeToggle = document.getElementById('themeToggle');
         const body = document.body;
@@ -229,15 +323,29 @@
         // Password Toggle
         const togglePasswordBtn = document.querySelector('.toggle-password');
         const passwordInput = document.getElementById('adminPassword');
+        const lockIcon = document.querySelector('.password-icon');
 
-        togglePasswordBtn.addEventListener('click', () => {
+        // Function to toggle password visibility
+        function togglePasswordVisibility() {
             const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
             passwordInput.setAttribute('type', type);
             
-            const icon = togglePasswordBtn.querySelector('i');
-            icon.classList.toggle('fa-eye');
-            icon.classList.toggle('fa-eye-slash');
-        });
+            const eyeIcon = togglePasswordBtn.querySelector('i');
+            eyeIcon.classList.toggle('fa-eye');
+            eyeIcon.classList.toggle('fa-eye-slash');
+            
+            // Toggle lock icon state
+            lockIcon.classList.toggle('fa-lock');
+            lockIcon.classList.toggle('fa-lock-open');
+        }
+
+        // Add click event to eye icon button
+        togglePasswordBtn.addEventListener('click', togglePasswordVisibility);
+
+        // Add click event to lock icon (make it clickable)
+        lockIcon.addEventListener('click', togglePasswordVisibility);
+        lockIcon.style.cursor = 'pointer';
+        lockIcon.style.pointerEvents = 'auto';
 
         // Admin Login Form Handling
         const adminLoginForm = document.getElementById('adminLoginForm');
@@ -263,8 +371,14 @@
                 if (email === 'admin@antechlearn.com' && password === 'admin123') {
                     // Store admin authentication token
                     localStorage.setItem('adminToken', 'demo-admin-token');
+                    
+                    // Handle remember me
                     if (rememberMe) {
                         localStorage.setItem('adminRememberMe', 'true');
+                        localStorage.setItem('adminRememberEmail', email);
+                    } else {
+                        localStorage.removeItem('adminRememberMe');
+                        localStorage.removeItem('adminRememberEmail');
                     }
                     
                     // Show success message
