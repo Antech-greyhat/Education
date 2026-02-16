@@ -1,9 +1,12 @@
-from flask import Flask
+from flask import Flask, jsonify
 from flask_restx import Api
 from sqlalchemy_utils import database_exists, create_database
 from flask_cors import CORS
 from dotenv import load_dotenv
 import os
+
+# for debugging
+from flask_jwt_extended.exceptions import JWTExtendedException
 
 from .extensions import db, mail, jwt
 
@@ -15,6 +18,9 @@ from .auth.newsletter import news_ns
 from .auth.contact import contact_ns
 from .auth.seed import seed_admins
 from .protected import protected_ns
+from .auth.admin_data import admin_data
+
+from datetime import timedelta
 
 
 load_dotenv()
@@ -32,9 +38,9 @@ def create_app():
     
     # jwt config
     app.config['JWT_SECRET_KEY'] = os.getenv('JWT_SECRET_KEY')
-    app.config['JWT_ACCESS_TOKEN_EXPIRES'] = 18000  # 30 MIN
-    app.config['JWT_REFRESH_TOKEN_EXPIRES'] = 172800  # 2d
-
+    app.config['JWT_ACCESS_TOKEN_EXPIRES'] = timedelta(minutes=30)
+    app.config['JWT_REFRESH_TOKEN_EXPIRES'] = timedelta(days=2)
+    
     # gmail server config
     app.config['MAIL_SERVER'] = os.getenv('MAIL_SERVER')
     app.config['MAIL_PORT'] = 587
@@ -52,11 +58,17 @@ def create_app():
     api = Api(app, title="AntechLearn API", version="1.0")
 
     # Add namespaces
-    namespaces = [register_ns, admin_ns, login_ns, news_ns, contact_ns, protected_ns]
+    namespaces = [register_ns, admin_ns, login_ns, news_ns, contact_ns, protected_ns, admin_data]
     for ns in namespaces:
         api.add_namespace(ns)
 
     init_db(app)
+    
+    # for debugging
+    @app.errorhandler(JWTExtendedException)
+    def handle_jwt_error(e):
+      print(f'JWT ERROR: {e}')
+      return jsonify({'msg': str(e)}), 422
 
     return app
 

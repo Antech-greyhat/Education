@@ -1,6 +1,7 @@
 from flask_restx import Resource, Namespace, fields
 from flask import request
 from flask_jwt_extended import create_access_token, create_refresh_token
+import email_validator
 
 from ..models import User
 from ..extensions import db
@@ -50,6 +51,9 @@ class Register(Resource):
         'msg': 'Invalid email format'
       }, 400
       
+    try:
+      valid = email_validator.validate_email(email)
+      
     # Password validation
     if len(password) < 8: 
       return {
@@ -70,12 +74,13 @@ class Register(Resource):
       full_name=full_name,
       email=email
       )
-    access_token = create_access_token(identity=new_user.id)
+    
     new_user.set_password(password)
     
     db.session.add(new_user)
     db.session.commit()
-    db.session.close()
+    
+    access_token = create_access_token(identity=new_user.id)
     
     return {
       'msg':'Account created successfully.',

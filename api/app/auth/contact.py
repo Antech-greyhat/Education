@@ -19,6 +19,7 @@ contact_model = contact_ns.model(
 
 @contact_ns.route('/contact')
 class Protect(Resource):
+  @contact_ns.expect(contact_model)
   def post(self):
     data = request.get_json()
     
