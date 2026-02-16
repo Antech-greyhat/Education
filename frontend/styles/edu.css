@@ -1288,6 +1288,50 @@ a {
   transition: opacity 0.3s ease;
 }
 
+
+.unauthenticated {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--accent-color);
+  gap: 10px;
+}
+
+.unauthenticated div {
+  border-radius: 10px;
+  padding: 35px 25px;
+}
+
+.warn-header{
+  font-size: 24px;
+  font-weight: bold;
+  text-transform: capitalize;
+  color: var(--danger-color);
+  animation: bounce 3s infinite;
+}
+.unauthenticated a {
+  background-color: var(--success-color);
+  padding: 5px 10px;
+  border-radius: 5px;
+  border: none;
+  color: var(--light-color);
+  cursor: pointer;
+}
+
+@keyframes bounce {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(-10px); }
   to { opacity: 1; transform: translateY(0); }

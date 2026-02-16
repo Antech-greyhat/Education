@@ -1,7 +1,7 @@
 from flask_restx import Resource, Namespace, fields
 from flask import request
 from flask_jwt_extended import create_access_token, create_refresh_token
-import email_validator
+from email_validator import validate_email, EmailNotValidError
 
 from ..models import User
 from ..extensions import db
@@ -45,14 +45,14 @@ class Register(Resource):
       return {
         'msg': 'Email must be greater than 2 characters!'
       }, 400
-    
-    if not '@' in email or not '.' in email:
-      return {
-        'msg': 'Invalid email format'
-      }, 400
       
     try:
-      valid = email_validator.validate_email(email)
+      valid = validate_email(email, check_deliverability=False)
+      email = valid.email
+    except EmailNotValidError as e:
+      return {
+        'msg': 'Invalid email.'
+      }, 400
       
     # Password validation
     if len(password) < 8: 

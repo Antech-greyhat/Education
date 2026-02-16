@@ -1,6 +1,6 @@
 from flask_restx import Namespace, Resource
 from flask_jwt_extended import current_user, jwt_required, get_jwt_identity
-from flask import jsonify
+from flask import jsonify, request
 import traceback
 
 protected_ns = Namespace('protected', description='Jwt protected endpoint', path='/auth')
@@ -9,6 +9,7 @@ protected_ns = Namespace('protected', description='Jwt protected endpoint', path
 class Protected(Resource):
     @jwt_required()
     def get(self):
+        print(f'Header: {request.headers}')
         try:
             current_user_id = get_jwt_identity()
             return{

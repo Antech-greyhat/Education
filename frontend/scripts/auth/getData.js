@@ -1,11 +1,21 @@
 import { API_URL } from './config.js';
 
-export async function loadAdminDashboard() {
+async function loadAdminDashboard() {
   const token = localStorage.getItem('admin_token');
+
+const unauthenticated = `
+<div class='unauthenticated'>
+  <div>
+  <p class='warn-header'>You are not authorized!</p>
+  <p style='text-align:center; margin:5px auto; font-size:52px;'><i class="fas fa-triangle-exclamation" style="color: red;"></i></p>
+  <a href='admin_login.html' class='js-relogin'>Go to login page</a>
+  </div>
+</div>
+`;
 
   // No token
   if (!token) {
-    window.location.href = 'index.html';
+    document.querySelector('body').innerHTML = unauthenticated;
     return;
   }
 
@@ -19,7 +29,7 @@ export async function loadAdminDashboard() {
 
     if (!guardRes.ok) {
       localStorage.removeItem('admin_token');
-      window.location.href = 'index.html';
+      document.querySelector('body').innerHTML = unauthenticated;
       return;
     }
 
@@ -43,7 +53,7 @@ export async function loadAdminDashboard() {
 
   } catch (err) {
     console.error(err);
-    window.location.href = 'index.html';
+    document.querySelector('body').innerHTML = unauthenticated;
   }
 }
 

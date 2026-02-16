@@ -29,7 +29,7 @@ class Adminauth(Resource):
     admin = Admin.query.filter_by(email=email).first()
     
     if admin and admin.check_admin_password(password):
-      access_token = create_access_token(identity=admin.id)
+      access_token = create_access_token(identity=str(admin.id))
       return{
         'msg': 'Approved',
         'access_token': access_token
