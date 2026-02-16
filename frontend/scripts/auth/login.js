@@ -43,7 +43,7 @@ submitButton.addEventListener('click', async () => {
     const data = await dataSubmit(details, url);
 
     // Store JWT
-    localStorage.setItem('access_token', `Bearer ${data.access_token}`);
+    localStorage.setItem('access_token', data.access_token);
 
     showMessage('Login successful!', false);
 
