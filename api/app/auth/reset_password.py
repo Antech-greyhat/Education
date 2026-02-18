@@ -24,7 +24,7 @@ class ResetPassword(Resource):
 
         if not password:
             return{
-                'msg': 'Pssword is required.'
+                'msg': 'Password is required.'
             }, 400
 
         if len(password) < 8:

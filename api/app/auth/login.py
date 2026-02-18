@@ -30,7 +30,7 @@ class Login(Resource):
     user = User.query.filter_by(email=email).first()
     
     if user and user.check_password(password): 
-      access_token = create_access_token(identity=user.id)
+      access_token = create_access_token(identity=str(user.id))
       return{
         'msg': 'Logged in successfully.',
         'access_token': access_token

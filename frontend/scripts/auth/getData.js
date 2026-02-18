@@ -1,7 +1,5 @@
 import { API_URL } from './config.js';
-
-async function loadAdminDashboard() {
-  const token = localStorage.getItem('admin_token');
+import { dataDisplay } from './dataDisplay.js';
 
 const unauthenticated = `
 <div class='unauthenticated'>
@@ -12,6 +10,9 @@ const unauthenticated = `
   </div>
 </div>
 `;
+
+async function loadAdminDashboard() {
+  const token = localStorage.getItem('admin_token');
 
   // No token
   if (!token) {
@@ -48,7 +49,8 @@ const unauthenticated = `
     
     // REMOVE THIS LOG IT'S VERY SENSITIVE
     
-    console.log(data); // THE DATA FROM THE BACKEND
+    dataDisplay(data)
+    
     return data;  // returned data
 
   } catch (err) {

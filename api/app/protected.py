@@ -9,9 +9,8 @@ protected_ns = Namespace('protected', description='Jwt protected endpoint', path
 class Protected(Resource):
     @jwt_required()
     def get(self):
-        print(f'Header: {request.headers}')
         try:
-            current_user_id = get_jwt_identity()
+            current_user_id = int(get_jwt_identity())
             return{
                 'msg': 'You are authorized',
                 'admin_id': current_user_id

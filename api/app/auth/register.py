@@ -80,7 +80,7 @@ class Register(Resource):
     db.session.add(new_user)
     db.session.commit()
     
-    access_token = create_access_token(identity=new_user.id)
+    access_token = create_access_token(identity=str(new_user.id))
     
     return {
       'msg':'Account created successfully.',

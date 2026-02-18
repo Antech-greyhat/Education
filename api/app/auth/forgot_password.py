@@ -11,7 +11,7 @@ forgot_models = forgot_ns.model('Forgot_password',{
     'email': fields.String(required=True)
 })
 
-@forgot_ns.route('/Forgot_password')
+@forgot_ns.route('/forgot_password')
 class ForgotPassword(Resource):
     @forgot_ns.expect(forgot_models)
     def post(self):
