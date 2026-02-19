@@ -1,5 +1,6 @@
 from flask_restx import Namespace, Resource, fields
-from flask import request
+from email_validator import validate_email, EmailNotValidError
+
 from ..models import Message
 from ..extensions import db
 
@@ -19,25 +20,51 @@ contact_model = contact_ns.model(
 
 @contact_ns.route('/contact')
 class Protect(Resource):
-  @contact_ns.expect(contact_model)
+  @contact_ns.expect(contact_model, validate=True)
   def post(self):
-    data = request.get_json()
+    
+    data = contact_ns.payload
     
     first_name=data.get('first_name')
     last_name = data.get('last_name')
     email = data.get('email')
     subject = data.get('subject')
     message = data.get('message')
-
-    if not first_name or not last_name or not email or not subject or not message:
+    
+    # VALIDATION
+    
+    if not first_name or not last_name or not message or not email or not subject or not message:
+      return {
+        'msg': 'All fields are required!'
+      }, 400
+    
+    if len(first_name) < 2:
       return{
-          'msg': 'All fields are required.'
-        }, 400
-
-    if not '@' in email or not '.' in email:
+        'msg': 'Full name should be greater than 2 characters!'
+      }, 400
+      
+    if len(subject) < 2:
       return{
-          'msg': 'Enter a valid email.'
-        }, 400
+        'msg': 'Subject should be greater than 2 characters!'
+      }, 400
+      
+    if len(message) < 2:
+      return{
+        'msg': 'Message should be greater than 2 characters!'
+      }, 400
+      
+    if len(last_name) < 2:
+      return{
+        'msg': 'Last name should be greater than 2 characters!'
+      }, 400
+
+    try:
+      valid = validate_email(email, check_deliverability=False)
+      email = valid.email
+    except EmailNotValidError as e:
+      return{
+        'msg': 'Invalid email address!'
+      }, 400
 
     new_message = Message(
       first_name=first_name,
@@ -49,7 +76,6 @@ class Protect(Resource):
 
     db.session.add(new_message)
     db.session.commit()
-    db.session.close()
 
     return{
       'msg': 'Your message have been submitted successfully.'

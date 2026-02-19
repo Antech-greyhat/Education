@@ -109,6 +109,9 @@
                 <button class="tab-btn" data-tab="newsletter">
                     <i class="fas fa-paper-plane"></i> Newsletter
                 </button>
+                <button class="tab-btn" data-tab="admins">
+                    <i class="fas fa-user-shield"></i> Admins
+                </button>
                 <button class="tab-btn" data-tab="settings">
                     <i class="fas fa-cog"></i> Settings
                 </button>
@@ -128,13 +131,13 @@
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table class="data-table">
+                                <table class="data-table" id="usersTable">
                                     <thead>
                                         <tr>
                                             <th>ID</th>
                                             <th>Name</th>
                                             <th>Email</th>
-                                            <th>Registered</th>
+                                            <th>Joined Date</th>
                                             <th>Status</th>
                                             <th>Actions</th>
                                         </tr>
@@ -145,6 +148,11 @@
                                         </tr>
                                     </tbody>
                                 </table>
+                            </div>
+                            <div class="pagination-controls">
+                                <div data-pagination="users">Page 1 of 1</div>
+                                <button data-action="prev-users" class="btn btn-prev">← Previous</button>
+                                <button data-action="next-users" class="btn btn-next">Next →</button>
                             </div>
                         </div>
                     </div>
@@ -162,12 +170,31 @@
                             </div>
                         </div>
                         <div class="card-body">
-                            <div class="messages-list" id="messagesList">
-                                <div class="message-item">
-                                    <div class="message-header">
-                                        <strong>Loading messages...</strong>
-                                    </div>
-                                </div>
+                            <div class="table-responsive">
+                                <table class="data-table" id="messagesTable">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Name</th>
+                                            <th>Email</th>
+                                            <th>Subject</th>
+                                            <th>Message</th>
+                                            <th>Sent Date</th>
+                                            <th>Actions</th>
+                                            <th>Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="messagesTableBody">
+                                        <tr>
+                                            <td colspan="7" class="text-center">Loading messages...</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="pagination-controls">
+                                <div data-pagination="messages">Page 1 of 1</div>
+                                <button data-action="prev-messages" class="btn btn-prev">← Previous</button>
+                                <button data-action="next-messages" class="btn btn-next">Next →</button>
                             </div>
                         </div>
                     </div>
@@ -183,7 +210,7 @@
                             <div class="newsletter-section">
                                 <h4>Subscribers List</h4>
                                 <div class="table-responsive">
-                                    <table class="data-table">
+                                    <table class="data-table" id="subscribersTable">
                                         <thead>
                                             <tr>
                                                 <th>ID</th>
@@ -199,6 +226,11 @@
                                             </tr>
                                         </tbody>
                                     </table>
+                                </div>
+                                <div class="pagination-controls">
+                                    <div data-pagination="subscribers">Page 1 of 1</div>
+                                    <button data-action="prev-subscribers" class="btn btn-prev">← Previous</button>
+                                    <button data-action="next-subscribers" class="btn btn-next">Next →</button>
                                 </div>
                             </div>
 
@@ -222,7 +254,44 @@
                     </div>
                 </div>
 
-                Settings Tab
+                <!-- Admins Tab -->
+                <div id="admins-tab" class="tab-pane">
+                    <div class="admin-card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-user-shield"></i> Admin Users</h3>
+                            <div class="search-box">
+                                <input type="text" id="adminSearch" placeholder="Search admins...">
+                                <button><i class="fas fa-search"></i></button>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="data-table" id="adminsTable">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Email</th>
+                                            <th>Joined Date</th>
+                                            <th>Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="adminsTableBody">
+                                        <tr>
+                                            <td colspan="5" class="text-center">Loading admins...</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="pagination-controls">
+                                <div data-pagination="admins">Page 1 of 1</div>
+                                <button data-action="prev-admins" class="btn btn-prev">← Previous</button>
+                                <button data-action="next-admins" class="btn btn-next">Next →</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Settings Tab -->
                 <div id="settings-tab" class="tab-pane">
                     <div class="admin-card">
                         <div class="card-header">
@@ -283,7 +352,7 @@
         </div>
     </section>
 
-    Footer
+    <!-- Footer -->
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
@@ -323,9 +392,7 @@
 
     <script src="../scripts/edu.js"></script>
     
-    <!--
     <script src="../admin.js"></script>
-    -->
     
     <script type="module" src="./scripts/auth/getData.js"></script>
 </body>

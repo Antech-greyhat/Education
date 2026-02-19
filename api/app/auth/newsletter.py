@@ -1,6 +1,5 @@
 from flask_restx import Namespace, Resource, fields
-from flask import request
-# from threading import Thread
+from email_validator import validate_email, EmailNotValidError
 
 from ..models import Newsletter, db
 
@@ -16,17 +15,25 @@ newsletter_model = news_ns.model(
 
 @news_ns.route('/newsletter')
 class NewsletterResource(Resource):
-  @news_ns.expect(newsletter_model)
+  @news_ns.expect(newsletter_model, validate=True)
   def post(self):
-    data = request.get_json()
+    
+    data = news_ns.payload
+    
     email = data.get('email')
     
-    if not '@' in email or not '.' in email:
-      return {
-        "success": False,
-        "message": "Please provide a valid email address",
-        "error": "VALIDATION_ERROR"
+    if not email:
+      return{
+        'Email is required!'
       }, 400
+    
+    try:
+      valid = validate_email(email, check_deliverability=False)
+      email = valid.email
+    except EmailNotValidError as e:
+       return {
+         'msg': 'Invalid email address!'
+       }, 400
     
     subscriber = db.session.query(Newsletter).filter_by(email=email).first()
     
@@ -43,11 +50,11 @@ class NewsletterResource(Resource):
       email=email,
       username=username
       )
+      
     db.session.add(new_sub)
     db.session.commit()
     
     send_newsletter(username, email)
-    # Thread(target=send_newsletter, args=(email,)).start()
     
     return {
       'msg':'Successfully subscribed to our newsletter',

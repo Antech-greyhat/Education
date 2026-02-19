@@ -11,6 +11,7 @@ admin_data = Namespace('admin_data', description='Data fetch from database', pat
 class AdminData(Resource):
     @jwt_required()
     def get(self):
+      
         admin_id = get_jwt_identity()
 
         admin_id = Admin.query.get(admin_id)

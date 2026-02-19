@@ -1,5 +1,5 @@
 from flask_restx import Namespace, Resource, fields
-from flask import request
+
 from ..models import User
 from ..extensions import db
 import secrets
@@ -13,17 +13,18 @@ forgot_models = forgot_ns.model('Forgot_password',{
 
 @forgot_ns.route('/forgot_password')
 class ForgotPassword(Resource):
-    @forgot_ns.expect(forgot_models)
+    @forgot_ns.expect(forgot_models, validate=True)
     def post(self):
-        data = request.get_json()
+      
+        data = forgot_ns.payload
 
         email = data.get('email')
-
+        
         if not email:
-            return{
-                'msg': 'Email is required.'
-            }, 400
-
+          return{
+            'msg': 'Email is required!'
+          }, 400
+          
         user = User.query.filter_by(email=email).first()
 
         if not user:

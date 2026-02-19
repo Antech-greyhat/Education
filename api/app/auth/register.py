@@ -1,5 +1,4 @@
 from flask_restx import Resource, Namespace, fields
-from flask import request
 from flask_jwt_extended import create_access_token, create_refresh_token
 from email_validator import validate_email, EmailNotValidError
 
@@ -21,24 +20,25 @@ register_models = register_ns.model(
 
 @register_ns.route('/register')
 class Register(Resource):
-  @register_ns.expect(register_models)
+  @register_ns.expect(register_models, validate=True)
   def post(self): 
     
-    data = request.get_json() or {}
+    data = register_ns.payload
     
-    # Check naming convetion ie userName from js
     full_name = data.get('name')
     email = data.get('email')
     password = data.get('password')
     
+    #  DATA VALIDATION
+    
     if not full_name or not email or not password:
       return{
         'msg': 'All fields are required!'
-      }
-      
+      }, 400
+    
     if len(full_name) < 2:
       return{
-        'msg': 'full_name must be greater than 2 characters!'
+        'msg': 'Full name must be greater than 2 characters!'
       }, 400
       
     if len(email) < 2: 

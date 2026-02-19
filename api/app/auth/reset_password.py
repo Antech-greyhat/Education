@@ -1,5 +1,4 @@
 from flask_restx import Namespace, Resource, fields
-from flask import request
 from ..extensions import db
 from ..models import User
 import re
@@ -14,9 +13,10 @@ reset_model = reset_ns.model('ResetPsaaword', {
 })
 
 class ResetPassword(Resource):
-    @reset_ns.expect(reset_model)
+    @reset_ns.expect(reset_model, validate=True)
     def post(self):
-        data = request.get_json()
+      
+        data = reset_ns.payload
 
         reset_token_id = data.get('reset_token_id')
         reset_token = data.get('reset_token')
@@ -67,6 +67,7 @@ class ResetPassword(Resource):
         user.reset_token_id=None
         user.reset_token_expiry=None
         user.set_password(password)
+        
         return{
             'msg': 'Password have been reset successfully.'
         }, 201

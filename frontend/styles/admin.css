@@ -961,9 +961,3 @@
 .dark-theme .login-info {
     border-top-color: #3a3a3a;
 }
-
-/* Hide dashboard content when not authenticated */
-body.not-authenticated .admin-section,
-body.not-authenticated .footer {
-    display: none;
-}

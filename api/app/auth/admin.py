@@ -1,5 +1,4 @@
 from flask_restx import Namespace, Resource, fields
-from flask import request
 from flask_jwt_extended import create_access_token
 
 from ..models import Admin
@@ -14,16 +13,17 @@ admin_models = admin_ns.model('Admin', {
 
 @admin_ns.route('/admin')
 class Adminauth(Resource):
-  @admin_ns.expect(admin_models)
+  @admin_ns.expect(admin_models, validate=True)
   def post(self):
-    data = request.get_json()
+    
+    data = admin_ns.payload
     
     email = data.get('email')
     password = data.get('password')
     
     if not email or not password:
       return{
-        'msg': 'All fields are required.'
+        'msg': 'All fields are required!'
       }, 400
       
     admin = Admin.query.filter_by(email=email).first()
