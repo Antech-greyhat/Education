@@ -60,3 +60,19 @@ async function loadAdminDashboard() {
 }
 
 loadAdminDashboard();
+
+// REFRESH FUNCTIONALITY
+
+const refreshElement = document.querySelector('.refresh');
+
+refreshElement.addEventListener('click', async()=>{
+  refreshElement.classList.add('fa-spin');
+  try {
+    await loadAdminDashboard();
+    
+  } catch (err) {
+    console.error('Error:', err);
+  } finally {
+    refreshElement.classList.remove('fa-spin');
+  }
+});

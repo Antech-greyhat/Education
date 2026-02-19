@@ -961,3 +961,10 @@
 .dark-theme .login-info {
     border-top-color: #3a3a3a;
 }
+
+.admin-refresh{
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  z-index: 1;
+}
