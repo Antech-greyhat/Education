@@ -19,6 +19,8 @@ from .auth.contact import contact_ns
 from .auth.seed import seed_admins
 from .protected import protected_ns
 from .auth.admin_data import admin_data
+from .auth.forgot_password import forgot_ns
+
 
 from datetime import timedelta
 
@@ -58,17 +60,14 @@ def create_app():
     api = Api(app, title="AntechLearn API", version="1.0")
 
     # Add namespaces
-    namespaces = [register_ns, admin_ns, login_ns, news_ns, contact_ns, protected_ns, admin_data]
+    namespaces = [register_ns, admin_ns, login_ns, news_ns, contact_ns, protected_ns, admin_data, forgot_ns]
+    
+    # namespace registration
+    
     for ns in namespaces:
         api.add_namespace(ns)
 
     init_db(app)
-    
-    # for debugging
-    @app.errorhandler(JWTExtendedException)
-    def handle_jwt_error(e):
-      print(f'JWT ERROR: {e}')
-      return jsonify({'msg': str(e)}), 422
 
     return app
 
@@ -80,4 +79,4 @@ def init_db(app):
             
         db.create_all()
         seed_admins()
-  
+        

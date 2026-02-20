@@ -1,5 +1,5 @@
 from flask_restx import Namespace, Resource, fields
-
+from datetime import datetime, timedelta
 from ..models import User
 from ..extensions import db
 import secrets
@@ -31,9 +31,24 @@ class ForgotPassword(Resource):
             return{
                 'msg': 'Invalid email address!'
             }, 400
+
         frontend_url = os.getenv('FRONTEND_URL')
 
-        reset_url= f'{frontend_url}/reset_password.html'.rstrip('/')
+        expirery_time = datetime.utcnow() + timedelta(minutes=3)
+        reset_token = secrets.token_urlsafe(31)
+        reset_token_id = secrets.token_urlsafe(10)
+
+        user.set_reset_token(reset_token) # hash
+        user.reset_token_id = reset_token_id
+        user.reset_token_used = False
+        user.reset_token_expirey_time = expirery_time
+
+        db.session.commit()
+        
+        reset_url = f'{frontend_url}/reset_password.html?reset_token={reset_token}&reset_token_id={reset_token_id}'.rstrip('/')
+        
+        # SEND RESET PASSWORD LINK
+
 
         return{
             'msg': 'Password reset email link have been sent to your email.'
