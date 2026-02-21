@@ -42,7 +42,7 @@ class ForgotPassword(Resource):
         user.set_reset_token(reset_token) # hash
         user.reset_token_id = reset_token_id
         user.reset_token_used = False
-        user.reset_token_expirey_time = expirery_time
+        user.reset_token_expiry_time = expirery_time
 
         db.session.commit()
         
