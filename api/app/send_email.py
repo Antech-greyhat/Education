@@ -4,6 +4,7 @@ from flask_mail import Message
 from flask import current_app, render_template
 from .extensions import mail
 
+# WELCOME MESSAGE.
 def send_async_email(app, msg, retries=3, wait=15):
   with app.app_context():
     attempt = 1
@@ -22,12 +23,13 @@ def send_async_email(app, msg, retries=3, wait=15):
         else:
           app.logger.error(f"Failed to send email to {msg.recipients} after {retries} attempts.")
 
+# PASSWORD RESET 
 def send_newsletter(username, email):
   """Prepare and send newsletter asynchronously"""
   app = current_app._get_current_object()
   msg = Message(
     subject="Welcome to AntechLearn Newsletter!",
-    sender=app.config.get("MAIL_DEFAULT_SENDER", "newsletter@antechlearn.com"),
+    sender=app.config.get("MAIL_DEFAULT_SENDER", 'antechittech@gmail.com'),
     recipients=[email]
   )
 
@@ -35,3 +37,29 @@ def send_newsletter(username, email):
   msg.body = f"Welcome {username}! If you can't view HTML emails, please check our platform."
 
   Thread(target=send_async_email, args=(app, msg)).start()
+  
+  
+def send_password_reset_link(reset_link, email):
+  app = current_app._get_current_object()
+  msg = Message(
+    subject="Password reset link",
+    sender=app.config.get("MAIL_DEFAULT_SENDER", 'antechittech@gmail.com'),
+    recipients=[email]
+  )
+  
+  msg.html = render_template("reset_password_link.html", reset_link=reset_link)
+  msg.body = f"""
+  Hello, this is a password reset link requested for your account. To continue please copy the link bellow and open it in the browser.
+  
+  { reset_link }
+  
+  From AntechLearn. All rights reserved. 
+  
+  """
+
+  Thread(target=send_async_email, args=(app
+  , msg)).start()
+  
+  
+def news_update(username, email, subject, body):
+  pass

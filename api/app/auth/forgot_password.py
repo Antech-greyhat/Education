@@ -2,6 +2,7 @@ from flask_restx import Namespace, Resource, fields
 from datetime import datetime, timedelta
 from ..models import User
 from ..extensions import db
+from ..send_email import send_password_reset_link
 import secrets
 import os
 
@@ -45,9 +46,11 @@ class ForgotPassword(Resource):
 
         db.session.commit()
         
-        reset_url = f'{frontend_url}/reset_password.html?reset_token={reset_token}&reset_token_id={reset_token_id}'.rstrip('/')
+        reset_url = f'{frontend_url}/password_reset_link.html?reset_token={reset_token}&reset_token_id={reset_token_id}'.rstrip('/')
         
         # SEND RESET PASSWORD LINK
+        
+        send_password_reset_link(reset_url, email)
 
 
         return{
