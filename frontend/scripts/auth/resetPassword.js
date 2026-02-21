@@ -6,3 +6,5 @@ const resetButton = document.querySelector('.js-reset-button');
 
 console.log(emailElement); 
 console.log(resetButton); 
+
+console.log('Testing the changes')
