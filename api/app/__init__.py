@@ -8,7 +8,7 @@ import os
 # for debugging
 from flask_jwt_extended.exceptions import JWTExtendedException
 
-from .extensions import db, mail, jwt
+from .extensions import db, mail, jwt, migrate
 
 # import Namespace objects
 from .auth.register import register_ns  
@@ -55,6 +55,7 @@ def create_app():
     db.init_app(app)
     mail.init_app(app)
     jwt.init_app(app)
+    migrate.init_app(app, db)
 
     # Create Flask-RESTX API
     api = Api(app, title="AntechLearn API", version="1.0")

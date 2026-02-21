@@ -1,4 +1,5 @@
 from  werkzeug.security import generate_password_hash, check_password_hash
+import hashlib
 
 from datetime import datetime
 
@@ -39,15 +40,19 @@ class User(db.Model):
   reset_token = db.Column(db.String(100), nullable=True)
   reset_token_id = db.Column(db.String(20), nullable=True)
   reset_token_used = db.Column(db.Boolean, default=False)
-  reset_token_expirey_time = db.Column(db.DateTime, nullable=True)
+  reset_token_expiry_time = db.Column(db.DateTime, nullable=True)
   
+  # RESET TOKEN
   def set_reset_token(self, reset_token):
-    self.reset_token = generate_password_hash(reset_token)
+    self.reset_token = hashlib.sha256(reset_token.encode()).hexdigest()
 
   def check_reset_token(self, reset_token):
-    return check_password_hash(self.reset_token, reset_token)
+    if not self.reset_token:
+      return False
     
-  
+    return self.reset_token == hashlib.sha256(reset_token.encode()).hexdigest()
+    
+  # PASSWORD HASHING
   def set_password(self, password):
     self.password =generate_password_hash(password)
 
