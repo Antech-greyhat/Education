@@ -14,12 +14,12 @@ emailButton.addEventListener('click', async () => {
   
   // Validation
   if (!email) {
-    showToast(messageDisplay, 'Please enter an email address', true);
+    showMessage(messageDisplay, 'Please enter an email address', true);
     return;
   }
   
   if (!email.includes('@') || !email.includes('.')) {
-    showToast(messageDisplay, 'Please enter a valid email address', true);
+    showMessage(messageDisplay, 'Please enter a valid email address', true);
     return;
   }
 
@@ -27,12 +27,7 @@ emailButton.addEventListener('click', async () => {
   emailButton.disabled = true;
   const originalText = emailButton.textContent;
   emailButton.textContent = 'Please wait...';
-  
-  // Clear any existing messages immediately
-  if (toastTimeout) {
-    clearTimeout(toastTimeout);
-    toastTimeout = null;
-  }
+
   
   const details = { email };
   
@@ -42,7 +37,7 @@ emailButton.addEventListener('click', async () => {
     
     // await newsletterSub(email);
 
-    showToast(messageDisplay, 'Thank you for subscribing!', false);
+    showMessage(messageDisplay, 'Thank you for subscribing!', false);
     emailElement.value = ''; // clear input
     
   } catch (error) {
@@ -59,14 +54,10 @@ emailButton.addEventListener('click', async () => {
       errorMessage = `${error.message}`;
     }
     
-    showToast(messageDisplay, errorMessage, true);
+    showMessage(messageDisplay, errorMessage, true);
     
   } finally {
     emailButton.disabled = false;
     emailButton.textContent = originalText;
   }
-});
-
-emailElement.addEventListener('focus', () => {
-
 });
