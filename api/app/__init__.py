@@ -20,6 +20,7 @@ from .auth.seed import seed_admins
 from .protected import protected_ns
 from .auth.admin_data import admin_data
 from .auth.forgot_password import forgot_ns
+from .auth.reset_password import reset_ns
 
 
 from datetime import timedelta
@@ -61,7 +62,7 @@ def create_app():
     api = Api(app, title="AntechLearn API", version="1.0")
 
     # Add namespaces
-    namespaces = [register_ns, admin_ns, login_ns, news_ns, contact_ns, protected_ns, admin_data, forgot_ns]
+    namespaces = [register_ns, admin_ns, login_ns, news_ns, contact_ns, protected_ns, admin_data, forgot_ns, reset_ns]
     
     # namespace registration
     
