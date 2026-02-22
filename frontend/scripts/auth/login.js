@@ -27,7 +27,7 @@ submitButton.addEventListener('click', async () => {
   const password = passwordElement.value;
 
   if (!email || !password) {
-    showMessage('All fields are required.');
+    showMessage('All fields are required.', true);
     return;
   }
 

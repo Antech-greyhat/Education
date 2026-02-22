@@ -8,7 +8,7 @@ import os
 
 forgot_ns = Namespace('forgot', description='Endpoint for getting password reset credentials', path='/auth')
 
-forgot_models = forgot_ns.model('Forgot_password',{
+forgot_models = forgot_ns.model('forgot_password',{
     'email': fields.String(required=True)
 })
 
@@ -51,7 +51,6 @@ class ForgotPassword(Resource):
         # SEND RESET PASSWORD LINK
         
         send_password_reset_link(reset_url, email)
-
 
         return{
             'msg': 'Password reset email link have been sent to your email.'
