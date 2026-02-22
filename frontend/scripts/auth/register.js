@@ -1,5 +1,6 @@
 import { API_URL } from './config.js'
 import { dataSubmit } from './dataSubmit.js';
+import { showMessage } from '../msgDisplay.js';
 
 const url = `${API_URL}/auth/register`;
 
@@ -11,21 +12,6 @@ const registerButton = document.querySelector('.js-register-button')
 const termsCheckbox = document.querySelector('.js-terms-conditions');
 const messageDisplay = document.querySelector('.js-register-message')
 
-let messageTimeout;
-
-function showMessage(msg, isError = true) {
-  if (messageTimeout) clearTimeout(messageTimeout);
-
-  messageDisplay.textContent = msg;
-  messageDisplay.style.color = isError ? '#dc3545' : '#28a745';
-  messageDisplay.style.display = 'block';
-
-  messageTimeout = setTimeout(() => {
-    messageDisplay.textContent = '';
-    messageDisplay.style.display = 'none';
-  }, 5000);
-}
-
 registerButton.addEventListener('click', async () => {
   const name = nameElement.value.trim()
   const email = emailElement.value.trim()
@@ -34,27 +20,27 @@ registerButton.addEventListener('click', async () => {
 
   // Validation
   if (!name || !email || !password || !password2) {
-    showMessage('All fields are required.')
+    showMessage(messageDisplay, 'All fields are required.', true)
     return
   }
 
   if (!email.includes('@') || !email.includes('.')) {
-    showMessage('Invalid email format.')
+    showMessage(messageDisplay, 'Invalid email format.', true)
     return
   }
 
   if (password !== password2) {
-    showMessage('Password does not match.')
+    showMessage(messageDisplay, 'Password does not match.', true)
     return
   }
 
   if (password.length < 8) {
-    showMessage('Password should be greater than 8 characters.')
+    showMessage(messageDisplay, 'Password should be greater than 8 characters.', true)
     return
   }
   
   if (!termsCheckbox.checked) {
-    showMessage('You must agree to the terms and conditions.')
+    showMessage(messageDisplay, 'You must agree to the terms and conditions.', true)
     return;
   }
 
@@ -63,16 +49,14 @@ registerButton.addEventListener('click', async () => {
   const originalText = registerButton.textContent
   registerButton.innerHTML = 'Creating account...'
 
-  const details = {
-    name,
-    email,
-    password
+  const details = { 
+    name, email, password
   }
   
   try {
     const data = await dataSubmit(details, url);
 
-    showMessage(data.msg || 'Account created successfully.', false)
+    showMessage(messageDisplay, data.msg || 'Account created successfully.', false)
 
     // store token
     if (data.access_token) {
@@ -92,7 +76,7 @@ registerButton.addEventListener('click', async () => {
     passwordElement2.value = ''
 
   } catch (error) {
-    showMessage(error.message || 'Registration failed.')
+    showMessage(messageDisplay, error.message || 'Registration failed.', true)
   } finally {
     registerButton.disabled = false
     registerButton.innerHTML = originalText

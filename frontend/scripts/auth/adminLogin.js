@@ -1,5 +1,6 @@
 import { API_URL } from './config.js';
 import { dataSubmit } from './dataSubmit.js';
+import { showMessage } from '../msgDisplay.js';
 
 const url = `${API_URL}/auth/admin`;
 const emailElement = document.querySelector('.js-email-input');
@@ -14,12 +15,12 @@ submitButton.addEventListener('click', async () => {
   const password = passwordElement.value.trim();
 
   if (!email || !password) {
-    showMessage('All fields are required!', true);
+    showMessage(messageDisplay, 'All fields are required!', true);
     return;
   }
 
   if (!email.includes('@') || !email.includes('.')) {
-    showMessage('Enter a valid email', true);
+    showMessage(messageDisplay, 'Enter a valid email', true);
     return;
   }
 
@@ -35,31 +36,17 @@ submitButton.addEventListener('click', async () => {
     // store token
     localStorage.setItem('admin_token', data.access_token);
 
-    showMessage('Logged in successfully. Redirecting...', false);
+    showMessage(messageDisplay, 'Logged in successfully. Redirecting...', false);
 
     setTimeout(() => {
       window.location.href = 'admin_dashboard.html';
     }, 800);
 
   } catch (error) {
-    showMessage(error || 'Invalid credentials!', true);
+    showMessage(messageDisplay, error.message , true);
   } finally {
     submitButton.disabled = false;
     submitButton.innerHTML = originalContent;
   }
 });
-
-let messageTimeout;
-
-function showMessage(msg, isError = true) {
-  if (messageTimeout) clearTimeout(messageTimeout);
-
-  messageDisplay.textContent = msg;
-  messageDisplay.style.color = isError ? '#dc3545' : '#28a745';
-  messageDisplay.style.display = 'block';
-
-  messageTimeout = setTimeout(() => {
-    messageDisplay.textContent = '';
-    messageDisplay.style.display = 'none';
-  }, 5000);
-}
+ 

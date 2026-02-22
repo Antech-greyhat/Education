@@ -1,43 +1,25 @@
 import { API_URL } from './auth/config.js';
 import { dataSubmit } from './auth/dataSubmit.js';
+import { showMessage } from './msgDisplay.js';
+
 
 const url = `${API_URL}/news/newsletter`;
 const emailElement = document.querySelector('.js-newsletter-input');
 const emailButton = document.querySelector('.js-news-button');
 const messageDisplay = document.querySelector('.js-message-display');
 
-let toastTimeout;
-
-function showToast(message, isError = true) {
-  if (toastTimeout) {
-    clearTimeout(toastTimeout);
-    toastTimeout = null;
-  }
-  
-  // Set the message and color
-  messageDisplay.textContent = message;
-  messageDisplay.style.color = isError ? '#dc3545' : '#28a745';
-  messageDisplay.style.display = 'block';
-  
-  // Auto-hide after 5 seconds
-  toastTimeout = setTimeout(() => {
-    messageDisplay.textContent = '';
-    messageDisplay.style.display = 'none';
-    toastTimeout = null;
-  }, 5000);
-}
 
 emailButton.addEventListener('click', async () => {
   const email = emailElement.value.trim();
   
   // Validation
   if (!email) {
-    showToast('Please enter an email address', true);
+    showToast(messageDisplay, 'Please enter an email address', true);
     return;
   }
   
   if (!email.includes('@') || !email.includes('.')) {
-    showToast('Please enter a valid email address', true);
+    showToast(messageDisplay, 'Please enter a valid email address', true);
     return;
   }
 
@@ -51,12 +33,8 @@ emailButton.addEventListener('click', async () => {
     clearTimeout(toastTimeout);
     toastTimeout = null;
   }
-  messageDisplay.textContent = '';
-  messageDisplay.style.display = 'none';
   
-  const details = {
-    email:email
-  };
+  const details = { email };
   
   try {
     
@@ -64,7 +42,7 @@ emailButton.addEventListener('click', async () => {
     
     // await newsletterSub(email);
 
-    showToast('Thank you for subscribing!', false);
+    showToast(messageDisplay, 'Thank you for subscribing!', false);
     emailElement.value = ''; // clear input
     
   } catch (error) {
@@ -81,7 +59,7 @@ emailButton.addEventListener('click', async () => {
       errorMessage = `${error.message}`;
     }
     
-    showToast(errorMessage, true);
+    showToast(messageDisplay, errorMessage, true);
     
   } finally {
     emailButton.disabled = false;

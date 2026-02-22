@@ -1,5 +1,6 @@
 import { dataSubmit } from './dataSubmit.js'
 import { API_URL } from './config.js';
+import { showMessage } from '../msgDisplay.js';
 
 const url = `${API_URL}/auth/contact`;
 
@@ -20,15 +21,15 @@ contactSubmitButton.addEventListener('click', async ()=>{
   const email = emailInput.value;
   const subject = subjectInput.value;
   const message = messageInput.value;
-  showMessage('');
+  showMessage(displayElement,'');
   
   if (!firstName || !lastName || !email || !subject || !message) {
-    showMessage('All fields are required!', true);
+    showMessage(displayElement, 'All fields are required!', true);
     return;
   }
   
   if (!email.includes('@') || !email.includes('.')) {
-    showMessage('Enter a valid email', true);
+    showMessage(displayElement, 'Enter a valid email', true);
     return;
   }
 
@@ -37,17 +38,11 @@ contactSubmitButton.addEventListener('click', async ()=>{
   contactSubmitButton.disabled = true;
   contactSubmitButton.innerHTML = `<i class="fas fa-spinner fa-spin"></i> Sending...`;
   
-  const details = {
-    first_name: firstName,
-    last_name: lastName,
-    email: email,
-    subject: subject,
-    message: message
-  };
+  const details = { firstName, lastName, email, subject, message };
   
   try {
     const data = await dataSubmit(details, url);
-    showMessage('Your message have been submitted successfully and will be reviewed soon by our team.', false);
+    showMessage(displayElement, 'Your message have been submitted successfully and will be reviewed soon by our team.', false);
     
     // CLEAR THE INPUTS
     
@@ -60,24 +55,9 @@ contactSubmitButton.addEventListener('click', async ()=>{
     
     
   } catch(error) {
-    showMessage(error || 'An error occured please try again later!', true);
+    showMessage(displayElement, error.message , true);
   } finally {
     contactSubmitButton.disabled = false;
     contactSubmitButton.innerHTML = originalContent;
   }
 });
-
-let messageTimeout;
-
-function showMessage(msg, isError = true) {
-  if (messageTimeout) clearTimeout(messageTimeout);
-
-  displayElement.textContent = msg;
-  displayElement.style.color = isError ? '#dc3545' : '#28a745';
-  displayElement.style.display = 'block';
-
-  messageTimeout = setTimeout(() => {
-    displayElement.textContent = '';
-    displayElement.style.display = 'none';
-  }, 5000);
-}

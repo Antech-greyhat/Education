@@ -10,8 +10,8 @@ contact_ns = Namespace('contact', description='Contact related endpoint', path='
 
 contact_model = contact_ns.model(
   'Message',{
-    'first_name': fields.String(required=True),
-    'last_name': fields.String(required=True),
+    'firstName': fields.String(required=True),
+    'lastName': fields.String(required=True),
     'email': fields.String(required=True),
     'subject': fields.String(required=True),
     'message': fields.String(required=True)
@@ -25,15 +25,15 @@ class Protect(Resource):
     
     data = contact_ns.payload
     
-    first_name=data.get('first_name')
-    last_name = data.get('last_name')
+    first_name=data.get('firstName')
+    last_name = data.get('lastName')
     email = data.get('email')
     subject = data.get('subject')
     message = data.get('message')
     
     # VALIDATION
     
-    if not first_name or not last_name or not message or not email or not subject or not message:
+    if not first_name or not last_name or not message or not email or not subject:
       return {
         'msg': 'All fields are required!'
       }, 400
