@@ -34,8 +34,8 @@ the database, ensuring seamless data flow and a smooth user experience.
   <li>
     <strong>Clone the Repository</strong><br>
     Clone the project to your local machine:
-    <pre><code>git clone &lt;repository-url&gt;
-cd &lt;project-folder&gt;</code></pre>
+    <pre><code>git clone https://github.com/Antech-greyhat/Education.git
+cd Education/api</code></pre>
   </li>
 
   <li>
