@@ -3,10 +3,8 @@ from flask_restx import Api
 from sqlalchemy_utils import database_exists, create_database
 from flask_cors import CORS
 from dotenv import load_dotenv
+from datetime import timedelta
 import os
-
-# for debugging
-from flask_jwt_extended.exceptions import JWTExtendedException
 
 from .extensions import db, mail, jwt, migrate
 
@@ -21,10 +19,6 @@ from .protected import protected_ns
 from .auth.admin_data import admin_data
 from .auth.forgot_password import forgot_ns
 from .auth.reset_password import reset_ns
-
-
-from datetime import timedelta
-
 
 load_dotenv()
 

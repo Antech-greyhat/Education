@@ -4,11 +4,27 @@ import { showMessage } from '../msgDisplay.js';
 
 const emailElement = document.querySelector('.js-reset-email');
 const resetButton = document.querySelector('.js-reset-button');
+const newPasswordSec = document.querySelector('.js-new-pass-section');
 const messageDisplay = document.querySelector('.js-message-display');
 
-const url = `${API_URL}/auth/forgot_password`;
+const newPasswordElement = document.querySelector('.js-new-password')
+const newPassButton = document.querySelector('.js-new-pass-submit');
 
+const urlParams = new URLSearchParams(window.location.search);
+
+const reset_token_id = urlParams.get('reset_token_id');
+const reset_token = urlParams.get('reset_token');
+
+if ( reset_token && reset_token_id ) {
+  newPasswordSec.style.display = 'block';
+  emailElement.parentElement.style.display = 'none';
+  resetButton.style.display = 'none';
+}
+
+// SEND RESET LINK
 resetButton.addEventListener('click', async ()=>{
+  
+  const url = `${API_URL}/auth/forgot_password`;
   const email = emailElement.value;
   
   if (!email) {
@@ -39,5 +55,47 @@ resetButton.addEventListener('click', async ()=>{
   }finally {
     resetButton.dissabled = false;
     resetButton.innerHTML = originalContent;
+  }
+});
+
+
+// NEW PASSWORD RESET
+
+newPassButton.addEventListener('click', async ()=>{
+  
+  const url = `${API_URL}/auth/reset_password`;
+  const password = newPasswordElement.value;
+  
+  if (!password) {
+    showMessage(messageDisplay, 'Password is required.', true);
+    return;
+  }
+  
+  if (password.length < 8) {
+    showMessage(messageDisplay, 'Password must me greater than 8 characters', true);
+    return;
+  }
+  
+  const details = { reset_token, reset_token_id,  password };
+  
+  const originalContent = newPassButton.innerHTML;
+  newPassButton.dissabled = true;
+  newPassButton.innerHTML = `<i class="fas fa-spinner fa-spin"></i> Please wait...`; 
+  
+  try {
+    const data = await dataSubmit(details, url);
+    
+    showMessage(messageDisplay, data.msg, false);
+    
+    setTimeout(() => {
+      window.location.href = 'login.html';
+    }, 3000);
+    
+  } catch (error) {
+    showMessage(messageDisplay, error.message, true);
+    
+  } finally {
+    newPassButton.innerHTML = originalContent;
+    newPassButton.dissabled = false;
   }
 });

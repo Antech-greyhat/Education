@@ -20,7 +20,6 @@ def seed_admins():
         existing = Admin.query.filter_by(email=email).first()
 
         if existing:
-            print(f"Admin already exists, joined at : {existing.joined_at}")
             continue
 
         admin = Admin(

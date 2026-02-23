@@ -6,7 +6,6 @@ from ..models import User
 
 import re
 
-
 reset_ns = Namespace('reset_pasword', description='Reset password endpoint', path='/auth')
 
 reset_model = reset_ns.model('ResetPsaaword', {
@@ -15,6 +14,7 @@ reset_model = reset_ns.model('ResetPsaaword', {
     'password': fields.String(required=True)
 })
 
+@reset_ns.route('/reset_password')
 class ResetPassword(Resource):
     @reset_ns.expect(reset_model, validate=True)
     def post(self):
