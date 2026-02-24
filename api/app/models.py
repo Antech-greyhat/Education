@@ -58,6 +58,12 @@ class User(db.Model):
 
   def check_password(self, password):
     return check_password_hash(self.password, password)
+    
+# PASSWORD RESET LIMITER
+class PasswordResetAttempt(db.Model):
+  id = db.Column(db.Integer, primary_key=True, index=True)
+  user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+  created_at = db.Column(db.DateTime, default=datetime.utcnow, nullable=False)
 
 class Admin(db.Model):
     id = db.Column(db.Integer, primary_key=True)

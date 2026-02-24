@@ -6,7 +6,7 @@ from ..models import User
 
 import re
 
-reset_ns = Namespace('reset_pasword', description='Reset password endpoint', path='/auth')
+reset_ns = Namespace('reset_password', description='Reset password endpoint', path='/auth')
 
 reset_model = reset_ns.model('ResetPsaaword', {
     'reset_token_id': fields.String(required=True),

@@ -24,7 +24,7 @@ class NewsletterResource(Resource):
     
     if not email:
       return{
-        'Email is required!'
+        'msg': 'Email is required!'
       }, 400
     
     try:

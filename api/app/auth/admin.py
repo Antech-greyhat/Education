@@ -12,7 +12,7 @@ admin_models = admin_ns.model('Admin', {
 })
 
 @admin_ns.route('/admin')
-class Adminauth(Resource):
+class AdminAuth(Resource):
   @admin_ns.expect(admin_models, validate=True)
   def post(self):
     
@@ -23,7 +23,7 @@ class Adminauth(Resource):
     
     if not email or not password:
       return{
-        'msg': 'All fields are required!'
+        'msg': 'Invalid credentials!'
       }, 400
       
     admin = Admin.query.filter_by(email=email).first()

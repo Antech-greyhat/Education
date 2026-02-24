@@ -47,8 +47,6 @@ async function loadAdminDashboard() {
 
     const data = await dataRes.json();
     
-    // REMOVE THIS LOG IT'S VERY SENSITIVE
-    
     dataDisplay(data)
     
     return data;  // returned data

@@ -18,7 +18,7 @@ class AdminData(Resource):
 
         if not admin_id:
             return{
-                'msg': 'Admin mot found'
+                'msg': 'Admin not found'
             }, 404
         
         # All user data.

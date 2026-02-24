@@ -28,30 +28,27 @@ class ForgotPassword(Resource):
           
         user = User.query.filter_by(email=email).first()
 
-        if not user:
+        if user:
+
+            frontend_url = os.getenv('FRONTEND_URL')
+    
+            expirery_time = datetime.utcnow() + timedelta(minutes=10)
+            reset_token = secrets.token_urlsafe(31)
+            reset_token_id = secrets.token_urlsafe(10)
+    
+            user.set_reset_token(reset_token) # hash
+            user.reset_token_id = reset_token_id
+            user.reset_token_used = False
+            user.reset_token_expiry_time = expirery_time
+    
+            db.session.commit()
+            
+            reset_url = f'{frontend_url}/password_reset_link.html?reset_token={reset_token}&reset_token_id={reset_token_id}'.rstrip('/')
+            
+            # SEND RESET PASSWORD LINK
+            
+            send_password_reset_link(reset_url, email)
+    
             return{
-                'msg': 'Invalid email address!'
-            }, 400
-
-        frontend_url = os.getenv('FRONTEND_URL')
-
-        expirery_time = datetime.utcnow() + timedelta(minutes=3)
-        reset_token = secrets.token_urlsafe(31)
-        reset_token_id = secrets.token_urlsafe(10)
-
-        user.set_reset_token(reset_token) # hash
-        user.reset_token_id = reset_token_id
-        user.reset_token_used = False
-        user.reset_token_expiry_time = expirery_time
-
-        db.session.commit()
-        
-        reset_url = f'{frontend_url}/password_reset_link.html?reset_token={reset_token}&reset_token_id={reset_token_id}'.rstrip('/')
-        
-        # SEND RESET PASSWORD LINK
-        
-        send_password_reset_link(reset_url, email)
-
-        return{
-            'msg': 'Password reset email link have been sent to your email.'
-        }
+                'msg': 'If the email exists, a password reset link has been sent.'
+            }, 200

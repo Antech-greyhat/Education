@@ -40,7 +40,7 @@ resetButton.addEventListener('click', async ()=>{
   const details = { email };
   
   const originalContent = resetButton.innerHTML;
-  resetButton.dissabled = true;
+  resetButton.disabled = true;
   resetButton.innerHTML = `<i class="fas fa-spinner fa-spin"></i> Please wait...`;
   
   try {
@@ -53,7 +53,7 @@ resetButton.addEventListener('click', async ()=>{
    showMessage(messageDisplay, error.message, true)
    
   }finally {
-    resetButton.dissabled = false;
+    resetButton.disabled = false;
     resetButton.innerHTML = originalContent;
   }
 });
@@ -79,7 +79,7 @@ newPassButton.addEventListener('click', async ()=>{
   const details = { reset_token, reset_token_id,  password };
   
   const originalContent = newPassButton.innerHTML;
-  newPassButton.dissabled = true;
+  newPassButton.disabled = true;
   newPassButton.innerHTML = `<i class="fas fa-spinner fa-spin"></i> Please wait...`; 
   
   try {
@@ -96,6 +96,6 @@ newPassButton.addEventListener('click', async ()=>{
     
   } finally {
     newPassButton.innerHTML = originalContent;
-    newPassButton.dissabled = false;
+    newPassButton.disabled = false;
   }
 });

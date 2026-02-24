@@ -51,6 +51,7 @@ def create_app():
     mail.init_app(app)
     jwt.init_app(app)
     migrate.init_app(app, db)
+    from .models import Newsletter, Message, User, PasswordResetAttempt, Admin
 
     # Create Flask-RESTX API
     api = Api(app, title="AntechLearn API", version="1.0")

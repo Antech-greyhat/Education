@@ -51,7 +51,6 @@ contactSubmitButton.addEventListener('click', async ()=>{
     emailInput.value = '';
     subjectInput.value = '';
     messageInput.value = '';
-    messageInput.value = '';
     
     
   } catch(error) {

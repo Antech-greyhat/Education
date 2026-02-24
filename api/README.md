@@ -63,6 +63,10 @@ venv\Scripts\activate      # On Windows</code></pre>
     Install all required packages:
     <pre><code>pip install -r requirements.txt</code></pre>
   </li>
+ <p>If the above command fails, install the required packages manually:</p>
+<pre><code>
+pip install flask flask-restx flask-sqlalchemy flask-mail flask-jwt-extended flask-migrate flask-cors email-validator python-dotenv sqlalchemy
+</code></pre>
 
   <li>
     <strong>Run the Application</strong><br>
