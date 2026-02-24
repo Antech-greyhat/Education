@@ -19,18 +19,19 @@ from .protected import protected_ns
 from .auth.admin_data import admin_data
 from .auth.forgot_password import forgot_ns
 from .auth.reset_password import reset_ns
+from .health import health_ns
 
 load_dotenv()
 
 def create_app():
     app = Flask(__name__)
-
+    
     # CORS
     CORS(app)
 
     # Flask config
     app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///./database.db'
+    app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URI')
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     
     # jwt config
@@ -57,7 +58,7 @@ def create_app():
     api = Api(app, title="AntechLearn API", version="1.0")
 
     # Add namespaces
-    namespaces = [register_ns, admin_ns, login_ns, news_ns, contact_ns, protected_ns, admin_data, forgot_ns, reset_ns]
+    namespaces = [register_ns, admin_ns, login_ns, news_ns, contact_ns, protected_ns, admin_data, forgot_ns, reset_ns, health_ns]
     
     # namespace registration
     
