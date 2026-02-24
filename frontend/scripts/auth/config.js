@@ -1,1 +1,1 @@
-export const API_URL = 'https://antechlearn.ngrok.app';
+export const API_URL = 'https://antech-27lh.onrender.com';
