@@ -1365,16 +1365,16 @@ a {
 /* Backend status indicator */
 
 .online{
-  color: var(--success-color);
   position: absolute;
   top: 2px;
-  right: 2px;
+  right: 4px;
+  display: none;
 }
 
 .online::before{
   content: '';
-  height: 20px;
-  width: 20px;
+  height: 18px;
+  width: 18px;
   background-color: var(--success-color);
   display: inline-block;
   border-radius: 50%;
@@ -1390,13 +1390,14 @@ a {
 .offline{
   position: absolute;
   top: 2px;
-  right: 2px;
+  right: 4px;
+  display: none;
 }
 
 .offline::before{
   content: '';
-  height: 20px;
-  width: 20px;
+  height: 18px;
+  width: 18px;
   background-color: var(--danger-color);
   display: inline-block;
   border-radius: 50%;

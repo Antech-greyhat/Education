@@ -5,7 +5,7 @@ const headerContents = ()=>{
   headerElementDisplay.innerHTML = `
   
 <div class="container">
-    <p class="online js-health-indicator offline"></p>
+    <p class="online js-health-indicator"></p>
     <nav class="navbar">
         <a href="index.html" class="logo">
             <i class="fas fa-code"></i>
