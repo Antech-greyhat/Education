@@ -21,7 +21,6 @@ const indicatorElement = document.querySelector('.js-health-indicator');
       indicatorElement.classList.remove('offline');
     }
 
-    console.log('✓ Backend alive:', data.msg || data.status);
     return;
 
   } catch (error) {
@@ -30,9 +29,8 @@ const indicatorElement = document.querySelector('.js-health-indicator');
       indicatorElement.style.display = 'block';
       indicatorElement.classList.add('offline');
     }
-
-    console.log('✗ Backend offline');
     return;
+    
   }
 };
   setTimeout(ping, 3000);
