@@ -1362,6 +1362,54 @@ a {
   color: #28a745;
 }
 
+/* Backend status indicator */
+
+.online{
+  color: var(--success-color);
+  position: absolute;
+  top: 2px;
+  right: 2px;
+}
+
+.online::before{
+  content: '';
+  height: 20px;
+  width: 20px;
+  background-color: var(--success-color);
+  display: inline-block;
+  border-radius: 50%;
+  margin-right: 2px;
+}
+
+.online::after{
+  content: 'Online';
+  color: var(--success-color);
+  display: inline-block;
+}
+
+.offline{
+  position: absolute;
+  top: 2px;
+  right: 2px;
+}
+
+.offline::before{
+  content: '';
+  height: 20px;
+  width: 20px;
+  background-color: var(--danger-color);
+  display: inline-block;
+  border-radius: 50%;
+  margin-right: 2px;
+}
+
+.offline::after{
+  content: 'Offline';
+  color: var(--danger-color);
+  display: inline-block;
+}
+
+
 /* Responsive Design for About and Contact Pages */
 @media (max-width: 968px) {
     .about-content {
