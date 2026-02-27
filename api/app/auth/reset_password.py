@@ -49,7 +49,7 @@ class ResetPassword(Resource):
 
         # Check expiry
         if user.reset_token_expiry_time and user.reset_token_expiry_time < datetime.utcnow():
-            return {'msg': 'Reset token has expired.'}, 401
+            return {'msg': 'Reset token has expired, please request for a new one.'}, 401
 
         # Reset password
         user.set_password(password)

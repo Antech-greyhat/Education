@@ -42,7 +42,7 @@ contactSubmitButton.addEventListener('click', async ()=>{
   
   try {
     const data = await dataSubmit(details, url);
-    showMessage(displayElement, 'Your message have been submitted successfully and will be reviewed soon by our team.', false);
+    showMessage(displayElement, data.msg , false);
     
     // CLEAR THE INPUTS
     

@@ -31,7 +31,7 @@ submitButton.addEventListener('click', async () => {
     // Store JWT
     localStorage.setItem('access_token', data.access_token);
 
-    showMessage(messageDisplay, 'Login successful!', false);
+    showMessage(messageDisplay, data.msg, false);
 
     setTimeout(() => {
       window.location.href = 'languages.html';

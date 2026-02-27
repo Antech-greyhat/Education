@@ -45,7 +45,7 @@ resetButton.addEventListener('click', async ()=>{
   
   try {
     const data = await dataSubmit(details, url);
-    showMessage(messageDisplay, 'Password reset link have been sent to your email account.', false);
+    showMessage(messageDisplay, data.msg , false);
     
     emailElement.value = '';
     

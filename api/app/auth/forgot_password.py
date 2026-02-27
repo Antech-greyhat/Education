@@ -49,6 +49,6 @@ class ForgotPassword(Resource):
             
             send_password_reset_link(reset_url, email)
     
-            return{
-                'msg': 'If the email exists, a password reset link has been sent.'
-            }, 200
+        return{
+            'msg': 'If the email exists, a password reset link has been sent.'
+        }, 200

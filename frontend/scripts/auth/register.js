@@ -56,7 +56,7 @@ registerButton.addEventListener('click', async () => {
   try {
     const data = await dataSubmit(details, url);
 
-    showMessage(messageDisplay, data.msg || 'Account created successfully.', false)
+    showMessage(messageDisplay, data.msg, false)
 
     // store token
     if (data.access_token) {
