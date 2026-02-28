@@ -1,4 +1,4 @@
-export let API_URL = 'https://antech-27lh.onrender.com';
+export let API_URL = 'https://antech-fxsd.onrender.com';
 
 // FOR TESTING & DEVELOPMENT
 
