@@ -1,4 +1,4 @@
-from flask import Flask, jsonify
+from flask import Flask
 from flask_restx import Api
 from sqlalchemy_utils import database_exists, create_database
 from flask_cors import CORS
@@ -25,9 +25,18 @@ load_dotenv()
 
 def create_app():
     app = Flask(__name__)
+
+    frontend_url = os.getenv('FRONTEND_URL')
+
+    if not frontend_url:
+        raise RuntimeError ('FRONTEND_URL is missing in your environment variables!')
     
     # CORS
-    CORS(app)
+    CORS(
+        app,
+        origins=[frontend_url, 'http://127.0.0.1:35729'],
+        supports_credentials=True
+    )
 
     # Flask config
     app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
