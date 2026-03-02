@@ -1,4 +1,5 @@
-from flask import Flask
+from operator import imod
+from flask import Flask, render_template
 from flask_restx import Api
 from sqlalchemy_utils import database_exists, create_database
 from flask_cors import CORS
@@ -20,11 +21,20 @@ from .auth.admin_data import admin_data
 from .auth.forgot_password import forgot_ns
 from .auth.reset_password import reset_ns
 from .health import health_ns
+from .views import view
 
 load_dotenv()
 
 def create_app():
     app = Flask(__name__)
+    
+    api = Api(
+      app,
+      title='Antech Api',
+      version='1.0',
+      description='Antech Api for managing authentication and authorization',
+      doc='/docs'
+      )
 
     frontend_url = os.getenv('FRONTEND_URL')
 
@@ -63,17 +73,18 @@ def create_app():
     migrate.init_app(app, db)
     from .models import Newsletter, Message, User, PasswordResetAttempt, Admin
 
-    # Create Flask-RESTX API
-    api = Api(app, title="AntechLearn API", version="1.0")
-
     # Add namespaces
-    namespaces = [register_ns, admin_ns, login_ns, news_ns, contact_ns, protected_ns, admin_data, forgot_ns, reset_ns, health_ns]
+    namespaces = [register_ns, admin_ns, login_ns, news_ns, contact_ns, protected_ns, admin_data, forgot_ns, reset_ns, health_ns, view]
     
     # namespace registration
     
     for ns in namespaces:
         api.add_namespace(ns)
-
+        
+    @app.route('/')
+    def home():
+      return render_template('index.html')
+    
     init_db(app)
 
     return app

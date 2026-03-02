@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Antech API | Home</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans">
+  <div class="container mx-auto px-6 py-10">
+    <!-- Header -->
+    <header class="flex justify-between items-center mb-10">
+      <h1 class="text-3xl font-bold text-blue-600">Antech API</h1>
+      <a href="https://education-ecru.vercel.app" 
+         class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
+        Visit Site
+      </a>
+    </header>
+
+    <!-- Main -->
+    <main class="space-y-8">
+      <!-- About -->
+      <section>
+        <h2 class="text-2xl font-semibold mb-2">About</h2>
+        <p>
+          AntechLearn is a full‑stack educational platform. This backend API provides secure authentication, user management, course handling, and administrative controls.
+        </p>
+      </section>
+
+      <!-- Endpoints -->
+      <section>
+        <h2 class="text-2xl font-semibold mb-2">Endpoints</h2>
+        <ul class="list-disc list-inside">
+          <li>/register – User registration</li>
+          <li>/login – Authentication</li>
+          <li>/forgot-password – Reset workflow</li>
+          <li>/admin – Admin dashboard</li>
+          <li>/newsletter – Subscription management</li>
+          <li>/contact – Contact form handling</li>
+        </ul>
+        <p class="mt-2">Explore full documentation at <a href="{{url_for('/docs')}}" class="text-blue-600 underline">/docs</a>.</p>
+      </section>
+
+      <!-- Tech Stack -->
+      <section>
+        <h2 class="text-2xl font-semibold mb-2">Tech Stack</h2>
+        <p>Flask, Flask‑RESTX, SQLAlchemy, Alembic, JWT, Flask‑Mail, Tailwind CSS.</p>
+      </section>
+
+      <!-- Call to Action -->
+      <section class="bg-blue-50 p-6 rounded">
+        <h2 class="text-xl font-semibold mb-2">Get Started</h2>
+        <p>Clone the repository and follow the setup instructions in the README to run the API locally.</p>
+        <a href="https://github.com/Antech-greyhat/Education" 
+           class="inline-block mt-3 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
+          View on GitHub
+        </a>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="mt-10 border-t pt-6 text-sm text-gray-600">
+      <p>Contact: <a href="mailto:braverachacha@gmail.com" class="text-blue-600">info@antech.com</a></p>
+      <p>WhatsApp: <a href="https://wa.me/254732994872" class="text-blue-600">Chat with us</a></p>
+      <p class="mt-4">&copy; 2026 BraveraTech. All rights reserved.</p>
+    </footer>
+  </div>
+</body>
+</html>
