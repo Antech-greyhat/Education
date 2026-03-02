@@ -21,12 +21,15 @@ from .auth.admin_data import admin_data
 from .auth.forgot_password import forgot_ns
 from .auth.reset_password import reset_ns
 from .health import health_ns
-from .views import view
 
 load_dotenv()
 
 def create_app():
     app = Flask(__name__)
+    
+    @app.route('/')
+    def home():
+      return render_template('index.html')
     
     api = Api(
       app,
@@ -35,6 +38,7 @@ def create_app():
       description='Antech Api for managing authentication and authorization',
       doc='/docs'
       )
+    
 
     frontend_url = os.getenv('FRONTEND_URL')
 
@@ -71,19 +75,16 @@ def create_app():
     mail.init_app(app)
     jwt.init_app(app)
     migrate.init_app(app, db)
+    
     from .models import Newsletter, Message, User, PasswordResetAttempt, Admin
 
     # Add namespaces
-    namespaces = [register_ns, admin_ns, login_ns, news_ns, contact_ns, protected_ns, admin_data, forgot_ns, reset_ns, health_ns, view]
+    namespaces = [register_ns, admin_ns, login_ns, news_ns, contact_ns, protected_ns, admin_data, forgot_ns, reset_ns, health_ns]
     
     # namespace registration
     
     for ns in namespaces:
         api.add_namespace(ns)
-        
-    @app.route('/')
-    def home():
-      return render_template('index.html')
     
     init_db(app)
 
