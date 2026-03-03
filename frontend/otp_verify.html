@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Verify OTP | AntechLearn</title>
+  <link rel="stylesheet" href="./styles/otp_verify.css">
+  <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>👨‍💻</text></svg>">
+</head>
+<body>
+
+  <div class="container">
+    <div class="wrapper">
+
+      <!-- Brand -->
+      <div class="brand">
+        <span class="brand-icon">🔐</span>
+        <h1 class="brand-name">AntechLearn</h1>
+      </div>
+
+      <h2 class="form-title">Enter Your OTP</h2>
+      <p class="form-subtitle">
+        A 6-digit code was sent to your email address.<br>
+        Please enter it below to continue.
+      </p>
+
+      <!-- Message display -->
+      <p class="message js-otp-message" id="otp-message"></p>
+
+      <!-- OTP digit boxes -->
+      <div class="otp-inputs" id="otp-inputs">
+        <input class="otp-box" type="text" inputmode="numeric" maxlength="1" pattern="[0-9]" autocomplete="one-time-code" aria-label="OTP digit 1">
+        <input class="otp-box" type="text" inputmode="numeric" maxlength="1" pattern="[0-9]" aria-label="OTP digit 2">
+        <input class="otp-box" type="text" inputmode="numeric" maxlength="1" pattern="[0-9]" aria-label="OTP digit 3">
+        <input class="otp-box" type="text" inputmode="numeric" maxlength="1" pattern="[0-9]" aria-label="OTP digit 4">
+        <input class="otp-box" type="text" inputmode="numeric" maxlength="1" pattern="[0-9]" aria-label="OTP digit 5">
+        <input class="otp-box" type="text" inputmode="numeric" maxlength="1" pattern="[0-9]" aria-label="OTP digit 6">
+      </div>
+
+      <!-- Timer -->
+      <p class="timer-text">
+        Code expires in: <span class="timer-count js-otp-timer" id="otp-timer">10:00</span>
+      </p>
+
+      <!-- Submit -->
+      <button class="submit_button js-verify-otp-btn" id="verify-otp-btn">Verify OTP</button>
+
+      <!-- Resend -->
+      <p class="resend-text">
+        Didn't receive the code?
+        <button class="resend-btn js-resend-otp" id="resend-otp" disabled>Resend OTP</button>
+      </p>
+
+      <!-- Back link -->
+      <p class="back-link">
+        <a href="./login.html">&larr; Back to Login</a>
+      </p>
+
+    </div>
+  </div>
+
+  <script type="module" src="./scripts/auth/otpVerify.js"></script>
+
+</body>
+</html>
