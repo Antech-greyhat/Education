@@ -42,6 +42,19 @@ class User(db.Model):
   reset_token_used = db.Column(db.Boolean, default=False)
   reset_token_expiry_time = db.Column(db.DateTime, nullable=True)
   
+  # Account verification
+  
+  otp = db.Column(db.String(200), nullable=True)
+  otp_expiry = db.Column(db.DateTime, nullable=True)
+  is_verified = db.Column(db.Boolean, default=False)
+  
+  # otp token 
+  def set_otp(self, otp):
+    self.otp = hashlib.sha256(otp.encode()).hexdigest()
+
+  def check_otp(self, otp):
+    return hashlib.sha256(otp.encode()).hexdigest() == self.otp
+
   # RESET TOKEN
   def set_reset_token(self, reset_token):
     self.reset_token = hashlib.sha256(reset_token.encode()).hexdigest()
