@@ -21,6 +21,7 @@ from .auth.admin_data import admin_data
 from .auth.forgot_password import forgot_ns
 from .auth.reset_password import reset_ns
 from .health import health_ns
+from .auth.account_verify import verify_ns
 
 load_dotenv()
 
@@ -79,7 +80,7 @@ def create_app():
     from .models import Newsletter, Message, User, PasswordResetAttempt, Admin
 
     # Add namespaces
-    namespaces = [register_ns, admin_ns, login_ns, news_ns, contact_ns, protected_ns, admin_data, forgot_ns, reset_ns, health_ns]
+    namespaces = [register_ns, admin_ns, login_ns, news_ns, contact_ns, protected_ns, admin_data, forgot_ns, reset_ns, health_ns, verify_ns]
     
     # namespace registration
     

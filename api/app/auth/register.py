@@ -87,8 +87,8 @@ class Register(Resource):
     new_user.set_password(password)
     new_user.set_otp(otp)
     
-    # db.session.add(new_user)
-    # db.session.commit()
+    db.session.add(new_user)
+    db.session.commit()
     
     # Send otp via email 
     
