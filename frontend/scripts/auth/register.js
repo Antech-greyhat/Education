@@ -58,15 +58,15 @@ registerButton.addEventListener('click', async () => {
 
     showMessage(messageDisplay, data.msg, false)
 
-    // store token
-    if (data.access_token) {
-      localStorage.setItem('access_token', 
-       data.access_token);
+    // store otp_id
+    if (data.otp_id) {
+      localStorage.setItem('otp_id', 
+       data.otp_id);
     }
 
     // redirect
     setTimeout(() => {
-      window.location.href = 'languages.html'
+      window.location.href = 'otp_verify.html'
     }, 4000);
 
     // clear form
