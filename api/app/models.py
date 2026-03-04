@@ -51,7 +51,7 @@ class User(db.Model):
   # Account verification
   
   otp = db.Column(db.String(200), nullable=True)
-  otp_id = db.Column(db.String(10), nullable=True)
+  otp_id = db.Column(db.String(20), nullable=True)
   otp_expiry = db.Column(db.DateTime, nullable=True)
   is_verified = db.Column(db.Boolean, default=False)
   
