@@ -1,9 +1,15 @@
 from  werkzeug.security import generate_password_hash, check_password_hash
-import hashlib
+from dotenv import load_dotenv
+
+import hashlib, hmac, os
 
 from datetime import datetime
 
 from .extensions import db
+
+load_dotenv()
+
+SECRET = os.environ.get('SECRET_KEY').encode()
 
 # Newsletter model
 
@@ -45,6 +51,7 @@ class User(db.Model):
   # Account verification
   
   otp = db.Column(db.String(200), nullable=True)
+  otp_id = db.Column(db.String(10), nullable=True)
   otp_expiry = db.Column(db.DateTime, nullable=True)
   is_verified = db.Column(db.Boolean, default=False)
   
@@ -57,13 +64,15 @@ class User(db.Model):
 
   # RESET TOKEN
   def set_reset_token(self, reset_token):
-    self.reset_token = hashlib.sha256(reset_token.encode()).hexdigest()
+    self.reset_token = hmac.new(SECRET, reset_token.encode(), hashlib.sha256).hexdigest()
 
   def check_reset_token(self, reset_token):
     if not self.reset_token:
       return False
     
-    return self.reset_token == hashlib.sha256(reset_token.encode()).hexdigest()
+    expected = hmac.new(SECRET, reset_token.encode(), hashlib.sha256).hexdigest()
+    
+    return hmac.compare_digit(expected, self.reset_token)
     
   # PASSWORD HASHING
   def set_password(self, password):

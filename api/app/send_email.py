@@ -61,5 +61,27 @@ def send_password_reset_link(reset_link, email):
   , msg)).start()
   
   
+def send_otp(otp, email, name):
+  app = current_app._get_current_object()
+  msg = Message(
+    subject="Account Verification",
+    sender=app.config.get("MAIL_DEFAULT_SENDER", 'antechittech@gmail.com'),
+    recipients=[email]
+  )
+  
+  msg.html = render_template("otp_email.html", otp=otp, name=name)
+  msg.body = f"""
+  Hello { name } , this is a verification requested for your account. To continue please copy the otp and paste it in the desired fields.
+  
+  { otp }
+  
+  From AntechLearn. All rights reserved. 
+  
+  """
+
+  Thread(target=send_async_email, args=(app
+  , msg)).start()
+
+
 def news_update(username, email, subject, body):
   pass
