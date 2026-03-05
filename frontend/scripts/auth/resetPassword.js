@@ -6,6 +6,7 @@ const emailElement = document.querySelector('.js-reset-email');
 const resetButton = document.querySelector('.js-reset-button');
 const newPasswordSec = document.querySelector('.js-new-pass-section');
 const messageDisplay = document.querySelector('.js-message-display');
+const emailResetForm = document.querySelector('.js-email-submit');;
 
 const newPasswordElement = document.querySelector('.js-new-password')
 const newPassButton = document.querySelector('.js-new-pass-submit');
@@ -22,7 +23,32 @@ if ( reset_token && reset_token_id ) {
 }
 
 // SEND RESET LINK
-resetButton.addEventListener('click', async ()=>{
+
+resetButton.addEventListener('click', (event) => {
+  sendResetInfo();
+});
+
+emailResetForm.addEventListener('keydown', (event) => {
+  if (event.key === 'Enter') {
+    sendResetInfo();
+  }
+});
+
+// NEW PASSWORD RESET
+
+newPassButton.addEventListener('click', (event) => {
+  newPasswordInfo();
+});
+
+newPasswordSec.addEventListener('keydown', (event) => {
+  if (event.key === 'Enter') {
+    newPasswordInfo()
+  }
+});
+
+// Reset link function
+
+const sendResetInfo = async () =>{
   
   const url = `${API_URL}/auth/forgot_password`;
   const email = emailElement.value;
@@ -56,12 +82,11 @@ resetButton.addEventListener('click', async ()=>{
     resetButton.disabled = false;
     resetButton.innerHTML = originalContent;
   }
-});
+  
+};
 
-
-// NEW PASSWORD RESET
-
-newPassButton.addEventListener('click', async ()=>{
+// New password function
+const newPasswordInfo = async () =>{
   
   const url = `${API_URL}/auth/reset_password`;
   const password = newPasswordElement.value;
@@ -98,4 +123,7 @@ newPassButton.addEventListener('click', async ()=>{
     newPassButton.innerHTML = originalContent;
     newPassButton.disabled = false;
   }
-});
+  
+};
+
+const passe = value;

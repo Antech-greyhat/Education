@@ -1,11 +1,13 @@
 from flask_restx import Resource, Namespace, fields
 from flask_jwt_extended import create_access_token, create_refresh_token
 from email_validator import validate_email, EmailNotValidError
+from datetime import datetime, timedelta
 
 from ..models import User
-from ..extensions import db
+from ..extensions import db, limiter
+from ..send_email import send_otp
 
-import re
+import re, secrets, string
 
 register_ns = Namespace('register', description='Register route', path='/auth')
 
@@ -20,13 +22,14 @@ register_models = register_ns.model(
 
 @register_ns.route('/register')
 class Register(Resource):
+  decorators = [limiter.limit('5 per minute')]
   @register_ns.expect(register_models, validate=True)
   def post(self): 
     
     data = register_ns.payload
     
     full_name = data.get('name')
-    email = data.get('email')
+    email = data.get('email').strip().lower()
     password = data.get('password')
     
     #  DATA VALIDATION
@@ -65,24 +68,34 @@ class Register(Resource):
         "msg": "Password should include at least one number or special character!"
       }, 400
       
+      
     if db.session.query(User).filter_by(email=email).first():
       return{
         'msg': 'Email already exists!'
       }, 409
       
+    otp = ''.join(secrets.choice(string.digits) for _ in range(6))
+    otp_id = secrets.token_urlsafe(8)
+    expiry = datetime.utcnow() + timedelta(minutes=15)
+
     new_user = User(
       full_name=full_name,
-      email=email
+      email=email,
+      otp_id=otp_id,
+      otp_expiry=expiry
       )
     
     new_user.set_password(password)
+    new_user.set_otp(otp)
     
     db.session.add(new_user)
     db.session.commit()
     
-    access_token = create_access_token(identity=str(new_user.id))
+    # Send otp via email 
+    
+    send_otp(otp, email, full_name)
     
     return {
       'msg':'Account created successfully.',
-      'access_token': access_token
+      'otp_id': otp_id
     }, 201

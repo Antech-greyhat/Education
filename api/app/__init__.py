@@ -7,7 +7,7 @@ from dotenv import load_dotenv
 from datetime import timedelta
 import os
 
-from .extensions import db, mail, jwt, migrate
+from .extensions import db, mail, jwt, migrate, limiter
 
 # import Namespace objects
 from .auth.register import register_ns  
@@ -21,6 +21,8 @@ from .auth.admin_data import admin_data
 from .auth.forgot_password import forgot_ns
 from .auth.reset_password import reset_ns
 from .health import health_ns
+from .auth.account_verify import verify_ns
+from .auth.otp_resend import otp_renew_ns
 
 load_dotenv()
 
@@ -48,7 +50,7 @@ def create_app():
     # CORS
     CORS(
         app,
-        origins=[frontend_url, 'http://127.0.0.1:35729'],
+        origins=[frontend_url, 'http://127.0.0.1:35729', 'http://localhost:8158'],
         supports_credentials=True
     )
 
@@ -75,11 +77,12 @@ def create_app():
     mail.init_app(app)
     jwt.init_app(app)
     migrate.init_app(app, db)
+    limiter.init_app(app)
     
-    from .models import Newsletter, Message, User, PasswordResetAttempt, Admin
+    from .models import Newsletter, Message, User, Admin
 
     # Add namespaces
-    namespaces = [register_ns, admin_ns, login_ns, news_ns, contact_ns, protected_ns, admin_data, forgot_ns, reset_ns, health_ns]
+    namespaces = [register_ns, admin_ns, login_ns, news_ns, contact_ns, protected_ns, admin_data, forgot_ns, reset_ns, health_ns, verify_ns, otp_renew_ns]
     
     # namespace registration
     

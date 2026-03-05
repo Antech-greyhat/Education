@@ -6,6 +6,9 @@
   <title>Verify OTP | AntechLearn</title>
   <link rel="stylesheet" href="./styles/otp_verify.css">
   <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>👨‍💻</text></svg>">
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  
 </head>
 <body>
 
@@ -28,7 +31,7 @@
       <p class="message js-otp-message" id="otp-message"></p>
 
       <!-- OTP digit boxes -->
-      <div class="otp-inputs" id="otp-inputs">
+      <div class="otp-inputs js-otp-inputs-form" id="otp-inputs">
         <input class="otp-box" type="text" inputmode="numeric" maxlength="1" pattern="[0-9]" autocomplete="one-time-code" aria-label="OTP digit 1">
         <input class="otp-box" type="text" inputmode="numeric" maxlength="1" pattern="[0-9]" aria-label="OTP digit 2">
         <input class="otp-box" type="text" inputmode="numeric" maxlength="1" pattern="[0-9]" aria-label="OTP digit 3">
@@ -39,7 +42,7 @@
 
       <!-- Timer -->
       <p class="timer-text">
-        Code expires in: <span class="timer-count js-otp-timer" id="otp-timer">10:00</span>
+        Code expires in: <span class="js-countdown js-otp-timer" id="otp-timer">15:00</span>
       </p>
 
       <!-- Submit -->
@@ -48,7 +51,12 @@
       <!-- Resend -->
       <p class="resend-text">
         Didn't receive the code?
-        <button class="resend-btn js-resend-otp" id="resend-otp" disabled>Resend OTP</button>
+        <br>
+        <button class="resend-btn js-resend-otp" id="resend-otp">Resend OTP</button>
+        <br>
+        </p>
+        <p class="js-resend-countdown" style="display:none;">
+    Resend new token in <strong class="js-resend-countdown-timer">00:60</strong></p>
       </p>
 
       <!-- Back link -->

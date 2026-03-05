@@ -1,7 +1,8 @@
 from flask_restx import Namespace, Resource, fields
 from email_validator import validate_email, EmailNotValidError
 
-from ..models import Newsletter, db
+from ..models import Newsletter
+from ..extensions import db, limiter
 
 from ..send_email import send_newsletter
 
@@ -15,6 +16,7 @@ newsletter_model = news_ns.model(
 
 @news_ns.route('/newsletter')
 class NewsletterResource(Resource):
+  decorators = [limiter.limit('10 per minute')]
   @news_ns.expect(newsletter_model, validate=True)
   def post(self):
     
