@@ -33,7 +33,7 @@ def send_newsletter(username, email):
     recipients=[email]
   )
 
-  msg.html = render_template("mail.html", username=username)
+  msg.html = render_template("newsletter_confirm.html", username=username)
   msg.body = f"Welcome {username}! If you can't view HTML emails, please check our platform."
 
   Thread(target=send_async_email, args=(app, msg)).start()

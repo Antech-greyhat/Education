@@ -31,9 +31,9 @@ class ForgotPassword(Resource):
 
     if user:
       if user.reset_token_sent_at:
-        if (datetime.utcnow() - user.reset_token_sent_at).total_seconds() < 60:
+        if (datetime.utcnow() - user.reset_token_sent_at).total_seconds() < 120:
           return{
-            'msg': 'Password resend request too soon. Please wait before requesting again.'
+            'msg': 'Password resend request too soon. Please wait 2 minutes before requesting again'
           }, 429
           
       frontend_url = os.getenv('FRONTEND_URL')

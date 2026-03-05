@@ -7,10 +7,12 @@ from ..extensions import db
 
 verify_ns = Namespace("account_verify", description="Account verification operations", path="/auth")
 
-account_verify_models = verify_ns.model('AccountVerify', {
+account_verify_models = verify_ns.model(
+  'AccountVerify', 
+  {
     'otp_id': fields.String(required=True),
     'otp': fields.String(required=True)
-})
+  })
 
 @verify_ns.route('/verify')
 class VerifyAccount(Resource):

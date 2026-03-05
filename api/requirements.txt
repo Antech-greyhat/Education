@@ -35,5 +35,6 @@ rpds-py==0.30.0
 SQLAlchemy==2.0.48
 SQLAlchemy-Utils==0.42.1
 typing_extensions==4.15.0
+watchdog==6.0.0
 Werkzeug==3.1.6
 wrapt==2.1.1

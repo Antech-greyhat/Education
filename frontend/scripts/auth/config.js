@@ -1,8 +1,12 @@
-export let API_URL = 'https://education-ejxa.vercel.app';
+// PRODUCTION
+// vercel
 
-API_URL= 'https://education-haqu.vercel.app';
+export let API_URL= 'https://education-haqu.vercel.app';
+
+// render
+API_URL= 'https://antech-0i8a.onrender.com
 
 
 // FOR TESTING & DEVELOPMENT
-
-// API_URL = 'https://antechlearn.ngrok.app';
+// ngrok
+// API_URL= 'https://antechlearn.ngrok.app';

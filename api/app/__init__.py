@@ -50,7 +50,7 @@ def create_app():
     # CORS
     CORS(
         app,
-        origins=[frontend_url, 'http://127.0.0.1:35729', 'http://localhost:8158'],
+        origins=[frontend_url, 'http://127.0.0.1:35729', 'http://localhost:8158', 'https://antech.ngrok.pro'],
         supports_credentials=True
     )
 
