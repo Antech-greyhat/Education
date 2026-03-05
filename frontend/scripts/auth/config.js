@@ -4,4 +4,4 @@ export let API_URL = 'https://education-ejxa.vercel.app';
 
 // FOR TESTING & DEVELOPMENT
 
-API_URL = 'https://antechlearn.ngrok.app';
+// API_URL = 'https://antechlearn.ngrok.app';
