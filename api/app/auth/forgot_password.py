@@ -14,41 +14,47 @@ forgot_models = forgot_ns.model('forgot_password',{
 
 @forgot_ns.route('/forgot_password')
 class ForgotPassword(Resource):
-    @forgot_ns.expect(forgot_models, validate=True)
-    def post(self):
+  @forgot_ns.expect(forgot_models, validate=True)
+  def post(self):
       
-        data = forgot_ns.payload
+    data = forgot_ns.payload
 
-        email = data.get('email')
-        
-        if not email:
+    email = data.get('email')
+    
+    if not email:
+      return{
+        'msg': 'Email is required!'
+      }, 400
+      
+    user = User.query.filter_by(email=email).first()
+
+    if user:
+      if user.reset_token_sent_at:
+        if (datetime.utcnow() - user.reset_token_sent_at).total_seconds() < 60:
           return{
-            'msg': 'Email is required!'
-          }, 400
+            'msg': 'Password resend request too soon. Please wait before requesting again.'
+          }, 409
           
-        user = User.query.filter_by(email=email).first()
+      frontend_url = os.getenv('FRONTEND_URL')
 
-        if user:
+      expirery_time = datetime.utcnow() + timedelta(minutes=10)
+      reset_token = secrets.token_urlsafe(31)
+      reset_token_id = secrets.token_urlsafe(10)
 
-            frontend_url = os.getenv('FRONTEND_URL')
-    
-            expirery_time = datetime.utcnow() + timedelta(minutes=10)
-            reset_token = secrets.token_urlsafe(31)
-            reset_token_id = secrets.token_urlsafe(10)
-    
-            user.set_reset_token(reset_token) # hash
-            user.reset_token_id = reset_token_id
-            user.reset_token_used = False
-            user.reset_token_expiry_time = expirery_time
-    
-            db.session.commit()
-            
-            reset_url = f'{frontend_url}/password_reset_link.html?reset_token={reset_token}&reset_token_id={reset_token_id}'.rstrip('/')
-            
-            # SEND RESET PASSWORD LINK
-            
-            send_password_reset_link(reset_url, email)
-    
-        return{
-            'msg': 'If the email exists, a password reset link has been sent.'
-        }, 200
+      user.set_reset_token(reset_token) # hash
+      user.reset_token_id = reset_token_id
+      user.reset_token_used = False
+      user.reset_token_expiry_time = expirery_time
+      user.reset_token_sent_at = datetime.utcnow()
+
+      db.session.commit()
+      
+      reset_url = f'{frontend_url}/password_reset_link.html?reset_token={reset_token}&reset_token_id={reset_token_id}'.rstrip('/')
+      
+      # SEND RESET PASSWORD LINK
+      
+      send_password_reset_link(reset_url, email)
+
+    return{
+        'msg': 'If the email exists, a password reset link has been sent.'
+    }, 200

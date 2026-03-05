@@ -1,5 +1,5 @@
 from flask_restx import Namespace, Resource, fields
-from flask_jwt_extended import create_access_token
+from flask_jwt_extended import create_access_token, create_refresh_token
 
 from ..extensions import db 
 from ..models import User
@@ -30,10 +30,20 @@ class Login(Resource):
     user = User.query.filter_by(email=email).first()
     
     if user and user.check_password(password): 
+      
+      if not user.is_verified:
+        return{
+          'msg': 'Your account have not been verified, check your email for verification code.',
+          'otp_id': user.otp_id
+        }, 401
+        
       access_token = create_access_token(identity=str(user.id))
+      refresh_token = create_refresh_token(identity=str(user.id))
+      
       return{
         'msg': 'Logged in successfully.',
-        'access_token': access_token
+        'access_token': access_token,
+        'refresh_token': refresh_token
       }, 200
       
     return{

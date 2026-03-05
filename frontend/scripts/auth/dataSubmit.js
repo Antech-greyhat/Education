@@ -9,10 +9,12 @@ export async function dataSubmit(details, url) {
     const data = await response.json();
 
     if (!response.ok) {
-      throw new Error(data.msg || data.message || 'Request failed');
+      const error = new Error(data.msg) ;
+      error.data = data;
+      throw error;
     }
 
-    return data; // RETURNS ANYTHING SENT BACK
+    return data; // RETURNS ANY DATA SENT BACK
     
   } catch (error) {
     console.error('Error submitting data:', error);

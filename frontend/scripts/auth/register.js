@@ -11,8 +11,23 @@ const passwordElement2 = document.querySelector('.js-password2')
 const registerButton = document.querySelector('.js-register-button')
 const termsCheckbox = document.querySelector('.js-terms-conditions');
 const messageDisplay = document.querySelector('.js-register-message')
+const registerForm = document.querySelector('.js-auth-form');;
 
-registerButton.addEventListener('click', async () => {
+// button submit
+registerButton.addEventListener('click', (event) => {
+  registerSubmitInfo();
+});
+
+// keydown event 
+registerForm.addEventListener('keydown', (event) => {
+  if (event.key === 'Enter') {
+    registerSubmitInfo();
+  }
+});
+
+// register function
+const registerSubmitInfo = async () =>{
+  
   const name = nameElement.value.trim()
   const email = emailElement.value.trim()
   const password = passwordElement1.value
@@ -81,4 +96,5 @@ registerButton.addEventListener('click', async () => {
     registerButton.disabled = false
     registerButton.innerHTML = originalText
   }
-});
+  
+};

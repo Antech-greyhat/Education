@@ -52,7 +52,7 @@ const footerContent = ()=>{
             <p class="message-display js-message-display">
                 <!-- FOR RESPONSE -->
                 </p>
-            <div class="newsletter-form">
+            <div class="newsletter-form js-news-form">
                 <input type="email" placeholder="Your email address" required class="js-newsletter-input">
                 <button type="button" class="js-news-button">Subscribe</button>
               </div>

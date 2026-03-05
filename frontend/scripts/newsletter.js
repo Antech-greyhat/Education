@@ -7,9 +7,20 @@ const url = `${API_URL}/news/newsletter`;
 const emailElement = document.querySelector('.js-newsletter-input');
 const emailButton = document.querySelector('.js-news-button');
 const messageDisplay = document.querySelector('.js-message-display');
+const newsletterForm = document.querySelector('.js-news-form');;
 
+emailButton.addEventListener('click', (event) => {
+  emailSubmitInfo();
+});
 
-emailButton.addEventListener('click', async () => {
+newsletterForm.addEventListener('keydown', (event) => {
+  if (event.key === 'Enter') {
+    emailSubmitInfo();
+  }
+});
+
+const emailSubmitInfo = async () =>{
+  
   const email = emailElement.value.trim();
   
   // Validation
@@ -60,4 +71,5 @@ emailButton.addEventListener('click', async () => {
     emailButton.disabled = false;
     emailButton.textContent = originalText;
   }
-});
+  
+};

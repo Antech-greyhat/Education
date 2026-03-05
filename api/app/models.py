@@ -11,7 +11,7 @@ load_dotenv()
 
 SECRET = os.environ.get('SECRET_KEY').encode()
 
-# Newsletter model
+# NEWSLETTER MODEL
 
 class Newsletter(db.Model):
   id = db.Column(db.Integer, primary_key=True)
@@ -33,7 +33,7 @@ class Message(db.Model):
   sent_at = db.Column(db.DateTime, default=datetime.utcnow)
 
 
-# user model
+# USER MODEL
 
 class User(db.Model):
   id = db.Column(db.Integer, primary_key=True)
@@ -47,6 +47,7 @@ class User(db.Model):
   reset_token_id = db.Column(db.String(20), nullable=True)
   reset_token_used = db.Column(db.Boolean, default=False)
   reset_token_expiry_time = db.Column(db.DateTime, nullable=True)
+  reset_token_sent_at = db.Column(db.DateTime, nullable=True)
   
   # Account verification
   
@@ -54,6 +55,7 @@ class User(db.Model):
   otp_id = db.Column(db.String(20), nullable=True)
   otp_expiry = db.Column(db.DateTime, nullable=True)
   is_verified = db.Column(db.Boolean, default=False)
+  otp_sent_at = db.Column(db.DateTime, nullable=True)
   
   # otp token 
   def set_otp(self, otp):
@@ -72,7 +74,7 @@ class User(db.Model):
     
     expected = hmac.new(SECRET, reset_token.encode(), hashlib.sha256).hexdigest()
     
-    return hmac.compare_digit(expected, self.reset_token)
+    return hmac.compare_digest(expected, self.reset_token)
     
   # PASSWORD HASHING
   def set_password(self, password):
@@ -80,12 +82,8 @@ class User(db.Model):
 
   def check_password(self, password):
     return check_password_hash(self.password, password)
-    
-# PASSWORD RESET LIMITER
-class PasswordResetAttempt(db.Model):
-  id = db.Column(db.Integer, primary_key=True, index=True)
-  user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
-  created_at = db.Column(db.DateTime, default=datetime.utcnow, nullable=False)
+
+# ADMIN MODEL 
 
 class Admin(db.Model):
     id = db.Column(db.Integer, primary_key=True)

@@ -1,5 +1,5 @@
 from flask_restx import Namespace, Resource, fields
-from flask_jwt_extended import create_access_token
+from flask_jwt_extended import create_access_token, create_refresh_token
 
 from ..models import Admin
 from ..extensions import db
@@ -29,10 +29,14 @@ class AdminAuth(Resource):
     admin = Admin.query.filter_by(email=email).first()
     
     if admin and admin.check_admin_password(password):
+      
       access_token = create_access_token(identity=str(admin.id))
+      refresh_token = create_refresh_token(identity=str(admin.id))
+      
       return{
         'msg': 'Approved',
-        'access_token': access_token
+        'access_token': access_token,
+        'refresh_token': refresh_token
       }, 200
       
     return {

@@ -12,9 +12,22 @@ const messageInput = document.querySelector('.js-message');
 const contactSubmitButton = document.querySelector('.js-contact-button');
 
 const displayElement = document.querySelector('.js-feedback-display');
+const contactForm = document.querySelector('.js-contact-form');;
 
+// Button submit
+contactSubmitButton.addEventListener('click', () => {
+  contactSubmitInfo();
+});
 
-contactSubmitButton.addEventListener('click', async ()=>{
+// keydown sumbit
+contactForm.addEventListener('keydown', (event) => {
+  if (event.key === 'Enter') {
+    contactSubmitInfo();
+  }
+});
+
+// submit function
+const contactSubmitInfo = async ()=>{
   
   const firstName = firstNameInput.value;
   const lastName = lastNameInput.value;
@@ -59,4 +72,5 @@ contactSubmitButton.addEventListener('click', async ()=>{
     contactSubmitButton.disabled = false;
     contactSubmitButton.innerHTML = originalContent;
   }
-});
+  
+};
