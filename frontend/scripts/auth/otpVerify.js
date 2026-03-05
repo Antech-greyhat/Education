@@ -108,8 +108,6 @@ const otpResendInfo = async () => {
       startCountdown(60 * 15);
     }
 
-    startResendCountdown();
-
   } catch (err) {
     console.error('Error:', err);
     showMessage(displayMessage, err.message || 'An error occurred.', true);

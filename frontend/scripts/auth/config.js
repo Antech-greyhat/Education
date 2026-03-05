@@ -1,6 +1,7 @@
 export let API_URL = 'https://education-ejxa.vercel.app';
 
-// console.log(API_URL);
+API_URL= 'https://education-haqu.vercel.app';
+
 
 // FOR TESTING & DEVELOPMENT
 
