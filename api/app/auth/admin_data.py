@@ -1,7 +1,7 @@
 from flask_jwt_extended import get_jwt_identity, jwt_required
 from flask_restx import Resource, Namespace, fields
 
-from ..extensions import db
+from ..extensions import db, limiter
 from ..models import Newsletter, Admin, Message, User
 
 admin_data = Namespace('admin_data', description='Data fetch from database', path='/auth')
@@ -9,6 +9,8 @@ admin_data = Namespace('admin_data', description='Data fetch from database', pat
 
 @admin_data.route('/data')
 class AdminData(Resource):
+    decorators = [limiter.limit('3 per minute')]
+  
     @jwt_required()
     def get(self):
       

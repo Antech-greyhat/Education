@@ -2,7 +2,7 @@ from flask_restx import Namespace, Resource, fields
 from email_validator import validate_email, EmailNotValidError
 
 from ..models import Message
-from ..extensions import db
+from ..extensions import db, limiter
 
 contact_ns = Namespace('contact', description='Contact related endpoint', path='/auth')
 
@@ -20,6 +20,7 @@ contact_model = contact_ns.model(
 
 @contact_ns.route('/contact')
 class Protect(Resource):
+  decorators = [limiter.limit('5 per minute')]
   @contact_ns.expect(contact_model, validate=True)
   def post(self):
     

@@ -4,7 +4,7 @@ from email_validator import validate_email, EmailNotValidError
 from datetime import datetime, timedelta
 
 from ..models import User
-from ..extensions import db
+from ..extensions import db, limiter
 from ..send_email import send_otp
 
 import re, secrets, string
@@ -22,6 +22,7 @@ register_models = register_ns.model(
 
 @register_ns.route('/register')
 class Register(Resource):
+  decorators = [limiter.limit('5 per minute')]
   @register_ns.expect(register_models, validate=True)
   def post(self): 
     

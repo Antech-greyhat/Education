@@ -7,7 +7,7 @@ from dotenv import load_dotenv
 from datetime import timedelta
 import os
 
-from .extensions import db, mail, jwt, migrate
+from .extensions import db, mail, jwt, migrate, limiter
 
 # import Namespace objects
 from .auth.register import register_ns  
@@ -77,6 +77,7 @@ def create_app():
     mail.init_app(app)
     jwt.init_app(app)
     migrate.init_app(app, db)
+    limiter.init_app(app)
     
     from .models import Newsletter, Message, User, Admin
 

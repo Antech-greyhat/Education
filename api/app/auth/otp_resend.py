@@ -2,7 +2,7 @@ from datetime import datetime, timedelta
 from flask_restx import Namespace, Resource, fields
 
 from ..models import User
-from ..extensions import db
+from ..extensions import db, limiter
 from ..send_email import send_otp
 
 import secrets, string
@@ -17,6 +17,7 @@ otp_renew_ns_models = otp_renew_ns.model(
 
 @otp_renew_ns.route('/otp-resend')
 class OTPResendResource(Resource):
+  decorators = [limiter.limit('5 per hour')]
   @otp_renew_ns.expect(otp_renew_ns_models)
     
   def post(self):

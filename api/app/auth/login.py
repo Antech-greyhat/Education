@@ -1,7 +1,7 @@
 from flask_restx import Namespace, Resource, fields
 from flask_jwt_extended import create_access_token, create_refresh_token
 
-from ..extensions import db 
+from ..extensions import db, limiter
 from ..models import User
 
 login_ns = Namespace('login', description='Login endpoint', path='/auth')
@@ -14,6 +14,7 @@ login_model = login_ns.model(
   
 @login_ns.route('/login')
 class Login(Resource):
+  decorators = [limiter.limit('10 per minute')]
   @login_ns.expect(login_model, validate=True)
   def post(self):
     

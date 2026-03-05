@@ -1,7 +1,7 @@
 from flask_restx import Namespace, Resource, fields
 from datetime import datetime
 
-from ..extensions import db
+from ..extensions import db, limiter
 from ..models import User
 
 import re
@@ -16,6 +16,7 @@ reset_model = reset_ns.model('ResetPsaaword', {
 
 @reset_ns.route('/reset_password')
 class ResetPassword(Resource):
+    decorators = [limiter.limit('5 per day')]
     @reset_ns.expect(reset_model, validate=True)
     def post(self):
 

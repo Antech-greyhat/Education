@@ -1,7 +1,7 @@
 from flask_restx import Namespace, Resource, fields
 from datetime import datetime, timedelta
 from ..models import User
-from ..extensions import db
+from ..extensions import db, limiter
 from ..send_email import send_password_reset_link
 import secrets
 import os
@@ -14,6 +14,7 @@ forgot_models = forgot_ns.model('forgot_password',{
 
 @forgot_ns.route('/forgot_password')
 class ForgotPassword(Resource):
+  decorators = [limiter.limit('10 per hour')]
   @forgot_ns.expect(forgot_models, validate=True)
   def post(self):
       
@@ -33,7 +34,7 @@ class ForgotPassword(Resource):
         if (datetime.utcnow() - user.reset_token_sent_at).total_seconds() < 60:
           return{
             'msg': 'Password resend request too soon. Please wait before requesting again.'
-          }, 409
+          }, 429
           
       frontend_url = os.getenv('FRONTEND_URL')
 
