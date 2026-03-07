@@ -33,6 +33,6 @@ const indicatorElement = document.querySelector('.js-health-indicator');
     
   }
 };
-  setTimeout(ping, 3000);
-  setInterval(ping, 300000);
+  setTimeout(ping, 60000);
+  setInterval(ping, 840000);
 })(); 

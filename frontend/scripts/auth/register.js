@@ -68,12 +68,6 @@ const registerSubmitInfo = async () => {
     return;
   }
 
-  // Optional: Enable for stronger password requirements
-  // if (!isStrongPassword(password)) {
-  //   showMessage(messageDisplay, 'Password must contain at least one uppercase letter, one lowercase letter, and one number.', true);
-  //   return;
-  // }
-
   if (!termsCheckbox.checked) {
     showMessage(messageDisplay, 'You must agree to the terms and conditions.', true);
     return;
@@ -101,7 +95,6 @@ const registerSubmitInfo = async () => {
       localStorage.setItem('otp_id', data.otp_id);
     }
 
-    // Store email for OTP verification page (useful for resend)
     if (email) {
       localStorage.setItem('registration_email', email);
     }
@@ -116,10 +109,10 @@ const registerSubmitInfo = async () => {
     // Redirect after delay
     setTimeout(() => {
       window.location.href = 'otp_verify.html';
-    }, 3000); // Reduced from 4000ms for better UX
+    }, 3000);
 
   } catch (error) {
-    console.error('Registration error:', error); // For debugging
+    console.error('Registration error:', error); 
     
     // Handle specific error cases
     let errorMessage = 'Registration failed. Please try again.';
@@ -142,7 +135,6 @@ const registerSubmitInfo = async () => {
   }
 };
 
-// Optional: Add real-time password match validation for better UX
 if (passwordElement2) {
   passwordElement2.addEventListener('input', () => {
     const password = passwordElement1.value;
@@ -160,7 +152,6 @@ if (passwordElement2) {
   });
 }
 
-// Optional: Clear styling when password changes
 if (passwordElement1) {
   passwordElement1.addEventListener('input', () => {
     if (passwordElement2.value.length > 0) {
