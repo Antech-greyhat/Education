@@ -37,7 +37,7 @@ const emailSubmitInfo = async () => {
   // Loading state
   emailButton.disabled = true;
   const originalText = emailButton.textContent;
-  emailButton.textContent = 'Please wait...';
+  emailButton.innerHTML = `<i class="fas fa-spinner fa-spin"></i> Subscribing...`;
 
   const details = { email };
   
