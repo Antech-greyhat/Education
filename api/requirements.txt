@@ -30,11 +30,12 @@ packaging==26.0
 psycopg2-binary==2.9.11
 PyJWT==2.11.0
 python-dotenv==1.2.2
+redis==7.3.0
 referencing==0.37.0
 rpds-py==0.30.0
 SQLAlchemy==2.0.48
 SQLAlchemy-Utils==0.42.1
 typing_extensions==4.15.0
-watchdog==6.0.0
+waitress==3.0.2
 Werkzeug==3.1.6
 wrapt==2.1.1
