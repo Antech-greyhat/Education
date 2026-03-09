@@ -11,15 +11,10 @@ load_dotenv()
 
 SECRET = os.environ.get('SECRET_KEY').encode()
 
-# Association Tables
+# Association Table - Single table for Newsletter-AdminUpdate many-to-many
 newsletter_updates = db.Table('newsletter_updates',
     db.Column('newsletter_id', db.Integer, db.ForeignKey('newsletter.id'), primary_key=True),
     db.Column('admin_update_id', db.Integer, db.ForeignKey('admin_update.id'), primary_key=True)
-)
-
-admin_update_recipients = db.Table('admin_update_recipients',
-    db.Column('admin_update_id', db.Integer, db.ForeignKey('admin_update.id'), primary_key=True),
-    db.Column('newsletter_id', db.Integer, db.ForeignKey('newsletter.id'), primary_key=True)
 )
 
 # NEWSLETTER MODEL
@@ -30,11 +25,11 @@ class Newsletter(db.Model):
     subscribed_at = db.Column(db.DateTime, default=datetime.utcnow)
     
     # Relationship with AdminUpdate through newsletter_updates table
+    
     updates = db.relationship('AdminUpdate', 
-      secondary=newsletter_updates, 
-      backref=db.backref('newsletter_recipients', 
-      lazy='dynamic'))
-  
+        secondary=newsletter_updates, 
+        backref=db.backref('admin_updates', lazy='dynamic'))
+
 
 # CONTACT MODEL
 class Message(db.Model):
@@ -121,10 +116,7 @@ class AdminUpdate(db.Model):
     sent_at = db.Column(db.DateTime, default=datetime.utcnow)
     is_sent = db.Column(db.Boolean, default=False)
     
-    # Relationships
-    # Through newsletter_updates table to Newsletter model
-    recipients = db.relationship('Newsletter', secondary=newsletter_updates,backref=db.backref('admin_updates_received', lazy='dynamic'))
-    
-    newsletter_recipients = db.relationship('Newsletter',
-    secondary=admin_update_recipients,
-    backref=db.backref('admin_updates_alt', lazy='dynamic'))
+    # Relationship
+    recipients = db.relationship('Newsletter', 
+        secondary=newsletter_updates,
+        backref=db.backref('admin_updates', lazy='dynamic'))
