@@ -1,7 +1,7 @@
 // PRODUCTION
 
 // render
-API_URL = 'https://antechapi.onrender.com';
+export const API_URL = 'https://antechapi.onrender.com';
 
 
 // FOR TESTING & DEVELOPMENT

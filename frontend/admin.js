@@ -142,18 +142,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-// 3. Programmatically switch tabs
-// adminTabs.switchTo('settings');
-
-// 4. Listen to tab changes after initialization
-// adminTabs.on('change', (tabId) => {
-//     console.log('Tab changed to:', tabId);
-// });
-
-// ============================================
-// HELPER FUNCTIONS FOR DATA LOADING
-// ============================================
-
 function loadUsersData() {
     // Your existing getData.js logic or fetch call
     console.log('Loading users...');
