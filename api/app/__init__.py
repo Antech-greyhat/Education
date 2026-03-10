@@ -60,6 +60,14 @@ def create_app():
     app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URI')
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     
+    app.config['SQLALCHEMY_ENGINE_OPTIONS'] = {
+      'pool_pre_ping': True,
+      'pool_recycle': 280,
+      'pool_timeout': 20,
+      'pool_size': 5,
+      'max_overflow': 2
+    }
+    
     # jwt config
     app.config['PROPAGATE_EXCEPTIONS'] = True
     app.config['JWT_SECRET_KEY'] = os.getenv('JWT_SECRET_KEY')
