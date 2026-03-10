@@ -118,7 +118,7 @@ const registerSubmitInfo = async () => {
     let errorMessage = 'Registration failed. Please try again.';
     
     if (error.status === 409) {
-      errorMessage = error.data?.message || 'Email already registered. Please login instead.';
+      errorMessage = error.data?.msg || 'Email already registered. Please login instead.';
     } else if (error.status === 400) {
       errorMessage = error.data?.message || 'Invalid registration data.';
     } else if (error.status === 429) {

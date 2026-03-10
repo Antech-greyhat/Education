@@ -7,6 +7,5 @@ instance/
 .pytest_cache/
 env/
 __pycache__/
-locustfile.py
-stress_test.py
 tests/
+.vercel
