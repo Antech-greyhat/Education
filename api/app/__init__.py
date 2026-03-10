@@ -23,6 +23,7 @@ from .auth.reset_password import reset_ns
 from .health import health_ns
 from .auth.account_verify import verify_ns
 from .auth.otp_resend import otp_renew_ns
+from .auth.token_renew import refresh_ns
 
 load_dotenv()
 
@@ -60,6 +61,7 @@ def create_app():
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     
     # jwt config
+    app.config['PROPAGATE_EXCEPTIONS'] = True
     app.config['JWT_SECRET_KEY'] = os.getenv('JWT_SECRET_KEY')
     app.config['JWT_ACCESS_TOKEN_EXPIRES'] = timedelta(minutes=30)
     app.config['JWT_REFRESH_TOKEN_EXPIRES'] = timedelta(days=2)
@@ -82,7 +84,7 @@ def create_app():
     from .models import Newsletter, Message, User, Admin
 
     # Add namespaces
-    namespaces = [register_ns, admin_ns, login_ns, news_ns, contact_ns, protected_ns, admin_data, forgot_ns, reset_ns, health_ns, verify_ns, otp_renew_ns]
+    namespaces = [register_ns, admin_ns, login_ns, news_ns, contact_ns, protected_ns, admin_data, forgot_ns, reset_ns, health_ns, verify_ns, otp_renew_ns, refresh_ns]
     
     # namespace registration
     
