@@ -1,0 +1,188 @@
+#spinner-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  z-index: 9999;
+  transition: opacity 0.5s ease;
+}
+
+.admin-spinner {
+  text-align: center;
+}
+
+.admin-spinner .logo i {
+  font-size: 4rem;
+  color: white;
+  margin-bottom: 1rem;
+  animation: pulse 2s infinite;
+}
+
+.admin-spinner .bouncing-balls {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.admin-spinner .ball {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  animation: bounce 1.4s infinite;
+}
+
+.admin-spinner .ball:nth-child(1) { background: #ff6b6b; animation-delay: -0.32s; }
+.admin-spinner .ball:nth-child(2) { background: #4ecdc4; animation-delay: -0.16s; }
+.admin-spinner .ball:nth-child(3) { background: #ffe66d; }
+.admin-spinner .ball:nth-child(4) { background: #a37eba; animation-delay: 0.16s; }
+.admin-spinner .ball:nth-child(5) { background: #6c5ce7; animation-delay: 0.32s; }
+
+.admin-spinner .text {
+  color: white;
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  letter-spacing: 2px;
+  animation: fadePulse 2s infinite;
+}
+
+.admin-spinner .subtext {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 1rem;
+}
+
+@keyframes bounce {
+  0%, 40%, 100% { transform: translateY(0); }
+  20% { transform: translateY(-30px); }
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+@keyframes fadePulse {
+  0%, 100% { opacity: 0.8; }
+  50% { opacity: 1; }
+}
+
+.unauthorized-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 1rem;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+}
+
+.unauthorized-card {
+  background: white;
+  border-radius: 24px;
+  padding: 3rem 2rem;
+  text-align: center;
+  max-width: 450px;
+  width: 100%;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  animation: slideUpFade 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.unauthorized-icon {
+  width: 100px;
+  height: 100px;
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 2rem;
+  animation: shake 0.5s cubic-bezier(0.36, 0, 0.66, 1);
+  box-shadow: 0 10px 30px -5px rgba(220, 38, 38, 0.3);
+}
+
+.unauthorized-icon i {
+  font-size: 3rem;
+  color: white;
+}
+
+.unauthorized-card h1 {
+  color: #1e293b;
+  margin-bottom: 1rem;
+  font-size: 2.25rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.unauthorized-card p {
+  color: #64748b;
+  margin-bottom: 2.5rem;
+  line-height: 1.6;
+  font-size: 1.1rem;
+}
+
+.unauthorized-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btn-admin-login {
+  padding: 0.875rem 2rem;
+  border-radius: 9999px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1rem;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-login {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: white;
+  box-shadow: 0 10px 20px -5px rgba(102, 126, 234, 0.4);
+}
+
+.btn-login:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 20px 30px -5px rgba(102, 126, 234, 0.5);
+}
+
+.btn-home {
+  background: #f1f5f9;
+  color: #334155;
+  box-shadow: 0 5px 15px -5px rgba(0, 0, 0, 0.1);
+}
+
+.btn-home:hover {
+  transform: translateY(-3px);
+  background: #e2e8f0;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.15);
+}
+
+@keyframes slideUpFade {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-8px); }
+  40%, 80% { transform: translateX(8px); }
+}

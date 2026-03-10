@@ -9,7 +9,7 @@ admin_data = Namespace('admin_data', description='Data fetch from database', pat
 
 @admin_data.route('/data')
 class AdminData(Resource):
-    decorators = [limiter.limit('3 per minute')]
+    decorators = [limiter.limit('6 per minute')]
   
     @jwt_required()
     def get(self):

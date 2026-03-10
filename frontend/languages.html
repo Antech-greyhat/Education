@@ -1,127 +1,90 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Programming Languages - AntechLearn</title>
-    <link rel="stylesheet" href="styles/edu.css">
-    <link rel="stylesheet" href="styles/languages.css">
-    <link rel="stylesheet" href="notifications.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>👨‍💻</text></svg>">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Programming Languages - AntechLearn</title>
+  <link rel="stylesheet" href="styles/edu.css">
+  <link rel="stylesheet" href="./styles/admin-auth.css">
+  <link rel="stylesheet" href="styles/languages.css">
+  <link rel="stylesheet" href="styles/spinner.css">
+  <link rel="stylesheet" href="notifications.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="icon" type="image/svg+xml" href="images/favicon/favicon.svg">
 </head>
 <body>
-    <!-- Header with Navigation -->
-    <header class="header js-header-display">
-      <!-- EJECTED BY JAVASCRIPT -->
-      
-    </header>
+  <!-- Spinner Container -->
+  <div id="spinner-container">
+    <div class="admin-spinner">
+      <div class="logo">
+        <i class="fas fa-code"></i>
+      </div>
+      <div class="bouncing-balls">
+        <div class="ball"></div>
+        <div class="ball"></div>
+        <div class="ball"></div>
+        <div class="ball"></div>
+        <div class="ball"></div>
+      </div>
+      <div class="text">AntechLearn</div>
+      <div class="subtext">Loading languages...</div>
+    </div>
+  </div>
 
-    <!-- Search Bar Section -->
-    <section class="search-section">
-        <div class="container">
-            <h2 class="section-title">Find Your Programming Language</h2>
-            <div class="search-bar">
-                <input type="text" id="mainSearch" placeholder="Search for HTML, CSS, JavaScript, Python...">
-                <button id="mainSearchBtn" class="search-btn">
-                    <i class="fas fa-search"></i> Search
-                </button>
-            </div>
-            <div class="search-tags">
-                <span class="search-tag" data-search="html">HTML</span>
-                <span class="search-tag" data-search="css">CSS</span>
-                <span class="search-tag" data-search="javascript">JavaScript</span>
-                <span class="search-tag" data-search="python">Python</span>
-                <span class="search-tag" data-search="web development">Web Development</span>
-                <span class="search-tag" data-search="beginner">Beginner Friendly</span>
-            </div>
-        </div>
+  <!-- Page Content -->
+  <div id="page-content" style="display: none;">
+    <header class="header js-header-display"></header>
+
+    <!-- Message display div -->
+    <div class="js-courses-message courses-message" style="display: none;"></div>
+
+    <section class="courses-page">
+      <div class="container">
+        <section class="search-section">
+          <h2 class="section-title">Find Your Programming Language</h2>
+          <div class="search-bar">
+            <input type="text" id="mainSearch" placeholder="Search for HTML, CSS, JavaScript, Python...">
+            <button id="mainSearchBtn" class="search-btn">
+              <i class="fas fa-search"></i> Search
+            </button>
+          </div>
+          <div class="search-tags">
+            <span class="search-tag" data-search="html">HTML</span>
+            <span class="search-tag" data-search="css">CSS</span>
+            <span class="search-tag" data-search="javascript">JavaScript</span>
+            <span class="search-tag" data-search="python">Python</span>
+            <span class="search-tag" data-search="web development">Web Development</span>
+            <span class="search-tag" data-search="beginner">Beginner Friendly</span>
+          </div>
+        </section>
+
+        <section class="languages-section" id="languages">
+          <h2 class="section-title">Popular Programming Languages</h2>
+          <p class="section-subtitle">Choose a language to start your learning journey</p>
+          
+          <div class="languages-grid" id="languages-grid">
+            <!-- JS will populate this -->
+          </div>
+        </section>
+      </div>
     </section>
 
-    <!-- Programming Languages Section -->
-    <section class="languages-section" id="languages">
-        <div class="container">
-            <h2 class="section-title">Popular Programming Languages</h2>
-            <p class="section-subtitle">Choose a language to start your learning journey</p>
-            
-            <div class="languages-grid">
-                <!-- HTML Card -->
-                <div class="language-card" data-language="html">
-                    <div class="card-icon">
-                        <i class="fab fa-html5"></i>
-                    </div>
-                    <h3 class="card-title">HTML</h3>
-                    <p class="card-description">The standard markup language for creating web pages and web applications.</p>
-                    <div class="card-details">
-                        <p><strong>Common Uses:</strong> Web structure, content organization, semantic markup</p>
-                        <p><strong>Who Should Learn:</strong> Absolute beginners, web developers, content creators</p>
-                    </div>
-                    <a href="https://www.freecodecamp.org/learn/responsive-web-design/" class="card-link" target="_blank">Start Learning HTML <i class="fas fa-arrow-right"></i></a>
-                </div>
-                
-                <!-- CSS Card -->
-                <div class="language-card" data-language="css">
-                    <div class="card-icon">
-                        <i class="fab fa-css3-alt"></i>
-                    </div>
-                    <h3 class="card-title">CSS</h3>
-                    <p class="card-description">Stylesheet language used to describe the presentation of HTML documents.</p>
-                    <div class="card-details">
-                        <p><strong>Common Uses:</strong> Web design, responsive layouts, animations, UI/UX</p>
-                        <p><strong>Who Should Learn:</strong> Web designers, frontend developers, UI/UX specialists</p>
-                    </div>
-                    <a href="https://www.freecodecamp.org/learn/responsive-web-design/#css-flexbox" class="card-link" target="_blank">Start Learning CSS <i class="fas fa-arrow-right"></i></a>
-                </div>
-                
-                <!-- JavaScript Card -->
-                <div class="language-card" data-language="javascript">
-                    <div class="card-icon">
-                        <i class="fab fa-js-square"></i>
-                    </div>
-                    <h3 class="card-title">JavaScript</h3>
-                    <p class="card-description">A versatile programming language for creating interactive web content.</p>
-                    <div class="card-details">
-                        <p><strong>Common Uses:</strong> Web interactivity, frontend frameworks, backend (Node.js)</p>
-                        <p><strong>Who Should Learn:</strong> Frontend/backend developers, full-stack engineers</p>
-                    </div>
-                    <a href="https://www.freecodecamp.org/learn/javascript-algorithms-and-data-structures/" class="card-link" target="_blank">Start Learning JavaScript <i class="fas fa-arrow-right"></i></a>
-                </div>
-                
-                <!-- Python Card -->
-                <div class="language-card" data-language="python">
-                    <div class="card-icon">
-                        <i class="fab fa-python"></i>
-                    </div>
-                    <h3 class="card-title">Python</h3>
-                    <p class="card-description">A high-level, general-purpose programming language known for its readability.</p>
-                    <div class="card-details">
-                        <p><strong>Common Uses:</strong> Data science, automation, web development, AI/ML</p>
-                        <p><strong>Who Should Learn:</strong> Beginners, data scientists, automation engineers</p>
-                    </div>
-                    <a href="https://www.freecodecamp.org/learn/scientific-computing-with-python/" class="card-link" target="_blank">Start Learning Python <i class="fas fa-arrow-right"></i></a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
     <footer class="footer js-footer-information">
-      <!-- EJECTED BY JAVASCRIPT -->
-        
+      
+      <!-- Loaded by JS -->
+      
     </footer>
+  </div>
 
-    <script src="scripts/edu.js"></script>
-    
-  <!-- DONT REMOVE THIS SCRIPT ITS RESPONSIBLE FOR THE FOOTER CONTENTS -->
   <script src="scripts/footer.js"></script>
-  
+  <script type="module" src="scripts/header.js"></script>
+
   <script type="module" src="scripts/newsletter.js"></script>
   
-  <script type="module" src="scripts/header.js"></script>
-  
-  <script type="module" src="scripts/auth/guard.js"></script>
   
   <script type="module" src="scripts/apiCheck.js"></script>
+  
+  <script type="module" src="scripts/courses/loadCourseContent.js"></script>
   
 </body>
 </html>
