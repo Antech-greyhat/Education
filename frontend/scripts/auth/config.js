@@ -8,6 +8,7 @@ export const API_URL = 'https://antechapi.onrender.com';
 // ngrok
 // API_URL= 'https://antechlearn.ngrok.app';
 
-// local host
+// API_URL = 'https://antechlearn.ngrok.app';
 
 // API_URL = 'http://127.0.0.1:2000';
+

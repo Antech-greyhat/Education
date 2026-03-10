@@ -1,3 +1,5 @@
+// scripts/auth/dataDisplay.js
+
 // Stat card elements
 const totalMessages = document.querySelector('.js-total-messages');
 const totalUsers = document.querySelector('.js-total-users');
@@ -18,11 +20,11 @@ let allData = {};
 export const dataDisplay = (data) => {
   allData = data;
   
-  // Update stat cards with actual counts
-  if (totalMessages) totalMessages.innerHTML = data.messages.length;
-  if (totalUsers) totalUsers.innerHTML = data.users.length;
-  if (totalNewsletter) totalNewsletter.innerHTML = data.subscribers.length;
-  if (totalAdmins) totalAdmins.innerHTML = data.admins.length;
+  // Update stat cards with animation
+  animateNumber(totalMessages, data.messages.length);
+  animateNumber(totalUsers, data.users.length);
+  animateNumber(totalNewsletter, data.subscribers.length);
+  animateNumber(totalAdmins, data.admins.length);
   
   // Render tables
   displayMessagesTable();
@@ -34,6 +36,23 @@ export const dataDisplay = (data) => {
   setupPaginationListeners();
 };
 
+// Animate numbers counting up
+function animateNumber(element, finalValue) {
+  if (!element) return;
+  
+  let current = 0;
+  const increment = finalValue / 50;
+  const timer = setInterval(() => {
+    current += increment;
+    if (current >= finalValue) {
+      element.textContent = finalValue;
+      clearInterval(timer);
+    } else {
+      element.textContent = Math.floor(current);
+    }
+  }, 20);
+}
+
 // ========== MESSAGES TABLE ==========
 function displayMessagesTable() {
   const tbody = document.querySelector('#messagesTable tbody');
@@ -44,22 +63,44 @@ function displayMessagesTable() {
   const end = start + itemsPerPage;
   const pageData = allData.messages.slice(start, end);
   
+  if (pageData.length === 0) {
+    tbody.innerHTML = `
+      <tr>
+        <td colspan="8" class="text-center" style="padding: 40px;">
+          <i class="fas fa-inbox" style="font-size: 3rem; color: #ccc; margin-bottom: 1rem;"></i>
+          <p>No messages found</p>
+        </td>
+      </tr>
+    `;
+    return;
+  }
+  
   tbody.innerHTML = pageData.map(msg => `
-    <tr>
-      <td>${msg.id}</td>
-      <td>${msg.first_name} ${msg.last_name}</td>
-      <td>${msg.email}</td>
-      <td>${msg.subject}</td>
-      <td style="min-width:300px;">${msg.message}</td>
-      <td style="min-width:150px;">${formatDate(msg.sent_at)}</td>
-      <td style='display:flex; flex-direction:column; gap:5px;'>
-      <button style="border:none; border-radius:5px; background-color:green; min-width:70px; color:white; padding:3px;">Mark read</button>
-      
-      <button style="border:none; border-radius:5px; background-color:red; min-width:70px; color:white; padding:3px;">Delete</button>
+    <tr class="${!msg.read ? 'unread-row' : ''}">
+      <td><span class="badge-id">#${msg.id}</span></td>
+      <td><strong>${msg.first_name} ${msg.last_name}</strong></td>
+      <td><a href="mailto:${msg.email}" class="email-link">${msg.email}</a></td>
+      <td>${msg.subject || 'No subject'}</td>
+      <td class="message-preview">${msg.message.substring(0, 50)}${msg.message.length > 50 ? '...' : ''}</td>
+      <td><span class="date-badge"><i class="far fa-calendar"></i> ${formatDate(msg.sent_at)}</span></td>
+      <td>
+        <div class="actions-cell">
+          <button class="action-btn view-btn" onclick="viewMessage(${msg.id})" title="View message">
+            <i class="fas fa-eye"></i>
+          </button>
+          <button class="action-btn delete-btn" onclick="deleteMessage(${msg.id})" title="Delete message">
+            <i class="fas fa-trash"></i>
+          </button>
+        </div>
       </td>
-      <td class="" style="color:#b1b840;">Unread</td>
+      <td>
+        <span class="status-badge ${!msg.read ? 'status-unread' : 'status-read'}">
+          <i class="fas ${!msg.read ? 'fa-circle' : 'fa-check-circle'}"></i>
+          ${!msg.read ? 'Unread' : 'Read'}
+        </span>
+      </td>
     </tr>
-  `).join('') || '<tr><td colspan="6" style="text-align: center; padding: 20px;">No messages found</td></tr>';
+  `).join('');
   
   updatePaginationControls('messages');
 }
@@ -74,14 +115,26 @@ function displayUsersTable() {
   const end = start + itemsPerPage;
   const pageData = allData.users.slice(start, end);
   
+  if (pageData.length === 0) {
+    tbody.innerHTML = `
+      <tr>
+        <td colspan="4" class="text-center" style="padding: 40px;">
+          <i class="fas fa-users-slash" style="font-size: 3rem; color: #ccc; margin-bottom: 1rem;"></i>
+          <p>No users found</p>
+        </td>
+      </tr>
+    `;
+    return;
+  }
+  
   tbody.innerHTML = pageData.map(user => `
     <tr>
-      <td>${user.id}</td>
-      <td>${user.full_name}</td>
-      <td>${user.email}</td>
-      <td>${formatDate(user.created_at)}</td>
+      <td><span class="badge-id">#${user.id}</span></td>
+      <td><i class="fas fa-user-circle" style="color: #667eea; margin-right: 5px;"></i> ${user.full_name}</td>
+      <td><a href="mailto:${user.email}" class="email-link">${user.email}</a></td>
+      <td><span class="date-badge"><i class="far fa-calendar"></i> ${formatDate(user.created_at)}</span></td>
     </tr>
-  `).join('') || '<tr><td colspan="4" style="text-align: center; padding: 20px;">No users found</td></tr>';
+  `).join('');
   
   updatePaginationControls('users');
 }
@@ -96,13 +149,25 @@ function displaySubscribersTable() {
   const end = start + itemsPerPage;
   const pageData = allData.subscribers.slice(start, end);
   
+  if (pageData.length === 0) {
+    tbody.innerHTML = `
+      <tr>
+        <td colspan="3" class="text-center" style="padding: 40px;">
+          <i class="fas fa-envelope-open" style="font-size: 3rem; color: #ccc; margin-bottom: 1rem;"></i>
+          <p>No subscribers found</p>
+        </td>
+      </tr>
+    `;
+    return;
+  }
+  
   tbody.innerHTML = pageData.map(sub => `
     <tr>
-      <td>${sub.id}</td>
-      <td>${sub.email}</td>
-      <td>${formatDate(sub.subscribed_at)}</td>
+      <td><span class="badge-id">#${sub.id}</span></td>
+      <td><i class="fas fa-envelope" style="color: #667eea; margin-right: 5px;"></i> ${sub.email}</td>
+      <td><span class="date-badge"><i class="far fa-calendar"></i> ${formatDate(sub.subscribed_at)}</span></td>
     </tr>
-  `).join('') || '<tr><td colspan="3" style="text-align: center; padding: 20px;">No subscribers found</td></tr>';
+  `).join('');
   
   updatePaginationControls('subscribers');
 }
@@ -117,48 +182,52 @@ function displayAdminsTable() {
   const end = start + itemsPerPage;
   const pageData = allData.admins.slice(start, end);
   
+  if (pageData.length === 0) {
+    tbody.innerHTML = `
+      <tr>
+        <td colspan="3" class="text-center" style="padding: 40px;">
+          <i class="fas fa-user-shield" style="font-size: 3rem; color: #ccc; margin-bottom: 1rem;"></i>
+          <p>No admins found</p>
+        </td>
+      </tr>
+    `;
+    return;
+  }
+  
   tbody.innerHTML = pageData.map(admin => `
     <tr>
-      <td>${admin.id}</td>
-      <td>${admin.email}</td>
-      <td>${formatDate(admin.joined_at)}</td>
+      <td><span class="badge-id">#${admin.id}</span></td>
+      <td><i class="fas fa-user-tie" style="color: #667eea; margin-right: 5px;"></i> ${admin.email}</td>
+      <td><span class="date-badge"><i class="far fa-calendar"></i> ${formatDate(admin.joined_at)}</span></td>
     </tr>
-  `).join('') || '<tr><td colspan="3" style="text-align: center; padding: 20px;">No admins found</td></tr>';
+  `).join('');
   
   updatePaginationControls('admins');
 }
 
 // ========== PAGINATION ==========
 function updatePaginationControls(section) {
-  const totalItems = allData[section].length;
+  const totalItems = allData[section]?.length || 0;
   const itemsPerPage = paginationState[section].itemsPerPage;
   const totalPages = Math.ceil(totalItems / itemsPerPage);
   const current = paginationState[section].current;
   
-  // Update page info
   const pageInfo = document.querySelector(`[data-pagination="${section}"]`);
   if (pageInfo) {
-    pageInfo.textContent = `Page ${current} of ${totalPages || 1}`;
+    pageInfo.innerHTML = `<i class="fas fa-book-open"></i> Page ${current} of ${totalPages || 1}`;
   }
   
-  // Enable/Disable prev button
   const prevBtn = document.querySelector(`[data-action="prev-${section}"]`);
-  if (prevBtn) {
-    prevBtn.disabled = current === 1;
-  }
+  if (prevBtn) prevBtn.disabled = current === 1;
   
-  // Enable/Disable next button
   const nextBtn = document.querySelector(`[data-action="next-${section}"]`);
-  if (nextBtn) {
-    nextBtn.disabled = current === totalPages;
-  }
+  if (nextBtn) nextBtn.disabled = current === totalPages || totalPages === 0;
 }
 
 function setupPaginationListeners() {
   const sections = ['messages', 'users', 'subscribers', 'admins'];
   
   sections.forEach(section => {
-    // Previous button
     const prevBtn = document.querySelector(`[data-action="prev-${section}"]`);
     if (prevBtn) {
       prevBtn.addEventListener('click', () => {
@@ -169,11 +238,10 @@ function setupPaginationListeners() {
       });
     }
     
-    // Next button
     const nextBtn = document.querySelector(`[data-action="next-${section}"]`);
     if (nextBtn) {
       nextBtn.addEventListener('click', () => {
-        const totalItems = allData[section].length;
+        const totalItems = allData[section]?.length || 0;
         const itemsPerPage = paginationState[section].itemsPerPage;
         const totalPages = Math.ceil(totalItems / itemsPerPage);
         
@@ -202,7 +270,8 @@ function refreshTable(section) {
 // ========== UTILITIES ==========
 function formatDate(dateString) {
   try {
-    return new Date(dateString).toLocaleDateString('en-US', {
+    const date = new Date(dateString);
+    return date.toLocaleDateString('en-US', {
       year: 'numeric',
       month: 'short',
       day: 'numeric'
@@ -211,3 +280,19 @@ function formatDate(dateString) {
     return dateString;
   }
 }
+
+// Message action handlers
+window.viewMessage = (messageId) => {
+  const message = allData.messages.find(m => m.id === messageId);
+  if (!message) return;
+  
+  alert(`Message from ${message.first_name} ${message.last_name}:\n\n${message.message}`);
+  // add modal here
+};
+
+window.deleteMessage = (messageId) => {
+  if (confirm('Are you sure you want to delete this message?')) {
+    allData.messages = allData.messages.filter(m => m.id !== messageId);
+    displayMessagesTable();
+  }
+};
