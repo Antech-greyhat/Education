@@ -3,108 +3,210 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Antech API | Home</title>
+  <title>Antech API · Intro</title>
+  <!-- Tailwind + Font Awesome -->
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <link rel="icon" type="image/jpeg" href="/static/favicorn.jpeg">
-  
+  <style>
+    /* Smooth scroll for anchor links */
+    html { scroll-behavior: smooth; }
+  </style>
 </head>
-<body class="bg-gray-50 text-gray-800 font-sans">
-  
-  <!-- Hero Section -->
-  <section class="bg-gradient-to-br from-blue-600 to-blue-800 text-white py-20">
-    <div class="container mx-auto px-6 text-center">
-      <h1 class="text-5xl font-bold mb-4">Antech API</h1>
-      <p class="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
-        Powerful, secure, and scalable backend for modern educational platforms. 
-        Built with Flask-RESTX and designed for performance.
-      </p>
-      <div class="flex justify-center gap-4">
-        <a href="{{ url_for('doc') }}" 
-           class="bg-white text-blue-600 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition">
-          <i class="fas fa-book mr-2"></i>API Docs
+<body class="bg-gray-50 text-gray-800 font-sans antialiased">
+
+  <!-- Sticky Navbar (mobile‑first: always visible, easy to tap) -->
+  <nav class="sticky top-0 z-10 bg-white/80 backdrop-blur-sm border-b border-gray-200 shadow-sm">
+    <div class="container mx-auto px-4 sm:px-6 py-3 flex justify-between items-center">
+      <span class="text-xl font-bold text-blue-600"><i class="fas fa-bolt mr-2"></i>Antech API</span>
+      <div class="flex items-center gap-3 text-sm sm:text-base">
+        <a href="#docs" class="text-gray-700 hover:text-blue-600 px-2 py-1 transition">
+          <i class="fas fa-book mr-1"></i><span class="hidden xs:inline">Docs</span>
         </a>
-        <a href="https://github.com/Antech-greyhat/Education" 
-           class="bg-transparent border-2 border-white text-white px-6 py-3 rounded-lg font-semibold hover:bg-white hover:text-blue-600 transition">
-          <i class="fab fa-github mr-2"></i>GitHub
+        <a href="https://github.com/Antech-greyhat/Education" target="_blank" rel="noopener" 
+           class="text-gray-700 hover:text-blue-600 px-2 py-1 transition">
+          <i class="fab fa-github mr-1"></i><span class="hidden xs:inline">GitHub</span>
         </a>
+        <a href="https://education-ecru.vercel.app" target="_blank" rel="noopener"
+           class="bg-blue-600 text-white px-3 py-1.5 rounded-lg text-sm font-medium hover:bg-blue-700 transition shadow-sm">
+          <i class="fas fa-external-link-alt mr-1"></i>Live Demo
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section (mobile: text-left, larger tap targets) -->
+  <section class="bg-gradient-to-br from-blue-600 to-blue-800 text-white py-12 sm:py-20">
+    <div class="container mx-auto px-4 sm:px-6">
+      <div class="max-w-3xl mx-auto text-center sm:text-left">
+        <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold leading-tight mb-4">
+          Antech API
+        </h1>
+        <p class="text-lg sm:text-xl text-blue-100 mb-8 max-w-2xl">
+          Powerful, secure, and scalable backend for modern educational platforms. 
+          Built with Flask‑RESTX and designed for performance.
+        </p>
+        <div class="flex flex-col sm:flex-row justify-center sm:justify-start gap-3">
+          <a href="#docs" 
+             class="bg-white text-blue-600 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition text-center shadow-md">
+            <i class="fas fa-book mr-2"></i>API Docs
+          </a>
+          <a href="https://github.com/Antech-greyhat/Education" target="_blank" rel="noopener"
+             class="bg-transparent border-2 border-white text-white px-6 py-3 rounded-lg font-semibold hover:bg-white hover:text-blue-600 transition text-center">
+            <i class="fab fa-github mr-2"></i>GitHub
+          </a>
+        </div>
       </div>
     </div>
   </section>
 
-  <div class="container mx-auto px-6 py-10">
-    <!-- Header -->
-    <header class="flex justify-between items-center mb-10">
-      <h1 class="text-3xl font-bold text-blue-600">Antech API</h1>
-      <a href="https://education-ecru.vercel.app" 
-         class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
-        Visit Site
-      </a>
-    </header>
+  <!-- Main content container -->
+  <div class="container mx-auto px-4 sm:px-6 py-8 sm:py-12">
 
-    <!-- Main -->
-    <main class="space-y-8">
-      <!-- About -->
-      <section>
-        <h2 class="text-2xl font-semibold mb-2"><i class="fas fa-info-circle text-blue-600 mr-2"></i>About</h2>
-        <p>
-          AntechLearn is a full‑stack educational platform. This backend API provides secure authentication, user management, course handling, and administrative controls.
-        </p>
-      </section>
+    <!-- About + Quick Intro (mobile: stacked, but readable) -->
+    <section class="mb-12">
+      <h2 class="text-2xl sm:text-3xl font-bold text-gray-800 mb-4 flex items-center">
+        <i class="fas fa-info-circle text-blue-600 mr-3"></i>About AntechLearn
+      </h2>
+      <p class="text-gray-600 text-lg leading-relaxed max-w-3xl">
+        AntechLearn is a full‑stack educational platform. This backend API provides secure authentication, 
+        user management, course handling, and administrative controls — ready to power your learning app.
+      </p>
+    </section>
 
-      <!-- Endpoints -->
-      <section>
-        <h2 class="text-2xl font-semibold mb-2"><i class="fas fa-plug text-blue-600 mr-2"></i>Endpoints</h2>
-        <ul class="list-disc list-inside">
-          <li><code class="bg-gray-200 px-2 py-1 rounded">/register</code> – User registration</li>
-          <li><code class="bg-gray-200 px-2 py-1 rounded">/login</code> – Authentication</li>
-          <li><code class="bg-gray-200 px-2 py-1 rounded">/forgot-password</code> – Reset workflow</li>
-          <li><code class="bg-gray-200 px-2 py-1 rounded">/admin</code> – Admin dashboard</li>
-          <li><code class="bg-gray-200 px-2 py-1 rounded">/newsletter</code> – Subscription management</li>
-          <li><code class="bg-gray-200 px-2 py-1 rounded">/contact</code> – Contact form handling</li>
-        </ul>
-        <p class="mt-4">Explore full documentation at <a href="{{ url_for('doc') }}" class="text-blue-600 underline font-semibold">/docs</a>.</p>
-      </section>
-
-      <!-- Tech Stack -->
-      <section>
-        <h2 class="text-2xl font-semibold mb-2"><i class="fas fa-layer-group text-blue-600 mr-2"></i>Tech Stack</h2>
-        <div class="flex flex-wrap gap-2">
-          <span class="bg-gray-200 px-3 py-1 rounded-full text-sm">Flask</span>
-          <span class="bg-gray-200 px-3 py-1 rounded-full text-sm">Flask-RESTX</span>
-          <span class="bg-gray-200 px-3 py-1 rounded-full text-sm">SQLAlchemy</span>
-          <span class="bg-gray-200 px-3 py-1 rounded-full text-sm">Alembic</span>
-          <span class="bg-gray-200 px-3 py-1 rounded-full text-sm">JWT</span>
-          <span class="bg-gray-200 px-3 py-1 rounded-full text-sm">Flask-Mail</span>
-          <span class="bg-gray-200 px-3 py-1 rounded-full text-sm">Tailwind CSS</span>
+    <!-- Endpoints as Cards (mobile: 1 column, tablet: 2 columns) -->
+    <section class="mb-12" id="docs">
+      <h2 class="text-2xl sm:text-3xl font-bold text-gray-800 mb-6 flex items-center">
+        <i class="fas fa-plug text-blue-600 mr-3"></i>Key Endpoints
+      </h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+        <!-- Card: Register -->
+        <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition">
+          <div class="flex items-center mb-3">
+            <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center text-blue-600 mr-3">
+              <i class="fas fa-user-plus"></i>
+            </div>
+            <code class="text-lg font-mono bg-gray-100 px-2 py-1 rounded">/register</code>
+          </div>
+          <p class="text-gray-600 text-sm">Create a new user account. Returns JWT token on success.</p>
         </div>
-      </section>
+        <!-- Card: Login -->
+        <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition">
+          <div class="flex items-center mb-3">
+            <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center text-blue-600 mr-3">
+              <i class="fas fa-sign-in-alt"></i>
+            </div>
+            <code class="text-lg font-mono bg-gray-100 px-2 py-1 rounded">/login</code>
+          </div>
+          <p class="text-gray-600 text-sm">Authenticate existing user. Returns access token.</p>
+        </div>
+        <!-- Card: Forgot Password -->
+        <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition">
+          <div class="flex items-center mb-3">
+            <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center text-blue-600 mr-3">
+              <i class="fas fa-key"></i>
+            </div>
+            <code class="text-lg font-mono bg-gray-100 px-2 py-1 rounded">/forgot-password</code>
+          </div>
+          <p class="text-gray-600 text-sm">Request a password reset email. Secure token flow.</p>
+        </div>
+        <!-- Card: Admin -->
+        <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition">
+          <div class="flex items-center mb-3">
+            <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center text-blue-600 mr-3">
+              <i class="fas fa-shield-alt"></i>
+            </div>
+            <code class="text-lg font-mono bg-gray-100 px-2 py-1 rounded">/admin</code>
+          </div>
+          <p class="text-gray-600 text-sm">Admin dashboard endpoints (protected, role‑based).</p>
+        </div>
+        <!-- Card: Newsletter -->
+        <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition">
+          <div class="flex items-center mb-3">
+            <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center text-blue-600 mr-3">
+              <i class="fas fa-envelope-open-text"></i>
+            </div>
+            <code class="text-lg font-mono bg-gray-100 px-2 py-1 rounded">/newsletter</code>
+          </div>
+          <p class="text-gray-600 text-sm">Subscribe/unsubscribe from newsletters.</p>
+        </div>
+        <!-- Card: Contact -->
+        <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition">
+          <div class="flex items-center mb-3">
+            <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center text-blue-600 mr-3">
+              <i class="fas fa-paper-plane"></i>
+            </div>
+            <code class="text-lg font-mono bg-gray-100 px-2 py-1 rounded">/contact</code>
+          </div>
+          <p class="text-gray-600 text-sm">Submit contact form messages.</p>
+        </div>
+      </div>
+      <p class="mt-6 text-center sm:text-left">
+        <a href="{{ url_for('doc') }}" class="text-blue-600 underline font-semibold inline-flex items-center">
+          <i class="fas fa-arrow-right mr-1"></i>Explore full documentation at /docs
+        </a>
+      </p>
+    </section>
 
-      <!-- Call to Action -->
-      <section class="bg-blue-50 p-6 rounded-lg border border-blue-100">
-        <h2 class="text-xl font-semibold mb-2"><i class="fas fa-rocket text-blue-600 mr-2"></i>Get Started</h2>
-        <p>Clone the repository and follow the setup instructions in the README to run the API locally.</p>
-        <a href="https://github.com/Antech-greyhat/Education" 
-           class="inline-block mt-3 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition">
+    <!-- Tech Stack (as pills) + Code Example side‑by‑side on larger screens -->
+    <section class="mb-12 grid grid-cols-1 lg:grid-cols-2 gap-8">
+      <!-- Tech stack -->
+      <div>
+        <h2 class="text-2xl sm:text-3xl font-bold text-gray-800 mb-4 flex items-center">
+          <i class="fas fa-layer-group text-blue-600 mr-3"></i>Tech Stack
+        </h2>
+        <div class="flex flex-wrap gap-2">
+          <span class="bg-gray-200 px-4 py-2 rounded-full text-sm font-medium">Flask</span>
+          <span class="bg-gray-200 px-4 py-2 rounded-full text-sm font-medium">Flask-RESTX</span>
+          <span class="bg-gray-200 px-4 py-2 rounded-full text-sm font-medium">SQLAlchemy</span>
+          <span class="bg-gray-200 px-4 py-2 rounded-full text-sm font-medium">Alembic</span>
+          <span class="bg-gray-200 px-4 py-2 rounded-full text-sm font-medium">JWT</span>
+          <span class="bg-gray-200 px-4 py-2 rounded-full text-sm font-medium">Flask-Mail</span>
+          <span class="bg-gray-200 px-4 py-2 rounded-full text-sm font-medium">Tailwind CSS</span>
+        </div>
+      </div>
+      <!-- Quick code example -->
+      <div class="bg-gray-900 text-white p-5 rounded-xl shadow-lg">
+        <h3 class="text-lg font-semibold mb-3 flex items-center">
+          <i class="fas fa-code text-blue-400 mr-2"></i>Quick example (login)
+        </h3>
+        <pre class="text-sm overflow-x-auto"><code>curl -X POST https://api.antechlearn.com/login \
+  -H "Content-Type: application/json" \
+  -d '{"email": "user@example.com", "password": "secure123"}'</code></pre>
+        <p class="text-gray-400 text-xs mt-2">Returns a JWT token for subsequent requests.</p>
+      </div>
+    </section>
+
+    <!-- Call to Action (prominent but not overbearing) -->
+    <section class="bg-blue-50 p-6 sm:p-8 rounded-2xl border border-blue-100 mb-12">
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div>
+          <h2 class="text-xl sm:text-2xl font-bold text-gray-800 flex items-center">
+            <i class="fas fa-rocket text-blue-600 mr-2"></i>Get Started
+          </h2>
+          <p class="text-gray-700">Clone the repo and follow the README to run the API locally.</p>
+        </div>
+        <a href="https://github.com/Antech-greyhat/Education" target="_blank" rel="noopener"
+           class="bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition shadow-md whitespace-nowrap">
           <i class="fab fa-github mr-2"></i>View on GitHub
         </a>
-      </section>
-    </main>
+      </div>
+    </section>
 
-    <!-- Footer -->
-    <footer class="mt-10 border-t pt-6 text-sm text-gray-600">
-      <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
-        <div class="space-y-2">
-          <p>
-            <i class="fas fa-envelope text-blue-600 mr-2 w-10"></i>
-            <a href="mailto:braverachacha@gmail.com" class="text-blue-600 hover:underline">Email us</a>
-          </p>
-          <p>
-            <i class="fab fa-whatsapp text-green-600 mr-2 w-10"></i>
-            <a href="https://wa.me/254732994872" class="text-blue-600 hover:underline">Chat on WhatsApp</a>
-          </p>
+    <!-- Footer with larger tap targets -->
+    <footer class="border-t pt-8 text-sm text-gray-600">
+      <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+        <div class="flex flex-col sm:flex-row gap-4 sm:gap-6">
+          <a href="mailto:braverachacha@gmail.com" class="flex items-center text-blue-600 hover:underline">
+            <i class="fas fa-envelope text-blue-600 w-6 text-lg"></i>
+            <span class="ml-2">braverachacha@gmail.com</span>
+          </a>
+          <a href="https://wa.me/254732994872" target="_blank" rel="noopener" class="flex items-center text-blue-600 hover:underline">
+            <i class="fab fa-whatsapp text-green-600 w-6 text-lg"></i>
+            <span class="ml-2">+254 732 994 872</span>
+          </a>
         </div>
-        <p>&copy; 2026 BraveraTech. All rights reserved.</p>
+        <p class="text-gray-500">&copy; 2026 BraveraTech. All rights reserved.</p>
       </div>
     </footer>
   </div>

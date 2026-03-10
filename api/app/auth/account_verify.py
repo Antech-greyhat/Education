@@ -3,7 +3,8 @@ from flask_restx import Namespace, Resource, fields
 from datetime import datetime
 
 from ..models import User
-from ..extensions import db
+from ..extensions import db, limiter
+
 
 verify_ns = Namespace("account_verify", description="Account verification operations", path="/auth")
 
@@ -16,6 +17,7 @@ account_verify_models = verify_ns.model(
 
 @verify_ns.route('/verify')
 class VerifyAccount(Resource):
+  decorators = [limiter.limit('10 per minute')]
   @verify_ns.expect(account_verify_models)
   def post(self):
 

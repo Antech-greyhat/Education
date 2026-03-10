@@ -1,14 +1,6 @@
 // PRODUCTION
-
-// render
-export const API_URL = 'https://antechapi.onrender.com';
-
+export const API_URL = 'https://antechapi.vercel.app';
 
 // FOR TESTING & DEVELOPMENT
-// ngrok
-// API_URL= 'https://antechlearn.ngrok.app';
-
-// API_URL = 'https://antechlearn.ngrok.app';
-
-// API_URL = 'http://127.0.0.1:2000';
-
+// export const API_URL = 'https://antechlearn.ngrok.app';
+// export const API_URL = 'http://127.0.0.1:2000';

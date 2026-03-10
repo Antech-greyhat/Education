@@ -125,5 +125,3 @@ const newPasswordInfo = async () =>{
   }
   
 };
-
-const passe = value;

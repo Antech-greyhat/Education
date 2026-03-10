@@ -115,6 +115,7 @@ const otpResendInfo = async () => {
 
   } finally {
     resendOtpButton.innerHTML = originalContent;
+    resendOtpButton.disabled = false;
   }
 
 };

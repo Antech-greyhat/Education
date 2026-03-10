@@ -73,19 +73,19 @@ class User(db.Model):
     return hashlib.sha256(otp.encode()).hexdigest() == self.otp
 
   def set_reset_token(self, reset_token):
-    self.reset_token = hmac.new(SECRET, reset_token.encode(), hashlib.sha256).hexdigest()
+    self.reset_token = hmac.digest(SECRET, reset_token.encode(), hashlib.sha256).hex()
 
   def check_reset_token(self, reset_token):
     if not self.reset_token:
       return False
-    expected = hmac.new(SECRET, reset_token.encode(), hashlib.sha256).hexdigest()
+    expected = hmac.digest(SECRET, reset_token.encode(), hashlib.sha256).hex()
     return hmac.compare_digest(expected, self.reset_token)
-
-  def set_password(self, password):
-    self.password = generate_password_hash(password)
-
-  def check_password(self, password):
-    return check_password_hash(self.password, password)
+  
+    def set_password(self, password):
+      self.password = generate_password_hash(password)
+  
+    def check_password(self, password):
+      return check_password_hash(self.password, password)
 
 
 # ADMIN MODEL

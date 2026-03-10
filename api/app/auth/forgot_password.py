@@ -38,14 +38,14 @@ class ForgotPassword(Resource):
           
       frontend_url = os.getenv('FRONTEND_URL')
 
-      expirery_time = datetime.utcnow() + timedelta(minutes=10)
+      expiry_time = datetime.utcnow() + timedelta(minutes=10)
       reset_token = secrets.token_urlsafe(31)
       reset_token_id = secrets.token_urlsafe(10)
 
       user.set_reset_token(reset_token) # hash
       user.reset_token_id = reset_token_id
       user.reset_token_used = False
-      user.reset_token_expiry_time = expirery_time
+      user.reset_token_expiry_time = expiry_time
       user.reset_token_sent_at = datetime.utcnow()
 
       db.session.commit()

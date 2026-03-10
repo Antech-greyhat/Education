@@ -6,14 +6,15 @@ from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
 from flask import jsonify
 from dotenv import load_dotenv
+import warnings
 import os
 
 load_dotenv()
 
-STORAGE_URI = os.environ.get("REDIS_URL")
+STORAGE_URI = os.environ.get("REDIS_URL", "memory://")
 
-if not STORAGE_URI:
-    raise RuntimeError("REDIS_URL environment variable is not set!")
+if not os.environ.get("REDIS_URL"):
+  warnings.warn("REDIS_URL not set - using in-memory rate limiter (not for production)", RuntimeWarning)
 
 db = SQLAlchemy()
 mail = Mail()
@@ -26,21 +27,21 @@ limiter = Limiter(
 
 @jwt.expired_token_loader
 def expired_token_callback(jwt_header, jwt_payload):
-    return jsonify({
-        'msg': 'Token has expired',
-        'error': 'token_expired'
-    }), 401
+  return jsonify({
+    'msg': 'Token has expired',
+    'error': 'token_expired'
+  }), 401
 
 @jwt.invalid_token_loader
 def invalid_token_callback(error):
-    return jsonify({
-        'msg': 'Invalid token',
-        'error': 'invalid_token'
-    }), 401
+  return jsonify({
+    'msg': 'Invalid token',
+    'error': 'invalid_token'
+  }), 401
 
 @jwt.unauthorized_loader
 def missing_token_callback(error):
-    return jsonify({
-        'msg': 'No token provided',
-        'error': 'authorization_required'
-    }), 401
+  return jsonify({
+    'msg': 'No token provided',
+    'error': 'authorization_required'
+  }), 401

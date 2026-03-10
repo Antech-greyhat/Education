@@ -15,14 +15,14 @@ const registerForm = document.querySelector('.js-auth-form');
 
 // button submit
 registerButton.addEventListener('click', (event) => {
-  event.preventDefault(); // Prevent any default button behavior
+  event.preventDefault();
   registerSubmitInfo();
 });
 
-// keydown event 
+// keydown event
 registerForm.addEventListener('keydown', (event) => {
   if (event.key === 'Enter') {
-    event.preventDefault(); // Prevent form submission
+    event.preventDefault();
     registerSubmitInfo();
   }
 });
@@ -33,11 +33,10 @@ const isValidEmail = (email) => {
   return emailRegex.test(email);
 };
 
-// Password strength validation
-const isStrongPassword = (password) => {
-  // At least 8 characters, 1 uppercase, 1 lowercase, 1 number
-  const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
-  return passwordRegex.test(password);
+// Password validation - matches backend rules
+const isValidPassword = (password) => {
+  if (password.length < 8) return false;
+  return /[0-9]/.test(password) || /[!@#$%^&*(),.?":{}|<>]/.test(password);
 };
 
 // register function
@@ -47,7 +46,6 @@ const registerSubmitInfo = async () => {
   const password = passwordElement1.value;
   const password2 = passwordElement2.value;
 
-  // Validation
   if (!name || !email || !password || !password2) {
     showMessage(messageDisplay, 'All fields are required.', true);
     return;
@@ -63,8 +61,8 @@ const registerSubmitInfo = async () => {
     return;
   }
 
-  if (password.length < 8) {
-    showMessage(messageDisplay, 'Password must be at least 8 characters long.', true);
+  if (!isValidPassword(password)) {
+    showMessage(messageDisplay, 'Password must be at least 8 characters and include a number or special character.', true);
     return;
   }
 
@@ -73,24 +71,21 @@ const registerSubmitInfo = async () => {
     return;
   }
 
-  // Loading state
   registerButton.disabled = true;
   const originalText = registerButton.textContent;
   registerButton.innerHTML = 'Creating account...';
 
-  const details = { 
-    name, 
-    email, 
-    password 
+  const details = {
+    name,
+    email,
+    password
   };
-  
+
   try {
     const data = await dataSubmit(details, url);
 
-    // Show success message
     showMessage(messageDisplay, data.msg || 'Registration successful! Please check your email for verification.', false);
 
-    // Store otp_id if provided
     if (data.otp_id) {
       localStorage.setItem('otp_id', data.otp_id);
     }
@@ -99,36 +94,33 @@ const registerSubmitInfo = async () => {
       localStorage.setItem('registration_email', email);
     }
 
-    // Clear form
     nameElement.value = '';
     emailElement.value = '';
     passwordElement1.value = '';
     passwordElement2.value = '';
     termsCheckbox.checked = false;
 
-    // Redirect after delay
     setTimeout(() => {
       window.location.href = 'otp_verify.html';
     }, 3000);
 
   } catch (error) {
-    console.error('Registration error:', error); 
-    
-    // Handle specific error cases
+    console.error('Registration error:', error);
+
     let errorMessage = 'Registration failed. Please try again.';
-    
+
     if (error.status === 409) {
       errorMessage = error.data?.msg || 'Email already registered. Please login instead.';
     } else if (error.status === 400) {
-      errorMessage = error.data?.message || 'Invalid registration data.';
+      errorMessage = error.data?.msg || 'Invalid registration data.';
     } else if (error.status === 429) {
       errorMessage = 'Too many registration attempts. Please try again later.';
     } else if (error.message) {
       errorMessage = error.message;
     }
-    
+
     showMessage(messageDisplay, errorMessage, true);
-    
+
   } finally {
     registerButton.disabled = false;
     registerButton.innerHTML = originalText;
@@ -139,7 +131,7 @@ if (passwordElement2) {
   passwordElement2.addEventListener('input', () => {
     const password = passwordElement1.value;
     const confirmPassword = passwordElement2.value;
-    
+
     if (confirmPassword.length > 0) {
       if (password === confirmPassword) {
         passwordElement2.style.borderColor = '#4caf50';

@@ -72,5 +72,21 @@ def send_otp(otp, email, name):
   send_email_sync(app, msg)
 
 
-def news_update(username, email, subject, body):
-  pass
+def send_newsletter_update(email, username, subject, body):
+  app = current_app._get_current_object()
+  msg = Message(
+    subject=subject,
+    sender=app.config.get("MAIL_DEFAULT_SENDER", 'antechittech@gmail.com'),
+    recipients=[email]
+  )
+  msg.html = render_template("newsletter_update.html", username=username, subject=subject, body=body)
+  msg.body = f"""
+  Hello {username}, here is an update from AntechLearn.
+
+  {subject}
+
+  {body}
+
+  From AntechLearn. All rights reserved.
+  """
+  send_email_sync(app, msg)
