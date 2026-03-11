@@ -53,8 +53,7 @@ class User(db.Model):
   created_at = db.Column(db.DateTime, default=datetime.utcnow)
 
   # Password reset
-  reset_token = db.Column(db.String(100), nullable=True)
-  reset_token_id = db.Column(db.String(20), nullable=True)
+  reset_token = db.Column(db.String(64), nullable=True)
   reset_token_used = db.Column(db.Boolean, default=False)
   reset_token_expiry_time = db.Column(db.DateTime, nullable=True)
   reset_token_sent_at = db.Column(db.DateTime, nullable=True)
@@ -80,6 +79,11 @@ class User(db.Model):
       return False
     expected = hmac.digest(SECRET, reset_token.encode(), hashlib.sha256).hex()
     return hmac.compare_digest(expected, self.reset_token)
+
+  @staticmethod
+  def get_by_reset_token(raw_token):
+    hashed = hmac.digest(SECRET, raw_token.encode(), hashlib.sha256).hex()
+    return User.query.filter_by(reset_token=hashed).first()
 
   def set_password(self, password):
     self.password = generate_password_hash(password)
