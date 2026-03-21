@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard - AntechLearn</title>
+  <link rel="stylesheet" href="styles/base.css">
+  <link rel="stylesheet" href="styles/layout.css">
+  <link rel="stylesheet" href="styles/spinner.css">
+  <link rel="stylesheet" href="styles/admin.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="icon" type="image/svg+xml" href="images/favicon/favicon.svg">
+</head>
+<body>
+
+  <!-- Spinner -->
+  <div id="spinner-container">
+    <div class="admin-spinner">
+      <div class="logo"><i class="fas fa-code"></i></div>
+      <div class="bouncing-balls">
+        <div class="ball"></div>
+        <div class="ball"></div>
+        <div class="ball"></div>
+        <div class="ball"></div>
+        <div class="ball"></div>
+      </div>
+      <div class="text">AntechLearn</div>
+      <div class="subtext">Loading admin dashboard...</div>
+    </div>
+  </div>
+
+  <!-- Page content -->
+  <div id="page-content" style="display:none;">
+
+    <header class="header">
+      <p class="online js-health-indicator"></p>
+      <div class="container">
+        <nav class="navbar">
+          <a href="index.html" class="logo">
+            <i class="fas fa-code"></i>
+            <span>AntechLearn</span>
+          </a>
+
+          <ul class="nav-menu">
+            <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+            <li class="nav-item"><a href="languages.html" class="nav-link">Languages</a></li>
+            <li class="nav-item"><a href="guide.html" class="nav-link">Guide</a></li>
+            <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+            <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+            <li class="nav-item"><a href="admin_dashboard.html" class="nav-link active">Admin</a></li>
+          </ul>
+
+          <div class="nav-controls">
+            <button id="themeToggle" class="theme-toggle" aria-label="Toggle theme">
+              <i class="fas fa-moon"></i>
+            </button>
+            <button id="logoutBtn" class="btn btn-danger nav-btn">
+              <i class="fas fa-sign-out-alt"></i> Logout
+            </button>
+            <div class="hamburger" id="hamburger">
+              <span class="bar"></span>
+              <span class="bar"></span>
+              <span class="bar"></span>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Refresh FAB -->
+    <button type="button" class="btn admin-refresh js-admin-refresh">
+      <i class="fas fa-rotate-right"></i>
+    </button>
+
+    <section class="admin-section">
+      <div class="container">
+
+        <!-- Page header -->
+        <div class="admin-page-header">
+          <div>
+            <h1 class="admin-page-title">
+              <i class="fas fa-gauge-high"></i> Admin Dashboard
+            </h1>
+            <p class="admin-page-subtitle">Manage your platform and monitor activity</p>
+          </div>
+        </div>
+
+        <!-- Stats grid -->
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-icon subscribers-icon">
+              <i class="fas fa-users"></i>
+            </div>
+            <div class="stat-info">
+              <h3 class="js-total-users">0</h3>
+              <p>Total Users</p>
+            </div>
+            <div class="stat-trend">
+              <i class="fas fa-arrow-up"></i>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-icon messages-icon">
+              <i class="fas fa-envelope"></i>
+            </div>
+            <div class="stat-info">
+              <h3 class="js-total-messages">0</h3>
+              <p>Contact Messages</p>
+            </div>
+            <div class="stat-trend">
+              <i class="fas fa-arrow-up"></i>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-icon sent-icon">
+              <i class="fas fa-newspaper"></i>
+            </div>
+            <div class="stat-info">
+              <h3 class="js-total-subscribers">0</h3>
+              <p>Newsletter Subscribers</p>
+            </div>
+            <div class="stat-trend">
+              <i class="fas fa-arrow-up"></i>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-icon courses-icon">
+              <i class="fas fa-code"></i>
+            </div>
+            <div class="stat-info">
+              <h3 id="totalCourses">122</h3>
+              <p>Active Courses</p>
+            </div>
+            <div class="stat-trend">
+              <i class="fas fa-arrow-up"></i>
+            </div>
+          </div>
+        </div>
+
+        <!-- Overview panels -->
+        <div class="admin-overview">
+
+          <div class="overview-panel">
+            <div class="overview-panel__header">
+              <h3><i class="fas fa-bolt"></i> Quick Actions</h3>
+            </div>
+            <div class="overview-panel__body">
+              <a href="languages.html" class="quick-action">
+                <div class="quick-action__icon" style="background:var(--primary-light);color:var(--primary);">
+                  <i class="fas fa-code"></i>
+                </div>
+                <span>View Courses</span>
+                <i class="fas fa-chevron-right quick-action__arrow"></i>
+              </a>
+              <a href="contact.html" class="quick-action">
+                <div class="quick-action__icon" style="background:#FEF3C7;color:#D97706;">
+                  <i class="fas fa-envelope"></i>
+                </div>
+                <span>Contact Page</span>
+                <i class="fas fa-chevron-right quick-action__arrow"></i>
+              </a>
+              <a href="about.html" class="quick-action">
+                <div class="quick-action__icon" style="background:#EDE9FE;color:#7C3AED;">
+                  <i class="fas fa-info-circle"></i>
+                </div>
+                <span>About Page</span>
+                <i class="fas fa-chevron-right quick-action__arrow"></i>
+              </a>
+              <a href="guide.html" class="quick-action">
+                <div class="quick-action__icon" style="background:#DBEAFE;color:#2563EB;">
+                  <i class="fas fa-map"></i>
+                </div>
+                <span>Learning Guide</span>
+                <i class="fas fa-chevron-right quick-action__arrow"></i>
+              </a>
+            </div>
+          </div>
+
+          <div class="overview-panel">
+            <div class="overview-panel__header">
+              <h3><i class="fas fa-circle-info"></i> Platform Info</h3>
+            </div>
+            <div class="overview-panel__body">
+              <div class="info-row">
+                <span class="info-row__label">Platform</span>
+                <span class="info-row__value">AntechLearn</span>
+              </div>
+              <div class="info-row">
+                <span class="info-row__label">Version</span>
+                <span class="info-row__value">2.0.0</span>
+              </div>
+              <div class="info-row">
+                <span class="info-row__label">Total Courses</span>
+                <span class="info-row__value">122</span>
+              </div>
+              <div class="info-row">
+                <span class="info-row__label">Languages</span>
+                <span class="info-row__value">28 categories</span>
+              </div>
+              <div class="info-row">
+                <span class="info-row__label">Status</span>
+                <span class="info-row__value status-badge status-read">
+                  <i class="fas fa-check-circle"></i> Online
+                </span>
+              </div>
+              <div class="info-row">
+                <span class="info-row__label">Admin</span>
+                <span class="info-row__value">antechittech@gmail.com</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Tabs -->
+        <div class="admin-tabs">
+          <button class="tab-btn active" data-tab="users">
+            <i class="fas fa-users"></i> Users
+          </button>
+          <button class="tab-btn" data-tab="messages">
+            <i class="fas fa-envelope"></i> Messages
+          </button>
+          <button class="tab-btn" data-tab="newsletter">
+            <i class="fas fa-paper-plane"></i> Newsletter
+          </button>
+          <button class="tab-btn" data-tab="admins">
+            <i class="fas fa-user-shield"></i> Admins
+          </button>
+          <button class="tab-btn" data-tab="settings">
+            <i class="fas fa-cog"></i> Settings
+          </button>
+        </div>
+
+        <!-- Tab content -->
+        <div class="tab-content">
+
+          <!-- Users tab -->
+          <div id="users-tab" class="tab-pane active">
+            <div class="admin-card">
+              <div class="card-header">
+                <h3><i class="fas fa-users"></i> Registered Users</h3>
+                <div class="search-box">
+                  <input type="text" id="userSearch" placeholder="Search users...">
+                  <button><i class="fas fa-search"></i></button>
+                </div>
+              </div>
+              <div class="card-body">
+                <div class="table-responsive">
+                  <table class="data-table" id="usersTable">
+                    <thead>
+                      <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Joined</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody id="usersTableBody">
+                      <tr>
+                        <td colspan="6" class="text-center">Loading users...</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="pagination-controls">
+                  <div data-pagination="users">Page 1 of 1</div>
+                  <div>
+                    <button data-action="prev-users" class="btn btn-prev">
+                      <i class="fas fa-arrow-left"></i> Previous
+                    </button>
+                    <button data-action="next-users" class="btn btn-next">
+                      Next <i class="fas fa-arrow-right"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Messages tab -->
+          <div id="messages-tab" class="tab-pane">
+            <div class="admin-card">
+              <div class="card-header">
+                <h3><i class="fas fa-envelope"></i> Contact Messages</h3>
+                <div class="filter-buttons">
+                  <button class="filter-btn active" data-filter="all">All</button>
+                  <button class="filter-btn" data-filter="unread">Unread</button>
+                  <button class="filter-btn" data-filter="read">Read</button>
+                </div>
+              </div>
+              <div class="card-body">
+                <div class="table-responsive">
+                  <table class="data-table" id="messagesTable">
+                    <thead>
+                      <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Subject</th>
+                        <th>Preview</th>
+                        <th>Sent</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody id="messagesTableBody">
+                      <tr>
+                        <td colspan="8" class="text-center">Loading messages...</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="pagination-controls">
+                  <div data-pagination="messages">Page 1 of 1</div>
+                  <div>
+                    <button data-action="prev-messages" class="btn btn-prev">
+                      <i class="fas fa-arrow-left"></i> Previous
+                    </button>
+                    <button data-action="next-messages" class="btn btn-next">
+                      Next <i class="fas fa-arrow-right"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Newsletter tab -->
+          <div id="newsletter-tab" class="tab-pane">
+            <div class="admin-card">
+              <div class="card-header">
+                <h3><i class="fas fa-paper-plane"></i> Newsletter Management</h3>
+              </div>
+              <div class="card-body">
+
+                <div class="newsletter-section">
+                  <h4><i class="fas fa-list"></i> Subscribers List</h4>
+                  <div class="table-responsive">
+                    <table class="data-table" id="subscribersTable">
+                      <thead>
+                        <tr>
+                          <th>ID</th>
+                          <th>Email</th>
+                          <th>Subscribed</th>
+                          <th>Status</th>
+                          <th>Actions</th>
+                        </tr>
+                      </thead>
+                      <tbody id="subscribersTableBody">
+                        <tr>
+                          <td colspan="5" class="text-center">Loading subscribers...</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <div class="pagination-controls">
+                    <div data-pagination="subscribers">Page 1 of 1</div>
+                    <div>
+                      <button data-action="prev-subscribers" class="btn btn-prev">
+                        <i class="fas fa-arrow-left"></i> Previous
+                      </button>
+                      <button data-action="next-subscribers" class="btn btn-next">
+                        Next <i class="fas fa-arrow-right"></i>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="newsletter-compose">
+                  <h4><i class="fas fa-pen"></i> Send Newsletter</h4>
+                  <form id="newsletterForm">
+                    <div class="form-group">
+                      <label for="newsletterSubject">Subject</label>
+                      <input type="text" id="newsletterSubject" placeholder="Enter email subject" required>
+                    </div>
+                    <div class="form-group">
+                      <label for="newsletterContent">Message</label>
+                      <textarea id="newsletterContent" rows="6" placeholder="Enter your message..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">
+                      <i class="fas fa-paper-plane"></i> Send Newsletter
+                    </button>
+                  </form>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+          <!-- Admins tab -->
+          <div id="admins-tab" class="tab-pane">
+            <div class="admin-card">
+              <div class="card-header">
+                <h3><i class="fas fa-user-shield"></i> Admin Users</h3>
+                <div class="search-box">
+                  <input type="text" id="adminSearch" placeholder="Search admins...">
+                  <button><i class="fas fa-search"></i></button>
+                </div>
+              </div>
+              <div class="card-body">
+                <div class="table-responsive">
+                  <table class="data-table" id="adminsTable">
+                    <thead>
+                      <tr>
+                        <th>ID</th>
+                        <th>Email</th>
+                        <th>Joined</th>
+                        <th>Status</th>
+                      </tr>
+                    </thead>
+                    <tbody id="adminsTableBody">
+                      <tr>
+                        <td colspan="4" class="text-center">Loading admins...</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="pagination-controls">
+                  <div data-pagination="admins">Page 1 of 1</div>
+                  <div>
+                    <button data-action="prev-admins" class="btn btn-prev">
+                      <i class="fas fa-arrow-left"></i> Previous
+                    </button>
+                    <button data-action="next-admins" class="btn btn-next">
+                      Next <i class="fas fa-arrow-right"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Settings tab -->
+          <div id="settings-tab" class="tab-pane">
+            <div class="admin-card">
+              <div class="card-header">
+                <h3><i class="fas fa-cog"></i> Platform Settings</h3>
+              </div>
+              <div class="card-body">
+                <form id="settingsForm">
+
+                  <div class="settings-section">
+                    <h4><i class="fas fa-globe"></i> General</h4>
+                    <div class="form-group">
+                      <label for="siteName">Site Name</label>
+                      <input type="text" id="siteName" value="AntechLearn">
+                    </div>
+                    <div class="form-group">
+                      <label for="siteDescription">Site Description</label>
+                      <textarea id="siteDescription" rows="3">Master programming languages through interactive lessons and practical exercises.</textarea>
+                    </div>
+                  </div>
+
+                  <div class="settings-section">
+                    <h4><i class="fas fa-envelope"></i> Email</h4>
+                    <div class="form-group">
+                      <label for="adminEmailSetting">Admin Email</label>
+                      <input type="email" id="adminEmailSetting" value="antechittech@gmail.com">
+                    </div>
+                  </div>
+
+                  <div class="settings-section">
+                    <h4><i class="fas fa-toggle-on"></i> Features</h4>
+                    <div class="form-group">
+                      <label class="checkbox-label">
+                        <input type="checkbox" id="enableRegistration" checked>
+                        <span>Enable User Registration</span>
+                      </label>
+                    </div>
+                    <div class="form-group">
+                      <label class="checkbox-label">
+                        <input type="checkbox" id="enableNewsletter" checked>
+                        <span>Enable Newsletter Subscription</span>
+                      </label>
+                    </div>
+                    <div class="form-group">
+                      <label class="checkbox-label">
+                        <input type="checkbox" id="enableContact" checked>
+                        <span>Enable Contact Form</span>
+                      </label>
+                    </div>
+                  </div>
+
+                  <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-save"></i> Save Settings
+                  </button>
+
+                </form>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Message modal -->
+    <div id="messageModal" class="admin-modal" style="display:none;">
+      <div class="admin-modal__backdrop" onclick="closeMessageModal()"></div>
+      <div class="admin-modal__card">
+        <div class="admin-modal__header">
+          <h3 id="modalTitle">Message</h3>
+          <button class="admin-modal__close" onclick="closeMessageModal()">
+            <i class="fas fa-xmark"></i>
+          </button>
+        </div>
+        <div class="admin-modal__body" id="modalBody"></div>
+        <div class="admin-modal__footer">
+          <button class="btn btn-secondary" onclick="closeMessageModal()">Close</button>
+        </div>
+      </div>
+    </div>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-bottom">
+          <p>&copy; 2026 AntechLearn. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+  </div>
+
+  <script src="scripts/edu.js"></script>
+  <script src="scripts/auth/admin.js"></script>
+  <script type="module" src="scripts/auth/getData.js"></script>
+  <script type="module" src="scripts/apiCheck.js"></script>
+
+</body>
+</html>

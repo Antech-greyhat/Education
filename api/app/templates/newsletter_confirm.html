@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Newsletter Subscription Confirmed - AntechLearn</title>
+  <style>
+    body { margin:0; padding:0; background:#f4f4f4; font-family:Arial,Helvetica,sans-serif; -webkit-font-smoothing:antialiased; }
+    table { border-collapse:collapse; }
+    td { font-family:Arial,Helvetica,sans-serif; }
+    .wrapper-table { width:100%; }
+    .container { max-width:560px; background:#ffffff; border-radius:8px; overflow:hidden; box-shadow:0 2px 8px rgba(0,0,0,0.08); }
+    /* Header */
+    .header-bg { background:linear-gradient(135deg,#0C8F6A,#0FA87E); padding:20px; text-align:center; }
+    .header-title { margin:0; color:#ffffff; font-size:22px; font-weight:700; letter-spacing:0.5px; }
+    .header-title span { color:#FFF9C4; }
+    .header-tagline { margin:4px 0 0; color:rgba(255,255,255,0.8); font-size:11px; letter-spacing:1px; text-transform:uppercase; }
+    /* Hero */
+    .hero-content { padding:26px 30px 20px; background:#ffffff; text-align:center; }
+    .badge {
+      display:inline-block;
+      background:#EDFBF7;
+      color:#0FA87E;
+      font-size:11px;
+      font-weight:700;
+      letter-spacing:0.8px;
+      text-transform:uppercase;
+      padding:4px 14px;
+      border-radius:40px;
+      border:1px solid #D1FAF0;
+      margin-bottom:14px;
+    }
+    .hero-title { margin:0 0 10px; color:#1a1a1a; font-size:20px; font-weight:700; line-height:1.3; }
+    .hero-title .accent { color:#0FA87E; }
+    .hero-sub { margin:0 auto; color:#555; font-size:13px; line-height:1.6; max-width:420px; }
+    /* Divider */
+    .divider { height:1px; background:#e8e8e8; margin:0 30px; }
+    /* Features */
+    .features-content { padding:20px 30px; background:#ffffff; }
+    .features-label { margin:0 0 14px; color:#999; font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.8px; }
+    .feature-row { display:flex; align-items:flex-start; margin-bottom:14px; }
+    .feature-icon-cell { width:32px; padding-right:12px; vertical-align:top; padding-top:2px; }
+    .feature-icon {
+      width:28px;
+      height:28px;
+      border-radius:6px;
+      background:#EDFBF7;
+      border:1px solid #D1FAF0;
+      text-align:center;
+      line-height:28px;
+      font-size:13px;
+      color:#0FA87E;
+    }
+    .feature-title { margin:0 0 2px; color:#1a1a1a; font-size:13px; font-weight:600; }
+    .feature-desc { margin:0; color:#666; font-size:12px; line-height:1.5; }
+    /* CTA */
+    .cta-content { padding:20px 30px 22px; background:#EDFBF7; text-align:center; border-top:1px solid #D1FAF0; }
+    .cta-text { margin:0 0 14px; color:#444; font-size:13px; line-height:1.6; }
+    .cta-btn {
+      display:inline-block;
+      padding:11px 30px;
+      background:linear-gradient(135deg,#0C8F6A,#0FA87E);
+      color:#ffffff !important;
+      font-size:13px;
+      font-weight:700;
+      text-decoration:none;
+      border-radius:40px;
+      letter-spacing:0.3px;
+    }
+    /* Footer */
+    .footer-bg { text-align:center; padding:16px 20px; background:#f4f4f4; border-top:1px solid #e8e8e8; }
+    .footer-text { margin:0 0 4px; color:#999; font-size:11px; line-height:1.6; }
+    .footer-text a { color:#0FA87E; text-decoration:none; }
+    .footer-text a:hover { text-decoration:underline; }
+    .unsub-link { color:#bbb !important; font-size:10px; }
+  </style>
+</head>
+<body>
+  <table role="presentation" class="wrapper-table">
+    <tr>
+      <td align="center" style="padding:28px 0;">
+        <table role="presentation" class="container">
+
+          <!-- Header -->
+          <tr>
+            <td class="header-bg">
+              <h1 class="header-title">Antech<span>Learn</span></h1>
+              <p class="header-tagline">Knowledge Without Limits</p>
+            </td>
+          </tr>
+
+          <!-- Hero -->
+          <tr>
+            <td class="hero-content">
+              <div class="badge">Subscription Confirmed</div>
+              <h2 class="hero-title">
+                Welcome, <span class="accent">{{ username }}</span>!
+              </h2>
+              <p class="hero-sub">
+                Thanks for subscribing to the <strong>AntechLearn Newsletter</strong>.
+                You'll be first to know about new courses, tutorials, platform updates,
+                and exclusive learning resources.
+              </p>
+            </td>
+          </tr>
+
+          <tr><td class="divider"></td></tr>
+
+          <!-- Features -->
+          <tr>
+            <td class="features-content">
+              <p class="features-label">What to expect in your inbox</p>
+
+              <table role="presentation" width="100%">
+                <tr>
+                  <td class="feature-icon-cell">
+                    <div class="feature-icon"></div>
+                  </td>
+                  <td>
+                    <p class="feature-title">New Course Announcements</p>
+                    <p class="feature-desc">Be first to hear when new courses and learning paths go live.</p>
+                  </td>
+                </tr>
+              </table>
+              <table role="presentation" width="100%" style="margin-top:12px;">
+                <tr>
+                  <td class="feature-icon-cell">
+                    <div class="feature-icon"> </div>
+                  </td>
+                  <td>
+                    <p class="feature-title">Tips &amp; Tutorials</p>
+                    <p class="feature-desc">Bite-sized practical tips, coding tricks, and curated tutorials every week.</p>
+                  </td>
+                </tr>
+              </table>
+              <table role="presentation" width="100%" style="margin-top:12px;">
+                <tr>
+                  <td class="feature-icon-cell">
+                    <div class="feature-icon"> </div>
+                  </td>
+                  <td>
+                    <p class="feature-title">Exclusive Offers</p>
+                    <p class="feature-desc">Subscriber-only discounts and early access to premium content.</p>
+                  </td>
+                </tr>
+              </table>
+              <table role="presentation" width="100%" style="margin-top:12px;">
+                <tr>
+                  <td class="feature-icon-cell">
+                    <div class="feature-icon"> </div>
+                  </td>
+                  <td>
+                    <p class="feature-title">Platform Updates</p>
+                    <p class="feature-desc">New features, improvements, and community highlights straight to you.</p>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- CTA -->
+          <tr>
+            <td class="cta-content">
+              <p class="cta-text">
+                Start exploring our courses right away — your learning journey begins now.
+              </p>
+              <a href="https://education-ecru.vercel.app/" class="cta-btn">
+                Explore Courses &rarr;
+              </a>
+            </td>
+          </tr>
+
+          <!-- Footer -->
+          <tr>
+            <td class="footer-bg">
+              <p class="footer-text">
+                You're receiving this because you subscribed at
+                <a href="https://education-ecru.vercel.app/">education-ecru.vercel.app</a>
+              </p>
+              <p class="footer-text" style="margin-top:4px;">
+                Questions? <a href="mailto:antechittech@gmail.com">Contact Us</a>
+                &nbsp;&bull;&nbsp;
+                <a href="{{ unsubscribe_link }}" class="unsub-link">Unsubscribe</a>
+              </p>
+              <p class="footer-text" style="margin-top:6px;color:#bbb;font-size:10px;">
+                &copy; 2026 AntechLearn. All rights reserved.
+              </p>
+            </td>
+          </tr>
+
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>

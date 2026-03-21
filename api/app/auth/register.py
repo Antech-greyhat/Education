@@ -1,0 +1,101 @@
+from flask_restx import Resource, Namespace, fields
+from flask_jwt_extended import create_access_token, create_refresh_token
+from email_validator import validate_email, EmailNotValidError
+from datetime import datetime, timedelta
+
+from ..models import User
+from ..extensions import db, limiter
+from ..send_email import send_otp
+
+import re, secrets, string
+
+register_ns = Namespace('register', description='Register route', path='/auth')
+
+register_models = register_ns.model(
+  'User',
+  {
+    'name': fields.String(required=True),
+    'email': fields.String(required=True),
+    'password': fields.String(required=True)
+  }
+  )
+
+@register_ns.route('/register')
+class Register(Resource):
+  decorators = [limiter.limit('5 per minute')]
+  @register_ns.expect(register_models, validate=True)
+  def post(self): 
+    
+    data = register_ns.payload
+    
+    full_name = data.get('name')
+    email = data.get('email').strip().lower()
+    password = data.get('password')
+    
+    #  DATA VALIDATION
+    
+    if not full_name or not email or not password:
+      return{
+        'msg': 'All fields are required!'
+      }, 400
+    
+    if len(full_name) < 2:
+      return{
+        'msg': 'Full name must be greater than 2 characters!'
+      }, 400
+      
+    if len(email) < 2: 
+      return {
+        'msg': 'Email must be greater than 2 characters!'
+      }, 400
+      
+    try:
+      valid = validate_email(email, check_deliverability=False)
+      email = valid.email
+    except EmailNotValidError as e:
+      return {
+        'msg': 'Invalid email.'
+      }, 400
+      
+    # Password validation
+    if len(password) < 8: 
+      return {
+        "msg": "Password should be at least 8 characters long."
+      }, 400
+      
+    if not re.search(r"[0-9]", password) and not re.search(r"[!@#$%^&*(),.?\":{}|<>]", password):
+      return {
+        "msg": "Password should include at least one number or special character!"
+      }, 400
+      
+      
+    if db.session.query(User).filter_by(email=email).first():
+      return{
+        'msg': 'Email already exists!'
+      }, 409
+      
+    otp = ''.join(secrets.choice(string.digits) for _ in range(6))
+    otp_id = secrets.token_urlsafe(8)
+    expiry = datetime.utcnow() + timedelta(minutes=15)
+
+    new_user = User(
+      full_name=full_name,
+      email=email,
+      otp_id=otp_id,
+      otp_expiry=expiry
+      )
+    
+    new_user.set_password(password)
+    new_user.set_otp(otp)
+    
+    db.session.add(new_user)
+    db.session.commit()
+    
+    # Send otp via email 
+    
+    send_otp(otp, email, full_name)
+    
+    return {
+      'msg':'Account created successfully.',
+      'otp_id': otp_id
+    }, 201

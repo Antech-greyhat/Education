@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Antech API · Intro</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="icon" type="image/jpeg" href="/static/favicorn.jpeg">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: { DEFAULT: '#0FA87E', dark: '#0C8F6A', light: '#D1FAF0', pale: '#EDFBF7' },
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    html { scroll-behavior: smooth; }
+    .gradient-text {
+      background: linear-gradient(135deg, #0FA87E, #F59E0B);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+  </style>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans antialiased">
+
+  <!-- Navbar -->
+  <nav class="sticky top-0 z-10 bg-white/80 backdrop-blur-sm border-b border-gray-200 shadow-sm">
+    <div class="container mx-auto px-4 sm:px-6 py-3 flex justify-between items-center">
+      <span class="text-xl font-bold gradient-text">
+        <i class="fas fa-code mr-2"></i>Antech API
+      </span>
+      <div class="flex items-center gap-3 text-sm sm:text-base">
+        <a href="#docs" class="text-gray-700 hover:text-primary px-2 py-1 transition">
+          <i class="fas fa-book mr-1"></i><span class="hidden sm:inline">Docs</span>
+        </a>
+        <a href="https://github.com/Antech-greyhat/Education" target="_blank" rel="noopener"
+           class="text-gray-700 hover:text-primary px-2 py-1 transition">
+          <i class="fab fa-github mr-1"></i><span class="hidden sm:inline">GitHub</span>
+        </a>
+        <a href="https://education-ecru.vercel.app" target="_blank" rel="noopener"
+           class="bg-primary-DEFAULT text-white px-3 py-1.5 rounded-lg text-sm font-medium hover:bg-primary-dark transition shadow-sm"
+           style="background-color:#0FA87E;">
+          <i class="fas fa-external-link-alt mr-1"></i>Live Demo
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section style="background:linear-gradient(135deg,#0C8F6A,#0FA87E,#12C795);" class="text-white py-12 sm:py-20">
+    <div class="container mx-auto px-4 sm:px-6">
+      <div class="max-w-3xl mx-auto text-center sm:text-left">
+        <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold leading-tight mb-4">
+          Antech API
+        </h1>
+        <p class="text-lg sm:text-xl mb-8 max-w-2xl" style="color:rgba(255,255,255,0.85);">
+          Powerful, secure, and scalable backend for modern educational platforms.
+          Built with Flask-RESTX and designed for performance.
+        </p>
+        <div class="flex flex-col sm:flex-row justify-center sm:justify-start gap-3">
+          <a href="#docs"
+             class="bg-white font-semibold px-6 py-3 rounded-lg hover:bg-gray-100 transition text-center shadow-md"
+             style="color:#0FA87E;">
+            <i class="fas fa-book mr-2"></i>API Docs
+          </a>
+          <a href="https://github.com/Antech-greyhat/Education" target="_blank" rel="noopener"
+             class="bg-transparent border-2 border-white text-white px-6 py-3 rounded-lg font-semibold hover:bg-white transition text-center"
+             onmouseover="this.style.color='#0FA87E'" onmouseout="this.style.color='white'">
+            <i class="fab fa-github mr-2"></i>GitHub
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="container mx-auto px-4 sm:px-6 py-8 sm:py-12">
+
+    <!-- About -->
+    <section class="mb-12">
+      <h2 class="text-2xl sm:text-3xl font-bold text-gray-800 mb-4 flex items-center">
+        <i class="fas fa-info-circle mr-3" style="color:#0FA87E;"></i>About AntechLearn
+      </h2>
+      <p class="text-gray-600 text-lg leading-relaxed max-w-3xl">
+        AntechLearn is a full-stack educational platform. This backend API provides secure
+        authentication, user management, course handling, and administrative controls —
+        ready to power your learning app.
+      </p>
+    </section>
+
+    <!-- Endpoints -->
+    <section class="mb-12" id="docs">
+      <h2 class="text-2xl sm:text-3xl font-bold text-gray-800 mb-6 flex items-center">
+        <i class="fas fa-plug mr-3" style="color:#0FA87E;"></i>Key Endpoints
+      </h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+
+        <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition">
+          <div class="flex items-center mb-3">
+            <div class="w-10 h-10 rounded-lg flex items-center justify-center mr-3 text-white text-sm"
+                 style="background:#0FA87E;">
+              <i class="fas fa-user-plus"></i>
+            </div>
+            <code class="text-sm font-mono bg-gray-100 px-2 py-1 rounded">/register</code>
+          </div>
+          <p class="text-gray-600 text-sm">Create a new user account. Returns JWT token on success.</p>
+        </div>
+
+        <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition">
+          <div class="flex items-center mb-3">
+            <div class="w-10 h-10 rounded-lg flex items-center justify-center mr-3 text-white text-sm"
+                 style="background:#0FA87E;">
+              <i class="fas fa-sign-in-alt"></i>
+            </div>
+            <code class="text-sm font-mono bg-gray-100 px-2 py-1 rounded">/login</code>
+          </div>
+          <p class="text-gray-600 text-sm">Authenticate existing user. Returns access token.</p>
+        </div>
+
+        <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition">
+          <div class="flex items-center mb-3">
+            <div class="w-10 h-10 rounded-lg flex items-center justify-center mr-3 text-white text-sm"
+                 style="background:#0FA87E;">
+              <i class="fas fa-key"></i>
+            </div>
+            <code class="text-sm font-mono bg-gray-100 px-2 py-1 rounded">/forgot-password</code>
+          </div>
+          <p class="text-gray-600 text-sm">Request a password reset email. Secure token flow.</p>
+        </div>
+
+        <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition">
+          <div class="flex items-center mb-3">
+            <div class="w-10 h-10 rounded-lg flex items-center justify-center mr-3 text-white text-sm"
+                 style="background:#0FA87E;">
+              <i class="fas fa-shield-alt"></i>
+            </div>
+            <code class="text-sm font-mono bg-gray-100 px-2 py-1 rounded">/admin</code>
+          </div>
+          <p class="text-gray-600 text-sm">Admin dashboard endpoints (protected, role-based).</p>
+        </div>
+
+        <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition">
+          <div class="flex items-center mb-3">
+            <div class="w-10 h-10 rounded-lg flex items-center justify-center mr-3 text-white text-sm"
+                 style="background:#0FA87E;">
+              <i class="fas fa-envelope-open-text"></i>
+            </div>
+            <code class="text-sm font-mono bg-gray-100 px-2 py-1 rounded">/newsletter</code>
+          </div>
+          <p class="text-gray-600 text-sm">Subscribe/unsubscribe from newsletters.</p>
+        </div>
+
+        <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition">
+          <div class="flex items-center mb-3">
+            <div class="w-10 h-10 rounded-lg flex items-center justify-center mr-3 text-white text-sm"
+                 style="background:#0FA87E;">
+              <i class="fas fa-paper-plane"></i>
+            </div>
+            <code class="text-sm font-mono bg-gray-100 px-2 py-1 rounded">/contact</code>
+          </div>
+          <p class="text-gray-600 text-sm">Submit contact form messages.</p>
+        </div>
+
+      </div>
+      <p class="mt-6 text-center sm:text-left">
+        <a href="{{ url_for('doc') }}" class="underline font-semibold inline-flex items-center"
+           style="color:#0FA87E;">
+          <i class="fas fa-arrow-right mr-1"></i>Explore full documentation at /docs
+        </a>
+      </p>
+    </section>
+
+    <!-- Tech Stack + Code Example -->
+    <section class="mb-12 grid grid-cols-1 lg:grid-cols-2 gap-8">
+      <div>
+        <h2 class="text-2xl sm:text-3xl font-bold text-gray-800 mb-4 flex items-center">
+          <i class="fas fa-layer-group mr-3" style="color:#0FA87E;"></i>Tech Stack
+        </h2>
+        <div class="flex flex-wrap gap-2">
+          <span class="px-4 py-2 rounded-full text-sm font-medium" style="background:#D1FAF0;color:#0C8F6A;">Flask</span>
+          <span class="px-4 py-2 rounded-full text-sm font-medium" style="background:#D1FAF0;color:#0C8F6A;">Flask-RESTX</span>
+          <span class="px-4 py-2 rounded-full text-sm font-medium" style="background:#D1FAF0;color:#0C8F6A;">SQLAlchemy</span>
+          <span class="px-4 py-2 rounded-full text-sm font-medium" style="background:#D1FAF0;color:#0C8F6A;">Alembic</span>
+          <span class="px-4 py-2 rounded-full text-sm font-medium" style="background:#D1FAF0;color:#0C8F6A;">JWT</span>
+          <span class="px-4 py-2 rounded-full text-sm font-medium" style="background:#D1FAF0;color:#0C8F6A;">Flask-Mail</span>
+          <span class="px-4 py-2 rounded-full text-sm font-medium" style="background:#FEF3C7;color:#D97706;">PostgreSQL</span>
+          <span class="px-4 py-2 rounded-full text-sm font-medium" style="background:#FEF3C7;color:#D97706;">Redis</span>
+          <span class="px-4 py-2 rounded-full text-sm font-medium" style="background:#FEF3C7;color:#D97706;">Gunicorn</span>
+        </div>
+      </div>
+
+      <div class="bg-gray-900 text-white p-5 rounded-xl shadow-lg">
+        <h3 class="text-lg font-semibold mb-3 flex items-center">
+          <i class="fas fa-code mr-2" style="color:#0FA87E;"></i>Quick example (login)
+        </h3>
+        <pre class="text-sm overflow-x-auto text-gray-300"><code>curl -X POST https://api.antechlearn.com/login \
+  -H "Content-Type: application/json" \
+  -d '{"email": "user@example.com",
+       "password": "secure123"}'</code></pre>
+        <p class="text-gray-400 text-xs mt-2">Returns a JWT token for subsequent requests.</p>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="p-6 sm:p-8 rounded-2xl border mb-12"
+             style="background:#EDFBF7;border-color:#D1FAF0;">
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div>
+          <h2 class="text-xl sm:text-2xl font-bold text-gray-800 flex items-center">
+            <i class="fas fa-rocket mr-2" style="color:#0FA87E;"></i>Get Started
+          </h2>
+          <p class="text-gray-700 mt-1">Clone the repo and follow the README to run the API locally.</p>
+        </div>
+        <a href="https://github.com/Antech-greyhat/Education" target="_blank" rel="noopener"
+           class="text-white px-6 py-3 rounded-lg font-semibold transition shadow-md whitespace-nowrap"
+           style="background:#0FA87E;"
+           onmouseover="this.style.background='#0C8F6A'" onmouseout="this.style.background='#0FA87E'">
+          <i class="fab fa-github mr-2"></i>View on GitHub
+        </a>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="border-t pt-8 text-sm text-gray-600">
+      <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+        <div class="flex flex-col sm:flex-row gap-4 sm:gap-6">
+          <a href="mailto:antechittech@gmail.com" class="flex items-center hover:underline"
+             style="color:#0FA87E;">
+            <i class="fas fa-envelope w-6 text-lg" style="color:#0FA87E;"></i>
+            <span class="ml-2">antechittech@gmail.com</span>
+          </a>
+          <a href="https://wa.me/254732994872" target="_blank" rel="noopener"
+             class="flex items-center hover:underline" style="color:#0FA87E;">
+            <i class="fab fa-whatsapp w-6 text-lg text-green-600"></i>
+            <span class="ml-2">WhatsApp</span>
+          </a>
+        </div>
+        <p class="text-gray-400 text-xs">© 2026 AntechLearn. All rights reserved.</p>
+      </div>
+    </footer>
+
+  </div>
+</body>
+</html>

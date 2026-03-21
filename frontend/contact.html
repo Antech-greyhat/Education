@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us - AntechLearn</title>
+  <link rel="stylesheet" href="styles/base.css">
+  <link rel="stylesheet" href="styles/layout.css">
+  <link rel="stylesheet" href="styles/contact.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="icon" type="image/svg+xml" href="images/favicon/favicon.svg">
+</head>
+<body>
+
+  <header class="header js-header-display"></header>
+
+  <!-- Hero -->
+  <section class="contact-hero">
+    <div class="container">
+      <div class="contact-hero__content">
+        <span class="section-tag">Contact Us</span>
+        <h1>We'd Love to<br><span class="highlight">Hear From You</span></h1>
+        <p>Whether you have a question, feedback, a bug to report, or just want to say hello — reach out and we'll get back to you as soon as possible.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact channels strip -->
+  <section class="contact-channels">
+    <div class="container">
+      <div class="contact-channels__grid">
+        <div class="contact-channel">
+          <div class="contact-channel__icon">
+            <i class="fas fa-envelope"></i>
+          </div>
+          <div class="contact-channel__info">
+            <h3>Email</h3>
+            <a href="mailto:antechcypherx@gmail.com">antechcypherx@gmail.com</a>
+          </div>
+        </div>
+
+        <div class="contact-channel">
+          <div class="contact-channel__icon">
+            <i class="fas fa-phone"></i>
+          </div>
+          <div class="contact-channel__info">
+            <h3>Phone</h3>
+            <a href="tel:+245714452396">+245 714 452 396</a>
+          </div>
+        </div>
+
+        <div class="contact-channel">
+          <div class="contact-channel__icon">
+            <i class="fas fa-map-marker-alt"></i>
+          </div>
+          <div class="contact-channel__info">
+            <h3>Location</h3>
+            <p>Machakos, Kenya<br>P.O Box 17-Miu Machakos</p>
+          </div>
+        </div>
+
+        <div class="contact-channel">
+          <div class="contact-channel__icon">
+            <i class="fas fa-clock"></i>
+          </div>
+          <div class="contact-channel__info">
+            <h3>Response Time</h3>
+            <p>We typically reply within 24–48 hours on business days.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main contact section -->
+  <section class="contact-section">
+    <div class="container">
+      <div class="contact-grid">
+
+        <!-- Left info panel -->
+        <div class="contact-info">
+
+          <div class="contact-info__block">
+            <span class="section-tag">Get in Touch</span>
+            <h2>Let's Start a Conversation</h2>
+            <p>Have a question about a course? Found a bug? Want to collaborate or contribute to AntechLearn? Use any of the channels below or fill in the form.</p>
+          </div>
+
+          <div class="contact-reasons">
+            <h3>Common Reasons to Reach Out</h3>
+            <ul class="contact-reasons__list">
+              <li>
+                <i class="fas fa-question-circle"></i>
+                <span>Questions about a specific course or topic</span>
+              </li>
+              <li>
+                <i class="fas fa-bug"></i>
+                <span>Report a bug or broken content</span>
+              </li>
+              <li>
+                <i class="fas fa-lightbulb"></i>
+                <span>Suggest a new language or tutorial</span>
+              </li>
+              <li>
+                <i class="fas fa-handshake"></i>
+                <span>Partnership or collaboration inquiries</span>
+              </li>
+              <li>
+                <i class="fas fa-user-shield"></i>
+                <span>Account or access issues</span>
+              </li>
+              <li>
+                <i class="fas fa-star"></i>
+                <span>General feedback or testimonials</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="contact-social-block">
+            <h3>Follow Us</h3>
+            <div class="contact-socials">
+              <a href="#" class="contact-social-btn" aria-label="Facebook">
+                <i class="fab fa-facebook"></i>
+              </a>
+              <a href="#" class="contact-social-btn" aria-label="Twitter">
+                <i class="fab fa-twitter"></i>
+              </a>
+              <a href="https://github.com/Antech-greyhat" target="_blank"
+                 class="contact-social-btn contact-social-btn--active" aria-label="GitHub">
+                <i class="fab fa-github"></i>
+              </a>
+              <a href="#" class="contact-social-btn" aria-label="YouTube">
+                <i class="fab fa-youtube"></i>
+              </a>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Right form -->
+        <div class="contact-form-wrap">
+          <div class="contact-form-header">
+            <h2>Send Us a Message</h2>
+            <p>Fill in the form and we'll get back to you as soon as possible.</p>
+          </div>
+
+          <div id="contactForm" class="contact-form js-contact-form">
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="firstName">First Name</label>
+                <input type="text" id="firstName" placeholder="John" required class="js-first-name">
+              </div>
+              <div class="form-group">
+                <label for="lastName">Last Name</label>
+                <input type="text" id="lastName" placeholder="Doe" required class="js-last-name">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="email">Email Address</label>
+              <input type="email" id="email" placeholder="your.email@example.com" required class="js-email">
+            </div>
+
+            <div class="form-group">
+              <label for="subject">Subject</label>
+              <input type="text" id="subject" placeholder="What is this about?" required class="js-subject">
+            </div>
+
+            <div class="form-group">
+              <label for="message">Message</label>
+              <textarea id="message" rows="6" placeholder="Write your message here..." required class="js-message"></textarea>
+            </div>
+
+            <p class="js-feedback-display"></p>
+
+            <button type="button" class="btn btn-primary btn-full js-contact-button">
+              <i class="fas fa-paper-plane"></i> Send Message
+            </button>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Quick answers strip -->
+  <section class="contact-faq">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Quick Answers</span>
+        <h2 class="section-title">Before You Write In</h2>
+        <p class="section-subtitle">These questions come up a lot — check here first.</p>
+      </div>
+
+      <div class="contact-faq__grid">
+        <div class="contact-faq__item">
+          <i class="fas fa-clock"></i>
+          <h3>How fast do you reply?</h3>
+          <p>We aim to respond within 24–48 hours on business days. Complex issues may take a little longer.</p>
+        </div>
+        <div class="contact-faq__item">
+          <i class="fas fa-lock"></i>
+          <h3>I forgot my password</h3>
+          <p>Use the <a href="password_reset_link.html">Forgot Password</a> page to reset it. You'll receive a link in your email.</p>
+        </div>
+        <div class="contact-faq__item">
+          <i class="fas fa-code-branch"></i>
+          <h3>Can I contribute content?</h3>
+          <p>Yes — we welcome contributions. Reach out via email or GitHub with what you have in mind.</p>
+        </div>
+        <div class="contact-faq__item">
+          <i class="fas fa-globe"></i>
+          <h3>Is AntechLearn free?</h3>
+          <p>All core learning content is completely free. No hidden fees or subscription required to access tutorials.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-banner">
+    <div class="container">
+      <div class="cta-content">
+        <h2>Not Sure Where to Start?</h2>
+        <p>Check out our learning guide for a step-by-step path to your first project.</p>
+        <div class="cta-buttons">
+          <a href="guide.html" class="btn btn-primary">
+            <i class="fas fa-map"></i> View the Guide
+          </a>
+          <a href="languages.html" class="btn btn-ghost">
+            <i class="fas fa-code"></i> Browse Languages
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer js-footer-information"></footer>
+
+  <script src="scripts/edu.js"></script>
+  <script src="scripts/footer.js"></script>
+  <script type="module" src="scripts/newsletter.js"></script>
+  <script type="module" src="scripts/header.js"></script>
+  <script type="module" src="scripts/auth/contactUs.js"></script>
+  <script type="module" src="scripts/apiCheck.js"></script>
+
+</body>
+</html>

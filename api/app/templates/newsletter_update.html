@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AntechLearn Newsletter</title>
+  <style>
+    body { margin:0; padding:0; background:#f4f4f4; font-family:Arial,Helvetica,sans-serif; font-size:14px; color:#333; }
+    table { border-collapse:collapse; }
+    td { font-family:Arial,Helvetica,sans-serif; }
+    .wrapper-table { width:100%; }
+    .container { max-width:560px; background:#ffffff; border-radius:8px; overflow:hidden; box-shadow:0 2px 8px rgba(0,0,0,0.08); }
+    .header-bg { background:linear-gradient(135deg,#0C8F6A,#0FA87E); padding:20px 30px; text-align:center; }
+    .header-title { margin:0; color:#ffffff; font-size:22px; font-weight:700; letter-spacing:0.5px; }
+    .header-title span { color:#FFF9C4; }
+    .header-sub { margin:4px 0 0; color:rgba(255,255,255,0.8); font-size:11px; letter-spacing:1px; text-transform:uppercase; }
+    .body-content { padding:28px 30px; background:#ffffff; }
+    .greeting { font-size:15px; font-weight:600; color:#1a1a1a; margin:0 0 16px; }
+    .subject-label { font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:0.8px; color:#999; margin:0 0 5px; }
+    .subject { font-size:18px; font-weight:700; color:#0FA87E; margin:0 0 18px; line-height:1.3; }
+    hr { border:0; border-top:1px solid #e8e8e8; margin:0 0 18px; }
+    .message-body { font-size:14px; line-height:1.7; color:#444; white-space:pre-line; margin:0; }
+    .cta-wrapper { text-align:center; margin:24px 0 0; }
+    .cta-btn {
+      display:inline-block;
+      background:linear-gradient(135deg,#0C8F6A,#0FA87E);
+      color:#ffffff !important;
+      font-size:13px;
+      font-weight:700;
+      text-decoration:none;
+      padding:11px 28px;
+      border-radius:6px;
+    }
+    .footer-bg { background:#f9fafb; padding:18px 30px; text-align:center; border-top:1px solid #e8e8e8; }
+    .footer-text { font-size:11px; color:#aaa; line-height:1.6; margin:0 0 3px; }
+    .footer-text a { color:#999; text-decoration:underline; }
+  </style>
+</head>
+<body>
+  <table role="presentation" class="wrapper-table">
+    <tr>
+      <td align="center" style="padding:28px 0;">
+        <table role="presentation" class="container">
+
+          <!-- Header -->
+          <tr>
+            <td class="header-bg">
+              <h1 class="header-title">Antech<span>Learn</span></h1>
+              <p class="header-sub">Newsletter Update</p>
+            </td>
+          </tr>
+
+          <!-- Body -->
+          <tr>
+            <td class="body-content">
+              <p class="greeting">Hello {{ username }},</p>
+
+              <p class="subject-label">Latest Update</p>
+              <p class="subject">{{ subject }}</p>
+
+              <hr>
+
+              <p class="message-body">{{ body }}</p>
+
+              <div class="cta-wrapper">
+                <a href="https://education-ecru.vercel.app" class="cta-btn">
+                  Visit AntechLearn &rarr;
+                </a>
+              </div>
+            </td>
+          </tr>
+
+          <!-- Footer -->
+          <tr>
+            <td class="footer-bg">
+              <p class="footer-text">
+                You are receiving this because you subscribed to the AntechLearn newsletter.
+              </p>
+              <p class="footer-text">
+                &copy; 2026 AntechLearn. All rights reserved.
+              </p>
+            </td>
+          </tr>
+
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>

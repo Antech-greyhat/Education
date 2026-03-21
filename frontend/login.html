@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Log In - AntechLearn</title>
+  <link rel="stylesheet" href="styles/base.css">
+  <link rel="stylesheet" href="styles/layout.css">
+  <link rel="stylesheet" href="styles/auth.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="icon" type="image/svg+xml" href="images/favicon/favicon.svg">
+</head>
+<body class="auth-page">
+
+  <header class="header js-header-display"></header>
+
+  <div class="auth-layout">
+
+    <!-- Left brand panel -->
+    <aside class="auth-brand">
+      <span class="auth-brand__circle auth-brand__circle--tl"></span>
+      <span class="auth-brand__circle auth-brand__circle--br"></span>
+
+      <div class="auth-brand__top">
+        <a href="index.html" class="logo">
+          <i class="fas fa-code"></i>
+          <span>AntechLearn</span>
+        </a>
+        <div class="auth-brand__badge">
+          <i class="fas fa-shield-halved"></i> Secure Login
+        </div>
+      </div>
+
+      <div class="auth-brand__mid">
+        <div class="auth-brand__icon">
+          <i class="fas fa-laptop-code"></i>
+        </div>
+        <h2>Welcome Back</h2>
+        <p>Log in to continue your learning journey. Your progress, courses, and goals are waiting.</p>
+      </div>
+
+      <div class="auth-brand__steps">
+        <div class="auth-brand__step">
+          <span class="step-dot">✓</span>
+          <p>Pick up right where you left off</p>
+        </div>
+        <div class="auth-brand__step">
+          <span class="step-dot">✓</span>
+          <p>Track your progress across all courses</p>
+        </div>
+        <div class="auth-brand__step">
+          <span class="step-dot">✓</span>
+          <p>Access your full learning history</p>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Right form panel -->
+    <main class="auth-main">
+      <div class="auth-card">
+
+        <div class="auth-card__header">
+          <div class="auth-icon">
+            <i class="fas fa-laptop-code"></i>
+          </div>
+          <h2>Log In to Your Account</h2>
+          <p class="auth-subtitle">Enter your credentials to access your dashboard</p>
+        </div>
+
+        <div id="loginForm" class="auth-form js-auth-form">
+
+          <div class="form-group">
+            <label for="loginEmail">
+              <i class="fas fa-envelope"></i> Email Address
+            </label>
+            <input
+              type="email"
+              id="loginEmail"
+              placeholder="user@gmail.com"
+              required
+              class="js-email">
+          </div>
+
+          <div class="form-group">
+            <label for="loginPassword">
+              <i class="fas fa-lock"></i> Password
+            </label>
+            <div class="password-wrapper">
+              <input
+                type="password"
+                id="loginPassword"
+                placeholder="********"
+                required
+                class="js-password">
+              <button type="button" class="toggle-password" aria-label="Toggle password visibility">
+                <i class="fas fa-eye"></i>
+              </button>
+            </div>
+          </div>
+
+          <div class="form-options">
+            <label class="checkbox-container">
+              <input type="checkbox" id="rememberMe">
+              <span>Remember me</span>
+            </label>
+            <a href="password_reset_link.html" class="link-text">Forgot password?</a>
+          </div>
+
+          <p class="js-login-message"></p>
+
+          <button type="button" class="btn btn-primary btn-full js-submit-button">
+            <i class="fas fa-sign-in-alt"></i> Log In
+          </button>
+
+        </div>
+
+        <div class="auth-divider"><span>OR</span></div>
+
+        <div class="social-login">
+          <button class="btn-social btn-google">
+            <i class="fab fa-google"></i> Continue with Google
+          </button>
+          <button class="btn-social btn-github">
+            <i class="fab fa-github"></i> Continue with GitHub
+          </button>
+        </div>
+
+        <p class="auth-footer">
+          Don't have an account?
+          <a href="register.html" class="link-primary">Create an account</a>
+        </p>
+
+      </div>
+
+      <footer class="auth-page-footer">
+        <p>&copy; <span id="currentYear"></span> AntechLearn. All rights reserved.</p>
+      </footer>
+    </main>
+
+  </div>
+
+  <script src="scripts/edu.js"></script>
+
+  <script type="module" src="scripts/auth/login.js"></script>
+  <script type="module" src="scripts/header.js"></script>
+  <script type="module" src="scripts/apiCheck.js"></script>
+
+</body>
+</html>

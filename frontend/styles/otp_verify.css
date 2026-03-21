@@ -1,0 +1,210 @@
+/* otp_verify.css — OTP specific styles only */
+
+.otp-card {
+  max-width: 48rem;
+}
+
+/* OTP inputs */
+.otp-inputs {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-3);
+  margin-bottom: var(--space-5);
+}
+
+.otp-box {
+  width: 5.6rem;
+  height: 6.4rem;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-md);
+  text-align: center;
+  font-family: var(--font-heading);
+  font-size: var(--text-xl);
+  font-weight: 700;
+  color: var(--text-primary);
+  background: var(--surface-2);
+  outline: none;
+  caret-color: transparent;
+  transition:
+    border-color var(--transition-fast),
+    background var(--transition-fast),
+    box-shadow var(--transition-fast);
+}
+
+.otp-box:focus {
+  border-color: var(--primary);
+  background: var(--surface);
+  box-shadow: 0 0 0 3px rgba(15, 168, 126, 0.12);
+}
+
+.otp-box.filled {
+  border-color: var(--primary);
+  background: var(--primary-pale);
+  color: var(--primary);
+}
+
+.otp-box.error {
+  border-color: var(--danger);
+  background: var(--danger-light);
+  animation: shake 0.35s ease;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25%       { transform: translateX(-5px); }
+  75%       { transform: translateX(5px); }
+}
+
+/* Timer */
+.timer-text {
+  text-align: center;
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+  margin-bottom: var(--space-5);
+}
+
+.js-otp-timer {
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.js-otp-timer.expiring {
+  color: var(--danger);
+}
+
+/* Submit button */
+.submit_button {
+  width: 100%;
+  height: 5.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  border: none;
+  border-radius: var(--radius-md);
+  background: var(--primary);
+  color: white;
+  font-size: var(--text-base);
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: var(--shadow-primary-sm);
+  transition:
+    background var(--transition-fast),
+    transform var(--transition-fast),
+    box-shadow var(--transition-fast),
+    opacity var(--transition-fast);
+  margin-bottom: var(--space-5);
+}
+
+.submit_button:hover:not(:disabled) {
+  background: var(--primary-dark);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-primary-md);
+}
+
+.submit_button:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.submit_button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+/* Resend section */
+.resend-section {
+  text-align: center;
+  margin-bottom: var(--space-5);
+}
+
+.resend-text {
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+  margin-bottom: var(--space-2);
+}
+
+.resend-btn {
+  background: none;
+  border: none;
+  color: var(--primary);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: underline;
+  padding: 0;
+  margin-left: var(--space-1);
+  transition: color var(--transition-fast);
+}
+
+.resend-btn:hover:not(:disabled) {
+  color: var(--primary-dark);
+}
+
+.resend-btn:disabled {
+  color: var(--text-muted);
+  cursor: not-allowed;
+  text-decoration: none;
+}
+
+.js-resend-countdown {
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+  margin-top: var(--space-2);
+}
+
+.js-resend-countdown-timer {
+  color: var(--primary);
+  font-weight: 700;
+}
+
+/* Message */
+.message {
+  text-align: center;
+  font-size: var(--text-sm);
+  min-height: 2rem;
+  margin-bottom: var(--space-4);
+  font-weight: 500;
+  border-radius: var(--radius-sm);
+}
+
+.message.success {
+  background: var(--success-light);
+  color: #065f46;
+  border: 1px solid var(--success);
+  padding: var(--space-3) var(--space-4);
+}
+
+.message.error {
+  background: var(--danger-light);
+  color: #7f1d1d;
+  border: 1px solid var(--danger);
+  padding: var(--space-3) var(--space-4);
+}
+
+/* Back link */
+.back-link {
+  text-align: center;
+  font-size: var(--text-sm);
+}
+
+.back-link a {
+  color: var(--text-muted);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  transition: color var(--transition-fast);
+}
+
+.back-link a:hover {
+  color: var(--primary);
+}
+
+/* Responsive */
+@media (max-width: 50rem) {
+  .otp-box {
+    width: 4.4rem;
+    height: 5.2rem;
+    font-size: var(--text-lg);
+  }
+}
