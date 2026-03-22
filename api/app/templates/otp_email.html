@@ -5,162 +5,77 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Account Verification - AntechLearn</title>
   <style>
-    /* Global reset & typography */
-    body {
-      margin: 0;
-      padding: 0;
-      background-color: #f4f4f4;
-      font-family: Arial, Helvetica, sans-serif;
-      -webkit-font-smoothing: antialiased;
-    }
-    table {
-      border-collapse: collapse;
-    }
-    td {
-      font-family: Arial, Helvetica, sans-serif;
-    }
-    .wrapper-table {
-      width: 100%;
-    }
-    .container {
-      max-width: 560px;
-      background-color: #ffffff;
-      border-radius: 8px;
-      overflow: hidden;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    }
-    /* Header */
-    .header-bg {
-      background-color: #4a3f8c;
-      padding: 20px;
-      text-align: center;
-    }
-    .header-title {
-      margin: 0;
-      color: #ffffff;
-      font-size: 22px;        /* reduced from 24px */
-      font-weight: 600;
-      letter-spacing: 0.5px;
-    }
-    .header-title span {
-      color: #7ee8a2;
-    }
-    /* Body */
-    .body-content {
-      padding: 30px;           /* reduced from 40px */
-      background-color: #ffffff;
-    }
-    .greeting {
-      margin: 0 0 16px 0;      /* reduced margin */
-      color: #2d2d2d;
-      font-size: 18px;         /* reduced from 20px */
-      font-weight: 600;
-    }
-    .paragraph {
-      margin: 0 0 14px 0;      /* reduced margin */
-      color: #4a4a4a;
-      line-height: 1.5;        /* slightly tighter */
-      font-size: 14px;         /* reduced from 16px */
-    }
-    .paragraph-last {
-      margin: 0 0 20px 0;      /* reduced margin */
-      color: #4a4a4a;
-      line-height: 1.5;
-      font-size: 14px;         /* reduced from 16px */
-    }
-    .paragraph-last strong {
-      font-size: 22px;         /* reduced from 28px */
-      color: #b41f1f;
-    }
-    /* OTP box */
-    .otp-table {
-      margin: 24px auto;       /* reduced margin */
-    }
+    body { margin:0; padding:0; background:#f4f4f4; font-family:Arial,Helvetica,sans-serif; -webkit-font-smoothing:antialiased; }
+    table { border-collapse:collapse; }
+    td { font-family:Arial,Helvetica,sans-serif; }
+    .wrapper-table { width:100%; }
+    .container { max-width:560px; background:#ffffff; border-radius:8px; overflow:hidden; box-shadow:0 2px 8px rgba(0,0,0,0.08); }
+    .header-bg { background:linear-gradient(135deg,#0C8F6A,#0FA87E); padding:20px; text-align:center; }
+    .header-title { margin:0; color:#ffffff; font-size:22px; font-weight:700; letter-spacing:0.5px; }
+    .header-title span { color:#FFF9C4; }
+    .header-sub { margin:4px 0 0; color:rgba(255,255,255,0.8); font-size:11px; letter-spacing:1px; text-transform:uppercase; }
+    .body-content { padding:28px 30px; background:#ffffff; }
+    .greeting { margin:0 0 14px; color:#1a1a1a; font-size:17px; font-weight:600; }
+    .paragraph { margin:0 0 12px; color:#444444; line-height:1.6; font-size:14px; }
+    .otp-wrapper { text-align:center; margin:22px 0; }
     .otp-cell {
-      background-color: #4a3f8c;
-      color: #ffffff;
-      font-size: 26px;         /* reduced from 32px */
-      font-weight: 700;
-      letter-spacing: 6px;     /* slightly reduced */
-      padding: 12px 32px;      /* reduced padding */
-      border-radius: 6px;
-      text-align: center;
+      display:inline-block;
+      background:linear-gradient(135deg,#0C8F6A,#0FA87E);
+      color:#ffffff;
+      font-size:28px;
+      font-weight:700;
+      letter-spacing:8px;
+      padding:14px 36px;
+      border-radius:8px;
+      text-align:center;
     }
-    .info-text {
-      margin: 20px 0 0 0;      /* reduced margin */
-      color: #4a4a4a;
-      font-size: 13px;         /* reduced from 15px */
-      line-height: 1.5;
-    }
-    .info-text a {
-      color: #4a3f8c;
-      text-decoration: underline;
-    }
-    hr {
-      border: 0;
-      border-top: 1px solid #e0e0e0;
-      margin: 24px 0 18px 0;   /* reduced margin */
-    }
-    .auto-message {
-      margin: 0;
-      color: #888888;
-      font-size: 12px;         /* reduced from 13px */
-      line-height: 1.5;
-    }
-    /* Footer */
-    .footer-bg {
-      text-align: center;
-      padding: 16px;           /* reduced from 20px */
-      background-color: #f4f4f4;
-    }
-    .copyright {
-      margin: 0;
-      color: #888888;
-      font-size: 11px;         /* reduced from 12px */
-    }
-    /* General alignment helper */
-    .center-align {
-      text-align: center;
-    }
+    .expiry-note { margin:0 0 14px; color:#444; font-size:13px; line-height:1.5; }
+    .expiry-note strong { color:#0FA87E; font-size:13px; }
+    .info-text { margin:18px 0 0; color:#666; font-size:12px; line-height:1.6; }
+    .info-text a { color:#0FA87E; text-decoration:underline; }
+    hr { border:0; border-top:1px solid #e8e8e8; margin:20px 0 16px; }
+    .auto-message { margin:0; color:#999; font-size:11px; line-height:1.5; }
+    .footer-bg { text-align:center; padding:14px; background:#f4f4f4; }
+    .copyright { margin:0; color:#999; font-size:11px; }
   </style>
 </head>
 <body>
   <table role="presentation" class="wrapper-table">
     <tr>
-      <td align="center" style="padding:30px 0;">  <!-- reduced outer padding -->
-        
-        <!-- Main container table -->
+      <td align="center" style="padding:28px 0;">
         <table role="presentation" class="container">
-          
+
           <!-- Header -->
           <tr>
             <td class="header-bg">
               <h1 class="header-title">Antech<span>Learn</span></h1>
+              <p class="header-sub">Account Verification</p>
             </td>
           </tr>
 
           <!-- Body -->
           <tr>
             <td class="body-content">
-              <h2 class="greeting">Account Verification</h2>
+              <h2 class="greeting">Hello {{ name }},</h2>
 
-              <p class="paragraph">Hello {{ name }},</p>
-
-              <p class="paragraph-last">
-                We received a request that requires verification. Use the One-Time Password (OTP) below to complete the process. This code is valid for <strong>15 minutes</strong> and can only be used once.
+              <p class="paragraph">
+                We received a request that requires verification.
+                Use the One-Time Password below to complete the process.
               </p>
 
-              <!-- OTP Box -->
-              <table role="presentation" class="otp-table">
-                <tr>
-                  <td class="otp-cell">
-                    {{ otp }}
-                  </td>
-                </tr>
-              </table>
+              <p class="expiry-note">
+                This code is valid for <strong>15 minutes</strong> and can only be used once.
+              </p>
+
+              <!-- OTP -->
+              <div class="otp-wrapper">
+                <span class="otp-cell">{{ otp }}</span>
+              </div>
 
               <p class="info-text">
-                If you did not request this code, please ignore this email or <a href="mailto:antechittech@gmail.com">contact our support team</a> immediately. Do not share this code with anyone.
+                If you did not request this code, please ignore this email or
+                <a href="mailto:antechittech@gmail.com">contact our support team</a> immediately.
+                Do not share this code with anyone.
               </p>
 
               <hr>
@@ -174,14 +89,11 @@
           <!-- Footer -->
           <tr>
             <td class="footer-bg">
-              <p class="copyright">
-                &copy; 2026 AntechLearn. All rights reserved.
-              </p>
+              <p class="copyright">&copy; 2026 AntechLearn. All rights reserved.</p>
             </td>
           </tr>
 
         </table>
-
       </td>
     </tr>
   </table>
