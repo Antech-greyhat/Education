@@ -62,7 +62,7 @@ AntechLearn is a full-stack educational platform for developers. Browse 120+ cur
 ## Stack
 
 <div align="center">
-<img src="https://raw.githubusercontent.com/Antech-greyhat/Education/main/assets/stack.svg" width="660"/>
+<img src="https://raw.githubusercontent.com/Antech-greyhat/Education/main/assets/stack.svg" width="420"/>
 </div>
 
 ---
@@ -91,7 +91,7 @@ open index.html
 
 <img src="https://raw.githubusercontent.com/Antech-greyhat/Education/main/assets/footer-line.svg" width="400"/>
 
-Made with ♥ by **[BraveraTech](https://github.com/braverachacha)** &  **[Antech-greyhat](https://github.com/Antech-greyhat)**
+Made with ♥ by **[BraveraTech](https://github.com/braverachacha)** &  **[Antech-greyhat](https://github.com/Antech-greyhat)** .
 © 2026 AntechLearn
 
 </div>

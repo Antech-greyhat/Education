@@ -1,4 +1,4 @@
-<svg width="660" height="100" viewBox="0 0 660 100" xmlns="http://www.w3.org/2000/svg">
+<svg width="420" height="160" viewBox="0 0 420 160" xmlns="http://www.w3.org/2000/svg">
   <defs>
     <linearGradient id="teal" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" style="stop-color:#0C8F6A"/>
@@ -15,34 +15,32 @@
   </defs>
 
   <!-- Row 1 — Frontend -->
-  <rect x="10" y="10" width="90" height="32" rx="6" fill="url(#dark)"/>
-  <text x="55" y="31" text-anchor="middle" font-family="monospace" font-size="11" fill="#94A3B8">HTML5</text>
+  <rect x="10" y="10" width="120" height="36" rx="7" fill="url(#dark)"/>
+  <text x="70" y="33" text-anchor="middle" font-family="monospace" font-size="12" fill="#94A3B8">HTML5</text>
 
-  <rect x="110" y="10" width="90" height="32" rx="6" fill="url(#dark)"/>
-  <text x="155" y="31" text-anchor="middle" font-family="monospace" font-size="11" fill="#94A3B8">CSS3</text>
+  <rect x="150" y="10" width="120" height="36" rx="7" fill="url(#dark)"/>
+  <text x="210" y="33" text-anchor="middle" font-family="monospace" font-size="12" fill="#94A3B8">CSS3</text>
 
-  <rect x="210" y="10" width="90" height="32" rx="6" fill="url(#dark)"/>
-  <text x="255" y="31" text-anchor="middle" font-family="monospace" font-size="11" fill="#F59E0B">JavaScript</text>
-
-  <rect x="310" y="10" width="90" height="32" rx="6" fill="url(#dark)"/>
-  <text x="355" y="31" text-anchor="middle" font-family="monospace" font-size="11" fill="#38BDF8">Vercel</text>
+  <rect x="290" y="10" width="120" height="36" rx="7" fill="url(#dark)"/>
+  <text x="350" y="33" text-anchor="middle" font-family="monospace" font-size="12" fill="#F59E0B">JavaScript</text>
 
   <!-- Row 2 — Backend -->
-  <rect x="10" y="58" width="90" height="32" rx="6" fill="url(#teal)"/>
-  <text x="55" y="79" text-anchor="middle" font-family="monospace" font-size="11" fill="#ffffff">Flask</text>
+  <rect x="10" y="62" width="120" height="36" rx="7" fill="url(#teal)"/>
+  <text x="70" y="85" text-anchor="middle" font-family="monospace" font-size="12" fill="#ffffff">Flask</text>
 
-  <rect x="110" y="58" width="90" height="32" rx="6" fill="url(#teal)"/>
-  <text x="155" y="79" text-anchor="middle" font-family="monospace" font-size="10" fill="#ffffff">SQLAlchemy</text>
+  <rect x="150" y="62" width="120" height="36" rx="7" fill="url(#teal)"/>
+  <text x="210" y="85" text-anchor="middle" font-family="monospace" font-size="11" fill="#ffffff">Flask-RESTX</text>
 
-  <rect x="210" y="58" width="90" height="32" rx="6" fill="url(#teal)"/>
-  <text x="255" y="79" text-anchor="middle" font-family="monospace" font-size="11" fill="#ffffff">JWT</text>
+  <rect x="290" y="62" width="120" height="36" rx="7" fill="url(#teal)"/>
+  <text x="350" y="85" text-anchor="middle" font-family="monospace" font-size="11" fill="#ffffff">SQLAlchemy</text>
 
-  <rect x="310" y="58" width="90" height="32" rx="6" fill="url(#amber)"/>
-  <text x="355" y="79" text-anchor="middle" font-family="monospace" font-size="11" fill="#ffffff">PostgreSQL</text>
+  <!-- Row 3 — Infrastructure -->
+  <rect x="10" y="114" width="120" height="36" rx="7" fill="url(#amber)"/>
+  <text x="70" y="137" text-anchor="middle" font-family="monospace" font-size="12" fill="#ffffff">PostgreSQL</text>
 
-  <rect x="410" y="58" width="90" height="32" rx="6" fill="url(#amber)"/>
-  <text x="455" y="79" text-anchor="middle" font-family="monospace" font-size="11" fill="#ffffff">Redis</text>
+  <rect x="150" y="114" width="120" height="36" rx="7" fill="url(#amber)"/>
+  <text x="210" y="137" text-anchor="middle" font-family="monospace" font-size="12" fill="#ffffff">Redis</text>
 
-  <rect x="510" y="58" width="90" height="32" rx="6" fill="url(#amber)"/>
-  <text x="555" y="79" text-anchor="middle" font-family="monospace" font-size="11" fill="#ffffff">Gunicorn</text>
+  <rect x="290" y="114" width="120" height="36" rx="7" fill="url(#amber)"/>
+  <text x="350" y="137" text-anchor="middle" font-family="monospace" font-size="12" fill="#ffffff">Gunicorn</text>
 </svg>
