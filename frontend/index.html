@@ -1,61 +1,337 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AntechLearn - Master Programming Easily</title>
-    <link rel="stylesheet" href="styles/edu.css">
-    <link rel="stylesheet" href="styles/home.css">
-    <link rel="stylesheet" href="notifications.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="icon" type="image/svg+xml" href="images/favicon/favicon.svg">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AntechLearn - Master Programming Easily</title>
+  <link rel="stylesheet" href="styles/base.css">
+  <link rel="stylesheet" href="styles/layout.css">
+  <link rel="stylesheet" href="styles/home.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="icon" type="image/svg+xml" href="images/favicon/favicon.svg">
 </head>
 <body>
-    <!-- Header with Navigation -->
-    <header class="header js-header-display">
-      <!-- EJECTED BY JAVASCRIPT -->
-      
-    </header>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="container">
-            <div class="hero-content">
-                <h1 class="hero-title">Learn Programming <span class="highlight">The Right Way</span></h1>
-                <p class="hero-subtitle">Start your coding journey with our structured, beginner-friendly tutorials and resources. Master in-demand programming languages and build real-world projects.</p>
-                <div class="hero-buttons">
-                    <a href="register.html" class="btn btn-primary">Get Started</a>
-                    <a href="guide.html" class="btn btn-secondary">Where to Start?</a>
-                </div>
-            </div>
-            <div class="hero-image">
-                <div class="code-snippet">
-                    <pre><code>// Welcome to AntechLearn
-function startJourney() {
-  console.log("Happy coding!");
-  return "Success";
-}</code></pre>
-                </div>
-            </div>
+  <header class="header js-header-display"></header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-content reveal">
+        <div class="hero-badge">
+          <i class="fas fa-bolt"></i>
+          <span>Free to get started</span>
         </div>
-    </section>
+        <h1 class="hero-title">
+          Learn Programming<br>
+          <span class="highlight">The Right Way</span>
+        </h1>
+        <p class="hero-subtitle">
+          Start your coding journey with structured, beginner-friendly tutorials.
+          Master in-demand languages and build real-world projects — at your own pace.
+        </p>
+        <div class="hero-buttons">
+          <a href="register.html" class="btn btn-primary">
+            <i class="fas fa-rocket"></i> Get Started Free
+          </a>
+          <a href="guide.html" class="btn btn-secondary">
+            <i class="fas fa-map"></i> Where to Start?
+          </a>
+        </div>
+        <p class="hero-note">
+          <i class="fas fa-check-circle"></i> No credit card required
+          &nbsp;·&nbsp;
+          <i class="fas fa-check-circle"></i> Learn at your own pace
+        </p>
+      </div>
 
-    <!-- Footer -->
-    <footer class="footer js-footer-information">
-      <!-- EJECTED BY JAVASCRIPT -->
-    
-    </footer>
+      <div class="hero-image reveal reveal-delay-2">
+        <div class="code-snippet">
+          <div class="code-header">
+            <span class="dot dot-red"></span>
+            <span class="dot dot-yellow"></span>
+            <span class="dot dot-green"></span>
+            <span class="code-filename">welcome.js</span>
+          </div>
+          <pre><code><span class="code-comment">// Welcome to AntechLearn</span>
+<span class="code-keyword">function</span> <span class="code-fn">startJourney</span>() {
+  <span class="code-keyword">const</span> skills = [
+  <span class="code-string">"Python"</span>,
+  <span class="code-string">"JavaScript"</span>,
+  <span class="code-string">"SQL"</span>,
+  ];
+  skills.<span class="code-fn">forEach</span>(skill =&gt; {
+  console.<span class="code-fn">log</span>(<span class="code-string">`Learning </span><span class="code-keyword">${skill}</span><span class="code-string">...`</span>);
+  });
+  <span class="code-keyword">return</span> <span class="code-string">"Happy coding! 🚀"</span>;
+}
 
-    <script src="scripts/edu.js"></script>
-    
-  <!-- DONT REMOVE THIS SCRIPT IT'S RESPONSIBLE FOR THE FOOTER CONTENTS -->
+<span class="code-fn">startJourney</span>();</code></pre>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <section class="stats">
+    <div class="container">
+      <div class="stats-grid reveal">
+        <div class="stat-card">
+          <span class="stat-number">5,000+</span>
+          <span class="stat-label">Active Learners</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-number">12+</span>
+          <span class="stat-label">Languages Covered</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-number">200+</span>
+          <span class="stat-label">Tutorials</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-number">98%</span>
+          <span class="stat-label">Satisfaction Rate</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURED LANGUAGES -->
+  <section class="languages-section">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">What You'll Learn</span>
+        <h2 class="section-title">Popular Languages & Tracks</h2>
+        <p class="section-subtitle">
+          From your first line of code to building full-stack applications —
+          we've got a structured path for every goal.
+        </p>
+      </div>
+
+      <div class="languages-grid">
+        <div class="lang-card reveal">
+          <div class="lang-icon lang-python">
+            <i class="fab fa-python"></i>
+          </div>
+          <h3>Python</h3>
+          <p>Ideal for beginners, data science, automation, and backend development.</p>
+          <div class="lang-meta">
+            <span><i class="fas fa-layer-group"></i> Beginner → Advanced</span>
+            <span><i class="fas fa-book-open"></i> 40+ Lessons</span>
+          </div>
+          <a href="languages.html" class="lang-link">
+            Start Learning <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
+
+        <div class="lang-card lang-card--featured reveal reveal-delay-1">
+          <div class="lang-featured-badge">Most Popular</div>
+          <div class="lang-icon lang-js">
+            <i class="fab fa-js-square"></i>
+          </div>
+          <h3>JavaScript</h3>
+          <p>The language of the web. Build interactive UIs, APIs, and full-stack apps.</p>
+          <div class="lang-meta">
+            <span><i class="fas fa-layer-group"></i> Beginner → Advanced</span>
+            <span><i class="fas fa-book-open"></i> 60+ Lessons</span>
+          </div>
+          <a href="languages.html" class="lang-link">
+            Start Learning <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
+
+        <div class="lang-card reveal reveal-delay-2">
+          <div class="lang-icon lang-sql">
+            <i class="fas fa-database"></i>
+          </div>
+          <h3>SQL</h3>
+          <p>Query, manage, and analyse data. Essential for every developer role.</p>
+          <div class="lang-meta">
+            <span><i class="fas fa-layer-group"></i> Beginner → Intermediate</span>
+            <span><i class="fas fa-book-open"></i> 25+ Lessons</span>
+          </div>
+          <a href="languages.html" class="lang-link">
+            Start Learning <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
+
+        <div class="lang-card reveal reveal-delay-3">
+          <div class="lang-icon lang-html">
+            <i class="fab fa-html5"></i>
+          </div>
+          <h3>HTML & CSS</h3>
+          <p>The foundation of every website. Build and style pages from scratch.</p>
+          <div class="lang-meta">
+            <span><i class="fas fa-layer-group"></i> Beginner</span>
+            <span><i class="fas fa-book-open"></i> 30+ Lessons</span>
+          </div>
+          <a href="languages.html" class="lang-link">
+            Start Learning <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+
+      <div class="section-cta reveal">
+        <a href="languages.html" class="btn btn-secondary">
+          View All Languages <i class="fas fa-arrow-right"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="how-it-works">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">The Process</span>
+        <h2 class="section-title">How AntechLearn Works</h2>
+        <p class="section-subtitle">
+          Three simple steps to go from zero to writing real code.
+        </p>
+      </div>
+
+      <div class="steps-grid">
+        <div class="step-card reveal">
+          <div class="step-number">01</div>
+          <div class="step-icon">
+            <i class="fas fa-user-plus"></i>
+          </div>
+          <h3>Create an Account</h3>
+          <p>Sign up for free in under a minute. No credit card, no commitments — just your email.</p>
+        </div>
+
+        <div class="step-connector reveal reveal-delay-1">
+          <i class="fas fa-chevron-right"></i>
+        </div>
+
+        <div class="step-card reveal reveal-delay-2">
+          <div class="step-number">02</div>
+          <div class="step-icon">
+            <i class="fas fa-road"></i>
+          </div>
+          <h3>Pick Your Path</h3>
+          <p>Not sure where to start? Use our Learning Guide to find the right language for your goals.</p>
+        </div>
+
+        <div class="step-connector reveal reveal-delay-3">
+          <i class="fas fa-chevron-right"></i>
+        </div>
+
+        <div class="step-card reveal reveal-delay-4">
+          <div class="step-number">03</div>
+          <div class="step-icon">
+            <i class="fas fa-code"></i>
+          </div>
+          <h3>Start Building</h3>
+          <p>Follow structured lessons, complete exercises, and build projects that go in your portfolio.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="testimonials">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">Testimonials</span>
+        <h2 class="section-title">What Learners Say</h2>
+        <p class="section-subtitle">
+          Real feedback from people who started exactly where you are now.
+        </p>
+      </div>
+
+      <div class="testimonials-grid">
+        <div class="testimonial-card reveal">
+          <div class="testimonial-rating">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+          </div>
+          <p class="testimonial-text">
+            "AntechLearn made Python finally click for me. The structured approach means
+            you're never lost — every lesson builds on the last."
+          </p>
+          <div class="testimonial-author">
+            <div class="author-avatar">AM</div>
+            <div class="author-info">
+              <span class="author-name">Amina Mwangi</span>
+              <span class="author-role">Python Learner</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card testimonial-card--featured reveal reveal-delay-1">
+          <div class="testimonial-rating">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+          </div>
+          <p class="testimonial-text">
+            "I went from knowing nothing about JavaScript to building my first API in
+            two months. The learning guide pointed me in the right direction from day one."
+          </p>
+          <div class="testimonial-author">
+            <div class="author-avatar">BK</div>
+            <div class="author-info">
+              <span class="author-name">Brian Kamau</span>
+              <span class="author-role">Full-Stack Developer</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card reveal reveal-delay-2">
+          <div class="testimonial-rating">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star-half-alt"></i>
+          </div>
+          <p class="testimonial-text">
+            "The SQL track is incredibly practical. I landed a data analyst role and
+            AntechLearn's lessons were directly applicable to my day-to-day work."
+          </p>
+          <div class="testimonial-author">
+            <div class="author-avatar">SN</div>
+            <div class="author-info">
+              <span class="author-name">Sheila Njeri</span>
+              <span class="author-role">Data Analyst</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA BANNER -->
+  <section class="cta-banner">
+    <div class="container">
+      <div class="cta-content reveal">
+        <h2>Ready to Write Your First Line of Code?</h2>
+        <p>Join thousands of learners already building their future with AntechLearn.</p>
+        <div class="cta-buttons">
+          <a href="register.html" class="btn btn-primary">
+            <i class="fas fa-rocket"></i> Start for Free
+          </a>
+          <a href="guide.html" class="btn btn-ghost">
+            <i class="fas fa-map"></i> Explore the Guide
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer js-footer-information"></footer>
+
+  <script src="scripts/edu.js"></script>
   <script src="scripts/footer.js"></script>
-  
   <script type="module" src="scripts/newsletter.js"></script>
-  
   <script type="module" src="scripts/header.js"></script>
-  
   <script type="module" src="scripts/apiCheck.js"></script>
-  
+
 </body>
 </html>

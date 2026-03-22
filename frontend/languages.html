@@ -1,19 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Programming Languages - AntechLearn</title>
-  <link rel="stylesheet" href="styles/edu.css">
-  <link rel="stylesheet" href="./styles/admin-auth.css">
-  <link rel="stylesheet" href="styles/languages.css">
+  <link rel="stylesheet" href="styles/base.css">
+  <link rel="stylesheet" href="styles/layout.css">
   <link rel="stylesheet" href="styles/spinner.css">
-  <link rel="stylesheet" href="notifications.css">
+  <link rel="stylesheet" href="styles/languages.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="icon" type="image/svg+xml" href="images/favicon/favicon.svg">
 </head>
 <body>
-  <!-- Spinner Container -->
+
+  <!-- Spinner -->
   <div id="spinner-container">
     <div class="admin-spinner">
       <div class="logo">
@@ -31,62 +31,61 @@
     </div>
   </div>
 
-  <!-- Page Content -->
-  <div id="page-content" style="display: none;">
+  <!-- Page content -->
+  <div id="page-content" style="display:none;">
+
     <header class="header js-header-display"></header>
 
-    <!-- Message display div -->
-    <div class="js-courses-message courses-message" style="display: none;"></div>
+    <div class="js-courses-message courses-message" style="display:none;"></div>
 
     <section class="courses-page">
       <div class="container">
+
+        <!-- Search -->
         <section class="search-section">
-          <h2 class="section-title">Find Your Programming Language</h2>
-          <div class="search-bar">
-            <input type="text" id="mainSearch" placeholder="Search for HTML, CSS, JavaScript, Python...">
-            <button id="mainSearchBtn" class="search-btn">
-              <i class="fas fa-search"></i> Search
-            </button>
+          <div class="search-section__header reveal">
+            <span class="section-tag">Browse Courses</span>
+            <h2 class="section-title">Find Your Programming Language</h2>
+            <p class="section-subtitle">Search by language, tutor, or topic — then start learning.</p>
           </div>
-          <div class="search-tags">
-            <span class="search-tag" data-search="html">HTML</span>
-            <span class="search-tag" data-search="css">CSS</span>
-            <span class="search-tag" data-search="javascript">JavaScript</span>
-            <span class="search-tag" data-search="python">Python</span>
-            <span class="search-tag" data-search="web development">Web Development</span>
-            <span class="search-tag" data-search="beginner">Beginner Friendly</span>
+
+          <div class="search-bar reveal reveal-delay-1">
+            <i class="fas fa-search search-bar__icon"></i>
+            <input
+              type="text"
+              id="mainSearch"
+              placeholder="Search for HTML, CSS, JavaScript, Python...">
+            <button id="mainSearchBtn" class="search-btn">
+              Search
+            </button>
           </div>
         </section>
 
+        <!-- Filter buttons — JS populates this -->
+        <div class="filter-bar reveal reveal-delay-2" id="filterContainer"></div>
+
+        <!-- Languages grid -->
         <section class="languages-section" id="languages">
-          <h2 class="section-title">Popular Programming Languages</h2>
-          <p class="section-subtitle">Choose a language to start your learning journey</p>
-          
-          <div class="languages-grid" id="languages-grid">
-            <!-- JS will populate this -->
+          <div class="languages-section__header reveal">
+            <h2 class="section-title">Popular Programming Languages</h2>
+            <p class="section-subtitle">Choose a language to start your learning journey</p>
           </div>
+          <div class="languages-grid" id="languages-grid"></div>
         </section>
+
       </div>
     </section>
 
-    <footer class="footer js-footer-information">
-      
-      <!-- Loaded by JS -->
-      
-    </footer>
+    <footer class="footer js-footer-information"></footer>
+
   </div>
 
   <script src="scripts/footer.js"></script>
+  <script src="scripts/edu.js"></script>
   <script type="module" src="scripts/header.js"></script>
-
   <script type="module" src="scripts/newsletter.js"></script>
-  
-  
   <script type="module" src="scripts/apiCheck.js"></script>
-  
-  <script type="module" src="scripts/edu.js"></script>
-  
   <script type="module" src="scripts/courses/loadCourseContent.js"></script>
-  
+
 </body>
 </html>

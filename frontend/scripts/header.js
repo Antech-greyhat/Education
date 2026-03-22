@@ -18,7 +18,8 @@ const headerContents = ()=>{
             <li class="nav-item"><a href="guide.html" class="nav-link">Guide</a></li>
             <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
             <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
-           <!--<li class="nav-item"><a href="admin.html" class="nav-link">Admin</a></li>-->
+            
+           <!-- <li class="nav-item"><a href="admin.html" class="nav-link">Admin</a></li>-->
         </ul>
         
         <div class="nav-controls">
@@ -60,14 +61,15 @@ function renderAuthButtons() {
 
     document.querySelector('.js-logout-btn').addEventListener('click', () => {
       localStorage.removeItem('access_token');
-      window.location.href = 'login.html';
+      window.location.href = 'index.html';
     });
 
   } else {
     // Not logged in
     authDiv.innerHTML = `
-      <a href="login.html" class="btn btn-secondary nav-btn">Log In</a>
-      <a href="register.html" class="btn btn-primary nav-btn">Register</a>
+      <!-- <a href="login.html" class="btn btn-secondary nav-btn">Log In</a>
+      <a href="register.html" class="btn btn-primary nav-btn">Register</a> -->
+      <a href="register.html" class="btn btn-secondary nav-btn">Get Started</a> 
     `;
   }
 }

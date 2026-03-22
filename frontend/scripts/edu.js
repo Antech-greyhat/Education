@@ -1,272 +1,176 @@
-// DOM Elements - will be initialized after DOM loads
-let themeToggle, hamburger, navMenu, searchInput, mainSearch, searchBtn, mainSearchBtn, currentYear, loginForm, registerForm;
-let searchTags, languageCards;
+// edu.js
 
-// Theme Management
 function initTheme() {
-    const savedTheme = localStorage.getItem('theme') || 'light';
-    document.body.classList.toggle('dark-theme', savedTheme === 'dark');
-    updateThemeIcon(savedTheme);
+  const saved = localStorage.getItem('theme') || 'light';
+  document.documentElement.setAttribute('data-theme', saved);
+  updateThemeIcon(saved);
 }
 
 function toggleTheme() {
-    const isDark = document.body.classList.toggle('dark-theme');
-    const theme = isDark ? 'dark' : 'light';
-    localStorage.setItem('theme', theme);
-    updateThemeIcon(theme);
+  const current = document.documentElement.getAttribute('data-theme');
+  const next = current === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', next);
+  localStorage.setItem('theme', next);
+  updateThemeIcon(next);
 }
 
 function updateThemeIcon(theme) {
-    const icon = themeToggle.querySelector('i');
-    icon.className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+  const icon = document.querySelector('#themeToggle i');
+  if (!icon) return;
+  icon.className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
 }
 
-// Mobile Navigation Toggle
 function toggleMobileMenu() {
-    hamburger.classList.toggle('active');
-    navMenu.classList.toggle('active');
-    
-    // Close menu when clicking a link
-    if (navMenu.classList.contains('active')) {
-        const navLinks = document.querySelectorAll('.nav-link');
-        navLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                hamburger.classList.remove('active');
-                navMenu.classList.remove('active');
-            });
-        });
-    }
-}
+  const hamburger = document.getElementById('hamburger');
+  const navMenu = document.querySelector('.nav-menu');
+  if (!hamburger || !navMenu) return;
 
-// Search Functionality
-function performSearch(searchText) {
-    if (!searchText.trim()) return;
-    
-    const searchLower = searchText.toLowerCase();
-    
-    // Highlight matching language cards
-    languageCards.forEach(card => {
-        const language = card.getAttribute('data-language');
-        const cardTitle = card.querySelector('.card-title').textContent;
-        const cardDescription = card.querySelector('.card-description').textContent;
-        
-        const cardText = (language + ' ' + cardTitle + ' ' + cardDescription).toLowerCase();
-        
-        if (cardText.includes(searchLower)) {
-            card.style.boxShadow = '0 0 0 3px var(--primary-color)';
-            card.style.transform = 'scale(1.02)';
-            
-            // Scroll to the language section
-            document.getElementById('languages').scrollIntoView({ 
-                behavior: 'smooth',
-                block: 'start'
-            });
-        } else {
-            card.style.boxShadow = '';
-            card.style.transform = '';
-        }
+  hamburger.classList.toggle('active');
+  navMenu.classList.toggle('open');
+
+  if (navMenu.classList.contains('open')) {
+    document.querySelectorAll('.nav-link').forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('active');
+        navMenu.classList.remove('open');
+      }, { once: true });
     });
-    
-    // Show search feedback
-    showSearchFeedback(searchText);
+  }
 }
 
-function showSearchFeedback(searchText) {
-    // Create or update feedback element
-    let feedback = document.getElementById('searchFeedback');
-    
-    if (!feedback) {
-        feedback = document.createElement('div');
-        feedback.id = 'searchFeedback';
-        feedback.style.cssText = `
-            position: fixed;
-            top: 100px;
-            right: 20px;
-            background-color: var(--primary-color);
-            color: white;
-            padding: 1rem 1.5rem;
-            border-radius: var(--border-radius-md);
-            box-shadow: var(--shadow-lg);
-            z-index: 1000;
-            animation: slideIn 0.3s ease;
-        `;
-        document.body.appendChild(feedback);
-        
-        // Add animation
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes slideIn {
-                from { transform: translateX(100%); opacity: 0; }
-                to { transform: translateX(0); opacity: 1; }
-            }
-        `;
-        document.head.appendChild(style);
-    }
-    
-    feedback.textContent = `Searching for: "${searchText}"`;
-    
-    // Remove feedback after 3 seconds
-    setTimeout(() => {
-        if (feedback) {
-            feedback.style.animation = 'slideOut 0.3s ease forwards';
-            
-            // Add slideOut animation
-            const style = document.createElement('style');
-            style.textContent = `
-                @keyframes slideOut {
-                    from { transform: translateX(0); opacity: 1; }
-                    to { transform: translateX(100%); opacity: 0; }
-                }
-            `;
-            document.head.appendChild(style);
-            
-            setTimeout(() => {
-                if (feedback && feedback.parentNode) {
-                    feedback.parentNode.removeChild(feedback);
-                }
-            }, 300);
-        }
-    }, 3000);
-}
-
-// Filter language cards by search tag
-function filterByTag(searchTerm) {
-    mainSearch.value = searchTerm;
-    performSearch(searchTerm);
-}
-
-// Set current year in footer
 function setCurrentYear() {
-    if (currentYear) {
-        currentYear.textContent = new Date().getFullYear();
-    }
+  const el = document.getElementById('currentYear');
+  if (el) el.textContent = new Date().getFullYear();
 }
 
-// Smooth scroll for anchor links
-function initSmoothScroll() {
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-            const href = this.getAttribute('href');
-            
-            // Skip if it's just "#"
-            if (href === '#') return;
-            
-            // Don't interfere with language page links
-            if (href.includes('.html')) return;
-            
-            e.preventDefault();
-            
-            const targetId = href.substring(1);
-            const targetElement = document.getElementById(targetId);
-            
-            if (targetElement) {
-                window.scrollTo({
-                    top: targetElement.offsetTop - 80,
-                    behavior: 'smooth'
-                });
-            }
-        });
-    });
-}
+document.addEventListener('DOMContentLoaded', () => {
+  initTheme();
+  setCurrentYear();
 
-// Initialize everything when DOM is loaded
-document.addEventListener('DOMContentLoaded', function() {
-    // Initialize DOM elements
-    themeToggle = document.getElementById('themeToggle');
-    hamburger = document.getElementById('hamburger');
-    navMenu = document.querySelector('.nav-menu');
-    searchInput = document.getElementById('searchInput');
-    mainSearch = document.getElementById('mainSearch');
-    searchBtn = document.getElementById('searchBtn');
-    mainSearchBtn = document.getElementById('mainSearchBtn');
-    searchTags = document.querySelectorAll('.search-tag');
-    languageCards = document.querySelectorAll('.language-card');
-    currentYear = document.getElementById('currentYear');
-    
-    // Initialize theme
-    initTheme();
-    
-    // Set current year
-    setCurrentYear();
-    
-    // Initialize smooth scroll
-    initSmoothScroll();
-    
-    // Event Listeners
-    if (themeToggle) themeToggle.addEventListener('click', toggleTheme);
-    if (hamburger) hamburger.addEventListener('click', toggleMobileMenu);
-    
-    // Search functionality (only on home page)
-    if (searchBtn) searchBtn.addEventListener('click', () => performSearch(searchInput.value));
-    if (mainSearchBtn) mainSearchBtn.addEventListener('click', () => performSearch(mainSearch.value));
-    
-    // Search on Enter key
-    if (searchInput) {
-        searchInput.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') performSearch(searchInput.value);
-        });
+  const themeToggle = document.getElementById('themeToggle');
+  const hamburger = document.getElementById('hamburger');
+
+  if (themeToggle) themeToggle.addEventListener('click', toggleTheme);
+  if (hamburger) hamburger.addEventListener('click', toggleMobileMenu);
+
+  initPasswordToggles();
+  initRememberMe();
+  initScrollReveal();
+  initCountUp();
+
+  document.addEventListener('click', (e) => {
+    const hamburger = document.getElementById('hamburger');
+    const navMenu = document.querySelector('.nav-menu');
+    if (!hamburger || !navMenu) return;
+    if (!hamburger.contains(e.target) && !navMenu.contains(e.target)) {
+      hamburger.classList.remove('active');
+      navMenu.classList.remove('open');
     }
-    
-    if (mainSearch) {
-        mainSearch.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') performSearch(mainSearch.value);
-        });
-    }
-    
-    // Search tags
-    searchTags.forEach(tag => {
-        tag.addEventListener('click', () => {
-            const searchTerm = tag.getAttribute('data-search');
-            filterByTag(searchTerm);
-        });
-    });
-    
-    // Close mobile menu when clicking outside
-    if (hamburger && navMenu) {
-        document.addEventListener('click', (e) => {
-            if (!hamburger.contains(e.target) && !navMenu.contains(e.target)) {
-                hamburger.classList.remove('active');
-                navMenu.classList.remove('active');
-            }
-        });
-    }
-    
-    // Initialize language cards with hover effect
-    languageCards.forEach(card => {
-        card.addEventListener('mouseenter', () => {
-            card.style.transition = 'all 0.3s ease';
-        });
-        
-        // Add click effect
-        card.addEventListener('click', function(e) {
-            if (!e.target.classList.contains('card-link')) {
-                this.style.transform = 'scale(0.98)';
-                setTimeout(() => {
-                    this.style.transform = '';
-                }, 150);
-            }
-        });
-    });
-    
-    // Add active class to current nav link based on scroll position
-    window.addEventListener('scroll', function() {
-        const sections = document.querySelectorAll('section[id]');
-        const scrollY = window.pageYOffset;
-        
-        sections.forEach(section => {
-            const sectionHeight = section.offsetHeight;
-            const sectionTop = section.offsetTop - 100;
-            const sectionId = section.getAttribute('id');
-            const navLink = document.querySelector(`.nav-link[href="#${sectionId}"]`);
-            
-            if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
-                if (navLink) {
-                    document.querySelectorAll('.nav-link.active').forEach(link => {
-                        link.classList.remove('active');
-                    });
-                    navLink.classList.add('active');
-                }
-            }
-        });
-    });
+  });
 });
+
+// Password toggle — all .toggle-password buttons on the page
+function initPasswordToggles() {
+  document.querySelectorAll('.toggle-password').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const input = btn.previousElementSibling;
+      if (!input) return;
+      const isPassword = input.type === 'password';
+      input.type = isPassword ? 'text' : 'password';
+      btn.querySelector('i').className = isPassword
+        ? 'fas fa-eye-slash'
+        : 'fas fa-eye';
+    });
+  });
+}
+
+// Remember me — only runs on login page
+function initRememberMe() {
+  const emailInput = document.getElementById('loginEmail');
+  const rememberMe = document.getElementById('rememberMe');
+  const submitBtn = document.querySelector('.js-submit-button');
+  if (!emailInput || !rememberMe) return;
+
+  const savedEmail = localStorage.getItem('userRememberEmail');
+  const remembered = localStorage.getItem('userRememberMe') === 'true';
+  if (remembered && savedEmail) {
+    emailInput.value = savedEmail;
+    rememberMe.checked = true;
+  }
+
+  if (submitBtn) {
+    submitBtn.addEventListener('click', () => {
+      if (rememberMe.checked) {
+        localStorage.setItem('userRememberMe', 'true');
+        localStorage.setItem('userRememberEmail', emailInput.value);
+      } else {
+        localStorage.removeItem('userRememberMe');
+        localStorage.removeItem('userRememberEmail');
+      }
+    });
+  }
+}
+
+// Scroll reveal — Intersection Observer
+function initScrollReveal() {
+  const els = document.querySelectorAll('.reveal');
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, {
+    threshold: 0.12,
+    rootMargin: '0px 0px -40px 0px'
+  });
+
+  // Expose globally so JS-rendered elements can be observed
+  window.__revealObserver = observer;
+
+  els.forEach(el => observer.observe(el));
+}
+
+// Count up animation for stat numbers
+function initCountUp() {
+  const statNumbers = document.querySelectorAll('.stat-number, .about-stat__number');
+  if (!statNumbers.length) return;
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+
+      const el = entry.target;
+      const raw = el.textContent.trim();
+
+      // Extract numeric part and suffix (e.g. "5,000+" → 5000, "+")
+      const suffix = raw.replace(/[\d,\.]/g, '');
+      const numeric = parseFloat(raw.replace(/[^0-9.]/g, ''));
+      if (isNaN(numeric)) return;
+
+      const duration = 1800;
+      const steps = 60;
+      const interval = duration / steps;
+      let current = 0;
+
+      const timer = setInterval(() => {
+        current += numeric / steps;
+        if (current >= numeric) {
+          el.textContent = raw; // restore original with suffix
+          clearInterval(timer);
+        } else {
+          const display = numeric >= 1000
+            ? Math.floor(current).toLocaleString()
+            : Math.floor(current);
+          el.textContent = display + suffix;
+        }
+      }, interval);
+
+      observer.unobserve(el);
+    });
+  }, { threshold: 0.5 });
+
+  statNumbers.forEach(el => observer.observe(el));
+}

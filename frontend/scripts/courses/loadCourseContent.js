@@ -3,7 +3,7 @@ import { CourseRenderer } from './courseRender.js';
 
 async function loadCoursesPage() {
   const token = localStorage.getItem('access_token');
-  
+
   let messageDisplay = document.querySelector('.js-courses-message');
   if (!messageDisplay) {
     messageDisplay = document.createElement('div');
@@ -18,7 +18,6 @@ async function loadCoursesPage() {
     return;
   }
 
-  // Auth passed - render courses
   new CourseRenderer('languages-grid', 'filterContainer');
 }
 

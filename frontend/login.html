@@ -1,211 +1,149 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Log In - AntechLearn</title>
-    <link rel="stylesheet" href="styles/edu.css">
-    <link rel="stylesheet" href="styles/login.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer">
-    <link rel="icon" type="image/svg+xml" href="images/favicon/favicon.svg">
-    <style>
-        /* Password Input Wrapper Styles */
-        .password-input-wrapper {
-            position: relative;
-            display: flex;
-            align-items: center;
-        }
-
-        .password-input-wrapper .password-icon {
-            position: absolute;
-            left: 1rem;
-            color: var(--primary-color);
-            pointer-events: none;
-            z-index: 1;
-        }
-
-        .dark-theme .password-input-wrapper .password-icon {
-            color: var(--accent-color);
-        }
-
-        .password-input-wrapper input {
-            padding-left: 2.8rem !important;
-            padding-right: 3rem !important;
-        }
-
-        .password-input-wrapper .toggle-password {
-            position: absolute;
-            right: 1rem;
-            background: none;
-            border: none;
-            cursor: pointer;
-            color: var(--gray-color);
-            font-size: 1.1rem;
-            padding: 0.3rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: color var(--transition-fast);
-        }
-
-        .password-input-wrapper .toggle-password:hover {
-            color: var(--primary-color);
-        }
-
-        .dark-theme .password-input-wrapper .toggle-password:hover {
-            color: var(--accent-color);
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Log In - AntechLearn</title>
+  <link rel="stylesheet" href="styles/base.css">
+  <link rel="stylesheet" href="styles/layout.css">
+  <link rel="stylesheet" href="styles/auth.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="icon" type="image/svg+xml" href="images/favicon/favicon.svg">
 </head>
-<body>
-    <!-- Header with Navigation -->
-    <header class="header js-header-display">
-      <!-- EJECTED BY JAVASCRIPT -->
-      
-    </header>
+<body class="auth-page">
 
-    <!-- Login Form Section -->
-    <section class="auth-section">
-        <div class="container">
-            <div class="auth-container">
-                <div class="auth-form-container">
-                    <div class="auth-icon">
-                        <i class="fas fa-laptop-code"></i>
-                    </div>
-                    <h2>Log In to Your Account</h2>
-                    <p class="auth-subtitle">Enter your credentials to access your dashboard</p>
-                    
-                    <!-- USED DIV INSTED OF FORM TO PREVENT PAGE RELOAD -->
-                    <div id="loginForm" class="auth-form js-auth-form">
-                        <div class="form-group">
-                            <label for="loginEmail"><i class="fas fa-envelope"></i> Email Address</label>
-                            <input type="email" id="loginEmail" name="email" placeholder="your.email@example.com" required class="js-email">
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="loginPassword">Password</label>
-                            <div class="password-input-wrapper">
-                                <i class="fas fa-lock password-icon"></i>
-                                <input type="password" id="loginPassword" name="password" placeholder="Enter your password" required class="js-password">
-                                <button type="button" class="toggle-password" aria-label="Toggle password visibility">
-                                    <i class="fas fa-eye"></i>
-                                </button>
-                            </div>
-                        </div>
-                        
-                        <div class="form-options">
-                            <label class="checkbox-container">
-                                <input type="checkbox" id="rememberMe">
-                                <span>Remember me</span>
-                            </label>
-                            <a href="password_reset_link.html" class="link-text">Forgot password?</a>
-                        </div>
-                        
-                        <p class="js-login-message">
-                         <!-- for mesage feedback -->  
-                        </p>
-                        
-                        <button type="submit" class="btn btn-primary btn-full js-submit-button">
-                            <i class="fas fa-sign-in-alt"></i> Log In
-                        </button>
-                    </div>
-                    
-                    <div class="auth-divider">
-                        <span>OR</span>
-                    </div>
-                    
-                    <!-- DISSABLED FOR NOW  -->
-                    
-                    <div class="social-login">
-                        <button class="btn-social btn-google">
-                            <i class="fab fa-google"></i> Continue with Google
-                        </button>
-                        <button class="btn-social btn-github">
-                            <i class="fab fa-github"></i> Continue with GitHub
-                        </button>
-                    </div>
-                    
-                    <p class="auth-footer">
-                        Don't have an account? <a href="register.html" class="link-primary">Create an account</a>
-                    </p>
-                </div>
-            </div>
+  <header class="header js-header-display"></header>
+
+  <div class="auth-layout">
+
+    <!-- Left brand panel -->
+    <aside class="auth-brand">
+      <span class="auth-brand__circle auth-brand__circle--tl"></span>
+      <span class="auth-brand__circle auth-brand__circle--br"></span>
+
+      <div class="auth-brand__top">
+        <a href="index.html" class="logo">
+          <i class="fas fa-code"></i>
+          <span>AntechLearn</span>
+        </a>
+        <div class="auth-brand__badge">
+          <i class="fas fa-shield-halved"></i> Secure Login
         </div>
-    </section>
+      </div>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-bottom">
-                <p>&copy; <span id="currentYear"></span> AntechLearn. All rights reserved. Made with <i class="fas fa-heart"></i> for aspiring developers.</p>
-            </div>
+      <div class="auth-brand__mid">
+        <div class="auth-brand__icon">
+          <i class="fas fa-laptop-code"></i>
         </div>
-    </footer>
+        <h2>Welcome Back</h2>
+        <p>Log in to continue your learning journey. Your progress, courses, and goals are waiting.</p>
+      </div>
 
-    <script src="scripts/edu.js"></script>
-    
-    <script>
-        // Password Toggle Functionality for User Login
-        const togglePasswordBtn = document.querySelector('.toggle-password');
-        const passwordInput = document.getElementById('loginPassword');
-        const lockIcon = document.querySelector('.password-icon');
+      <div class="auth-brand__steps">
+        <div class="auth-brand__step">
+          <span class="step-dot">✓</span>
+          <p>Pick up right where you left off</p>
+        </div>
+        <div class="auth-brand__step">
+          <span class="step-dot">✓</span>
+          <p>Track your progress across all courses</p>
+        </div>
+        <div class="auth-brand__step">
+          <span class="step-dot">✓</span>
+          <p>Access your full learning history</p>
+        </div>
+      </div>
+    </aside>
 
-        if (togglePasswordBtn && passwordInput && lockIcon) {
-            // Function to toggle password visibility
-            function togglePasswordVisibility() {
-                const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
-                passwordInput.setAttribute('type', type);
-                
-                const eyeIcon = togglePasswordBtn.querySelector('i');
-                eyeIcon.classList.toggle('fa-eye');
-                eyeIcon.classList.toggle('fa-eye-slash');
-                
-                // Toggle lock icon state
-                lockIcon.classList.toggle('fa-lock');
-                lockIcon.classList.toggle('fa-lock-open');
-            }
+    <!-- Right form panel -->
+    <main class="auth-main">
+      <div class="auth-card">
 
-            // Add click event to eye icon button
-            togglePasswordBtn.addEventListener('click', togglePasswordVisibility);
+        <div class="auth-card__header">
+          <div class="auth-icon">
+            <i class="fas fa-laptop-code"></i>
+          </div>
+          <h2>Log In to Your Account</h2>
+          <p class="auth-subtitle">Enter your credentials to access your dashboard</p>
+        </div>
 
-            // Add click event to lock icon (make it clickable)
-            lockIcon.addEventListener('click', togglePasswordVisibility);
-            lockIcon.style.cursor = 'pointer';
-            lockIcon.style.pointerEvents = 'auto';
-        }
+        <div id="loginForm" class="auth-form js-auth-form">
 
-        // Remember Me Functionality
-        const rememberMeCheckbox = document.getElementById('rememberMe');
-        const emailInput = document.getElementById('loginEmail');
+          <div class="form-group">
+            <label for="loginEmail">
+              <i class="fas fa-envelope"></i> Email Address
+            </label>
+            <input
+              type="email"
+              id="loginEmail"
+              placeholder="user@gmail.com"
+              required
+              class="js-email">
+          </div>
 
-        // Load saved email on page load
-        window.addEventListener('DOMContentLoaded', () => {
-            const savedEmail = localStorage.getItem('userRememberEmail');
-            const rememberMe = localStorage.getItem('userRememberMe') === 'true';
-            
-            if (rememberMe && savedEmail && emailInput) {
-                emailInput.value = savedEmail;
-                rememberMeCheckbox.checked = true;
-            }
-        });
+          <div class="form-group">
+            <label for="loginPassword">
+              <i class="fas fa-lock"></i> Password
+            </label>
+            <div class="password-wrapper">
+              <input
+                type="password"
+                id="loginPassword"
+                placeholder="********"
+                required
+                class="js-password">
+              <button type="button" class="toggle-password" aria-label="Toggle password visibility">
+                <i class="fas fa-eye"></i>
+              </button>
+            </div>
+          </div>
 
-        // Save remember me preference on form submit
-        document.querySelector('.js-submit-button').addEventListener('click', () => {
-            if (rememberMeCheckbox.checked) {
-                localStorage.setItem('userRememberMe', 'true');
-                localStorage.setItem('userRememberEmail', emailInput.value);
-            } else {
-                localStorage.removeItem('userRememberMe');
-                localStorage.removeItem('userRememberEmail');
-            }
-        });
-    </script>
-    
-    <script type="module" src="scripts/auth/login.js"></script>
-    
-    <script type="module" src="scripts/header.js"></script>
-    
-    <script type="module" src="scripts/apiCheck.js"></script>
-    
+          <div class="form-options">
+            <label class="checkbox-container">
+              <input type="checkbox" id="rememberMe">
+              <span>Remember me</span>
+            </label>
+            <a href="password_reset_link.html" class="link-text">Forgot password?</a>
+          </div>
+
+          <p class="js-login-message"></p>
+
+          <button type="button" class="btn btn-primary btn-full js-submit-button">
+            <i class="fas fa-sign-in-alt"></i> Log In
+          </button>
+
+        </div>
+
+        <div class="auth-divider"><span>OR</span></div>
+
+        <div class="social-login">
+          <button class="btn-social btn-google">
+            <i class="fab fa-google"></i> Continue with Google
+          </button>
+          <button class="btn-social btn-github">
+            <i class="fab fa-github"></i> Continue with GitHub
+          </button>
+        </div>
+
+        <p class="auth-footer">
+          Don't have an account?
+          <a href="register.html" class="link-primary">Create an account</a>
+        </p>
+
+      </div>
+
+      <footer class="auth-page-footer">
+        <p>&copy; <span id="currentYear"></span> AntechLearn. All rights reserved.</p>
+      </footer>
+    </main>
+
+  </div>
+
+  <script src="scripts/edu.js"></script>
+
+  <script type="module" src="scripts/auth/login.js"></script>
+  <script type="module" src="scripts/header.js"></script>
+  <script type="module" src="scripts/apiCheck.js"></script>
+
 </body>
 </html>

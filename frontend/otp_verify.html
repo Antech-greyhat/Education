@@ -1,73 +1,136 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Verify OTP | AntechLearn</title>
-  <link rel="stylesheet" href="./styles/otp_verify.css">
-  <link rel="icon" type="image/svg+xml" href="images/favicon/favicon.svg">
-  
+  <link rel="stylesheet" href="styles/base.css">
+  <link rel="stylesheet" href="styles/layout.css">
+  <link rel="stylesheet" href="styles/auth.css">
+  <link rel="stylesheet" href="styles/otp_verify.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  
+  <link rel="icon" type="image/svg+xml" href="images/favicon/favicon.svg">
 </head>
-<body>
+<body class="auth-page">
 
-  <div class="container">
-    <div class="wrapper">
+  <header class="header js-header-display"></header>
 
-      <!-- Brand -->
-      <div class="brand">
-        <span class="brand-icon">🔐</span>
-        <h1 class="brand-name">AntechLearn</h1>
+  <div class="auth-layout">
+
+    <!-- Left brand panel -->
+    <aside class="auth-brand">
+      <span class="auth-brand__circle auth-brand__circle--tl"></span>
+      <span class="auth-brand__circle auth-brand__circle--br"></span>
+
+      <div class="auth-brand__top">
+        <a href="index.html" class="logo">
+          <i class="fas fa-code"></i>
+          <span>AntechLearn</span>
+        </a>
+        <div class="auth-brand__badge">
+          <i class="fas fa-shield-halved"></i> Email Verification
+        </div>
       </div>
 
-      <h2 class="form-title">Enter Your OTP</h2>
-      <p class="form-subtitle">
-        A 6-digit code was sent to your email address.<br>
-        Please enter it below to continue.
-      </p>
-
-      <!-- Message display -->
-      <p class="message js-otp-message" id="otp-message"></p>
-
-      <!-- OTP digit boxes -->
-      <div class="otp-inputs js-otp-inputs-form" id="otp-inputs">
-        <input class="otp-box" type="text" inputmode="numeric" maxlength="1" pattern="[0-9]" autocomplete="one-time-code" aria-label="OTP digit 1">
-        <input class="otp-box" type="text" inputmode="numeric" maxlength="1" pattern="[0-9]" aria-label="OTP digit 2">
-        <input class="otp-box" type="text" inputmode="numeric" maxlength="1" pattern="[0-9]" aria-label="OTP digit 3">
-        <input class="otp-box" type="text" inputmode="numeric" maxlength="1" pattern="[0-9]" aria-label="OTP digit 4">
-        <input class="otp-box" type="text" inputmode="numeric" maxlength="1" pattern="[0-9]" aria-label="OTP digit 5">
-        <input class="otp-box" type="text" inputmode="numeric" maxlength="1" pattern="[0-9]" aria-label="OTP digit 6">
+      <div class="auth-brand__mid">
+        <div class="auth-brand__icon">
+          <i class="fas fa-envelope-open-text"></i>
+        </div>
+        <h2>Check Your Inbox</h2>
+        <p>We sent a 6-digit code to your email address. Enter it to verify your account and get started.</p>
       </div>
 
-      <!-- Timer -->
-      <p class="timer-text">
-        Code expires in: <span class="js-countdown js-otp-timer" id="otp-timer">15:00</span>
-      </p>
+      <div class="auth-brand__steps">
+        <div class="auth-brand__step">
+          <span class="step-dot">01</span>
+          <p>Check your email for the 6-digit code</p>
+        </div>
+        <div class="auth-brand__step">
+          <span class="step-dot">02</span>
+          <p>Enter the code in the form</p>
+        </div>
+        <div class="auth-brand__step">
+          <span class="step-dot">03</span>
+          <p>Get instant access to your account</p>
+        </div>
+      </div>
+    </aside>
 
-      <!-- Submit -->
-      <button class="submit_button js-verify-otp-btn" id="verify-otp-btn">Verify OTP</button>
+    <!-- Right form panel -->
+    <main class="auth-main">
+      <div class="auth-card otp-card">
 
-      <!-- Resend -->
-      <p class="resend-text">
-        Didn't receive the code?
-        <br>
-        <button class="resend-btn js-resend-otp" id="resend-otp">Resend OTP</button>
-        <br>
+        <div class="auth-card__header">
+          <div class="auth-icon">
+            <i class="fas fa-lock"></i>
+          </div>
+          <h2>Enter Your OTP</h2>
+          <p class="auth-subtitle">
+            A 6-digit code was sent to your email address.
+            Please enter it below to continue.
+          </p>
+        </div>
+
+        <!-- Message -->
+        <p class="message js-otp-message" id="otp-message"></p>
+
+        <!-- OTP boxes -->
+        <div class="otp-inputs js-otp-inputs-form" id="otp-inputs">
+          <input class="otp-box" type="text" inputmode="numeric" maxlength="1"
+            pattern="[0-9]" autocomplete="one-time-code" aria-label="OTP digit 1">
+          <input class="otp-box" type="text" inputmode="numeric" maxlength="1"
+            pattern="[0-9]" aria-label="OTP digit 2">
+          <input class="otp-box" type="text" inputmode="numeric" maxlength="1"
+            pattern="[0-9]" aria-label="OTP digit 3">
+          <input class="otp-box" type="text" inputmode="numeric" maxlength="1"
+            pattern="[0-9]" aria-label="OTP digit 4">
+          <input class="otp-box" type="text" inputmode="numeric" maxlength="1"
+            pattern="[0-9]" aria-label="OTP digit 5">
+          <input class="otp-box" type="text" inputmode="numeric" maxlength="1"
+            pattern="[0-9]" aria-label="OTP digit 6">
+        </div>
+
+        <!-- Timer -->
+        <p class="timer-text">
+          Code expires in:
+          <span class="js-countdown js-otp-timer" id="otp-timer">15:00</span>
         </p>
-        <p class="js-resend-countdown" style="display:none;">
-    Resend new token in <strong class="js-resend-countdown-timer">00:60</strong></p>
-      </p>
 
-      <!-- Back link -->
-      <p class="back-link">
-        <a href="./login.html">&larr; Back to Login</a>
-      </p>
+        <!-- Submit -->
+        <button class="submit_button js-verify-otp-btn" id="verify-otp-btn">
+          <i class="fas fa-circle-check"></i> Verify OTP
+        </button>
 
-    </div>
+        <!-- Resend -->
+        <div class="resend-section">
+          <p class="resend-text">
+            Didn't receive the code?
+            <button class="resend-btn js-resend-otp" id="resend-otp">Resend OTP</button>
+          </p>
+          <p class="js-resend-countdown" style="display:none;">
+            Resend new token in
+            <strong class="js-resend-countdown-timer">00:60</strong>
+          </p>
+        </div>
+
+        <!-- Back -->
+        <p class="back-link">
+          <a href="login.html">
+            <i class="fas fa-arrow-left"></i> Back to Login
+          </a>
+        </p>
+
+      </div>
+
+      <footer class="auth-page-footer">
+        <p>&copy; <span id="currentYear"></span> AntechLearn. All rights reserved.</p>
+      </footer>
+    </main>
+
   </div>
 
-  <script type="module" src="./scripts/auth/otpVerify.js"></script>
+  <script src="scripts/edu.js"></script>
+  <script type="module" src="scripts/auth/otpVerify.js"></script>
 
 </body>
 </html>

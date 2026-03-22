@@ -1,95 +1,510 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Learning Guide - AntechLearn</title>
-    <link rel="stylesheet" href="styles/edu.css">
-    <link rel="stylesheet" href="styles/guide.css">
-    <link rel="stylesheet" href="notifications.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="icon" type="image/svg+xml" href="images/favicon/favicon.svg">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Learning Guide - AntechLearn</title>
+  <link rel="stylesheet" href="styles/base.css">
+  <link rel="stylesheet" href="styles/layout.css">
+  <link rel="stylesheet" href="styles/guide.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="icon" type="image/svg+xml" href="images/favicon/favicon.svg">
 </head>
 <body>
-    <!-- Header with Navigation -->
-    <header class="header js-header-display">
-      <!-- EJECTED BY JAVASCRIPT -->
-      
-    </header>
 
-    <!-- Comparison & Guide Section -->
-    <section class="comparison-section" id="comparison">
-        <div class="container">
-            <h2 class="section-title">Which Language Should You Start With?</h2>
-            <p class="section-subtitle">Helpful guidance for choosing your first programming language</p>
-            
-            <div class="comparison-content">
-                <div class="comparison-card">
-                    <h3><i class="fas fa-user-graduate"></i> For Absolute Beginners</h3>
-                    <p><strong>Python</strong> is often recommended as a first language due to its simple syntax and readability. It's versatile and used in many fields.</p>
-                    <p><strong>HTML/CSS</strong> are great for visual learners who want to see immediate results in web browsers.</p>
-                </div>
-                
-                <div class="comparison-card">
-                    <h3><i class="fas fa-briefcase"></i> Career Paths</h3>
-                    <p><strong>Frontend Development:</strong> HTML → CSS → JavaScript → React/Angular/Vue</p>
-                    <p><strong>Backend Development:</strong> Python → Django/Flask or JavaScript → Node.js</p>
-                    <p><strong>Data Science:</strong> Python → Pandas, NumPy, Scikit-learn → Machine Learning</p>
-                </div>
-                
-                <div class="comparison-card">
-                    <h3><i class="fas fa-globe"></i> Real-World Applications</h3>
-                    <p><strong>Web Development:</strong> HTML, CSS, JavaScript (Full Stack)</p>
-                    <p><strong>Mobile Apps:</strong> JavaScript (React Native), Python (Kivy)</p>
-                    <p><strong>Data Analysis:</strong> Python, R</p>
-                    <p><strong>Automation:</strong> Python, Bash scripting</p>
-                </div>
-            </div>
-            
-            <div class="learning-path">
-                <h3>Suggested Learning Path</h3>
-                <div class="path-steps">
-                    <div class="path-step">
-                        <span class="step-number">1</span>
-                        <h4>Start with HTML & CSS</h4>
-                        <p>Learn to structure and style web pages</p>
-                    </div>
-                    <div class="path-step">
-                        <span class="step-number">2</span>
-                        <h4>Add JavaScript</h4>
-                        <p>Make your websites interactive</p>
-                    </div>
-                    <div class="path-step">
-                        <span class="step-number">3</span>
-                        <h4>Choose a Specialization</h4>
-                        <p>Frontend, Backend, Data Science, etc.</p>
-                    </div>
-                    <div class="path-step">
-                        <span class="step-number">4</span>
-                        <h4>Build Projects</h4>
-                        <p>Apply your knowledge to real projects</p>
-                    </div>
-                </div>
-            </div>
+  <header class="header js-header-display"></header>
+
+  <!-- Anchor nav -->
+  <nav class="guide-nav">
+    <div class="container">
+      <ul class="guide-nav__links">
+        <li><a href="#start" class="guide-nav__link">Where to Start</a></li>
+        <li><a href="#paths" class="guide-nav__link">Career Paths</a></li>
+        <li><a href="#levels" class="guide-nav__link">Difficulty Levels</a></li>
+        <li><a href="#roadmap" class="guide-nav__link">Roadmap</a></li>
+        <li><a href="#tips" class="guide-nav__link">Tips</a></li>
+        <li><a href="#faq" class="guide-nav__link">FAQ</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="guide-hero">
+    <div class="container">
+      <div class="guide-hero__content reveal">
+        <span class="section-tag">Learning Guide</span>
+        <h1>Your Complete Roadmap to<br><span class="highlight">Learning Programming</span></h1>
+        <p>Not sure where to start or what to learn next? This guide covers everything — from picking your first language to building real projects and landing a job.</p>
+        <div class="guide-hero__actions">
+          <a href="#start" class="btn btn-primary">
+            <i class="fas fa-compass"></i> Find Your Path
+          </a>
+          <a href="#roadmap" class="btn btn-secondary">
+            <i class="fas fa-map"></i> View Roadmap
+          </a>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 
-    <!-- Footer -->
-    <footer class="footer js-footer-information">
-      <!-- EJECTED BY JAVASCRIPT -->
-      
-    </footer>
+  <!-- Where to Start -->
+  <section class="guide-section" id="start">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Where to Start</span>
+        <h2 class="section-title">Which Language Should You Learn First?</h2>
+        <p class="section-subtitle">Your first language depends on your goal — here's a breakdown to help you decide.</p>
+      </div>
 
-    <script src="scripts/edu.js"></script>
-    
-  <!-- DON'T REMOVE THIS SCRIPT IT'S RESPONSIBLE FOR THE FOOTER CONTENTS -->
+      <div class="comparison-content">
+        <div class="comparison-card reveal">
+          <div class="comparison-card__icon">
+            <i class="fas fa-user-graduate"></i>
+          </div>
+          <h3>Absolute Beginners</h3>
+          <p><strong>Python</strong> is the most recommended first language — clean syntax, readable code, and used across web, data, and automation.</p>
+          <p><strong>HTML & CSS</strong> are great if you want to see results immediately in a browser. Perfect for visual learners.</p>
+          <a href="languages.html" class="guide-link">Explore Python <i class="fas fa-arrow-right"></i></a>
+        </div>
+
+        <div class="comparison-card comparison-card--featured reveal reveal-delay-1">
+          <div class="comparison-card__icon">
+            <i class="fas fa-briefcase"></i>
+          </div>
+          <h3>Career-Focused Learners</h3>
+          <p><strong>Frontend:</strong> HTML → CSS → JavaScript → React</p>
+          <p><strong>Backend:</strong> Python → Flask/Django or JS → Node.js</p>
+          <p><strong>Data Science:</strong> Python → Pandas → Machine Learning</p>
+          <p><strong>DevOps:</strong> Linux → Bash → Docker → CI/CD</p>
+          <a href="#paths" class="guide-link">See all paths <i class="fas fa-arrow-right"></i></a>
+        </div>
+
+        <div class="comparison-card reveal">
+          <div class="comparison-card__icon">
+            <i class="fas fa-globe"></i>
+          </div>
+          <h3>By Use Case</h3>
+          <p><strong>Web Development:</strong> HTML, CSS, JavaScript</p>
+          <p><strong>Mobile Apps:</strong> JavaScript (React Native)</p>
+          <p><strong>Data & AI:</strong> Python, R</p>
+          <p><strong>Automation:</strong> Python, Bash</p>
+          <p><strong>Game Dev:</strong> C#, Python (Pygame)</p>
+          <a href="languages.html" class="guide-link">Browse all languages <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Career Paths -->
+  <section class="guide-section guide-section--alt" id="paths">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Career Paths</span>
+        <h2 class="section-title">Pick a Direction</h2>
+        <p class="section-subtitle">Every path leads somewhere valuable. Choose the one that fits your goals.</p>
+      </div>
+
+      <div class="paths-grid">
+        <div class="path-card reveal">
+          <div class="path-card__icon path-card__icon--blue">
+            <i class="fas fa-laptop"></i>
+          </div>
+          <h3>Frontend Developer</h3>
+          <p>Build the interfaces people interact with. Focus on design, usability, and performance.</p>
+          <div class="path-card__stack">
+            <span>HTML</span><span>CSS</span><span>JavaScript</span><span>React</span>
+          </div>
+          <div class="path-card__meta">
+            <span><i class="fas fa-clock"></i> 6–12 months</span>
+            <span><i class="fas fa-signal"></i> Beginner friendly</span>
+          </div>
+        </div>
+
+        <div class="path-card path-card--featured reveal reveal-delay-1">
+          <div class="path-card__badge">Most Popular</div>
+          <div class="path-card__icon path-card__icon--teal">
+            <i class="fas fa-server"></i>
+          </div>
+          <h3>Backend Developer</h3>
+          <p>Build APIs, databases, and server logic. The engine behind every great product.</p>
+          <div class="path-card__stack">
+            <span>Python</span><span>Flask</span><span>SQL</span><span>REST APIs</span>
+          </div>
+          <div class="path-card__meta">
+            <span><i class="fas fa-clock"></i> 8–14 months</span>
+            <span><i class="fas fa-signal"></i> Intermediate</span>
+          </div>
+        </div>
+
+        <div class="path-card reveal">
+          <div class="path-card__icon path-card__icon--amber">
+            <i class="fas fa-chart-bar"></i>
+          </div>
+          <h3>Data Scientist</h3>
+          <p>Analyse data, build models, and extract insights that drive real decisions.</p>
+          <div class="path-card__stack">
+            <span>Python</span><span>Pandas</span><span>NumPy</span><span>ML</span>
+          </div>
+          <div class="path-card__meta">
+            <span><i class="fas fa-clock"></i> 10–18 months</span>
+            <span><i class="fas fa-signal"></i> Intermediate</span>
+          </div>
+        </div>
+
+        <div class="path-card reveal">
+          <div class="path-card__icon path-card__icon--purple">
+            <i class="fas fa-code-branch"></i>
+          </div>
+          <h3>Full-Stack Developer</h3>
+          <p>Own the entire product — from UI to database. The most versatile role in tech.</p>
+          <div class="path-card__stack">
+            <span>HTML/CSS</span><span>JavaScript</span><span>Node.js</span><span>SQL</span>
+          </div>
+          <div class="path-card__meta">
+            <span><i class="fas fa-clock"></i> 12–18 months</span>
+            <span><i class="fas fa-signal"></i> Advanced</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Difficulty Levels -->
+  <section class="guide-section" id="levels">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Difficulty Levels</span>
+        <h2 class="section-title">Understanding Skill Levels</h2>
+        <p class="section-subtitle">Know exactly where you stand and what to focus on next.</p>
+      </div>
+
+      <div class="levels-grid">
+        <div class="level-card reveal">
+          <div class="level-card__badge level-card__badge--beginner">Beginner</div>
+          <h3>Just Starting Out</h3>
+          <p>You're learning the fundamentals — syntax, variables, loops, and basic logic. Every expert started here.</p>
+          <ul class="level-card__list">
+            <li><i class="fas fa-check"></i> Understand basic syntax</li>
+            <li><i class="fas fa-check"></i> Write simple programs</li>
+            <li><i class="fas fa-check"></i> Use a code editor</li>
+            <li><i class="fas fa-check"></i> Read error messages</li>
+          </ul>
+          <div class="level-card__time">
+            <i class="fas fa-clock"></i> 0 – 3 months
+          </div>
+        </div>
+
+        <div class="level-card level-card--featured reveal reveal-delay-1">
+          <div class="level-card__badge level-card__badge--intermediate">Intermediate</div>
+          <h3>Building Things</h3>
+          <p>You can build small projects independently. You understand data structures, functions, and debugging.</p>
+          <ul class="level-card__list">
+            <li><i class="fas fa-check"></i> Build complete projects</li>
+            <li><i class="fas fa-check"></i> Use APIs and libraries</li>
+            <li><i class="fas fa-check"></i> Understand OOP concepts</li>
+            <li><i class="fas fa-check"></i> Work with databases</li>
+          </ul>
+          <div class="level-card__time">
+            <i class="fas fa-clock"></i> 3 – 12 months
+          </div>
+        </div>
+
+        <div class="level-card reveal">
+          <div class="level-card__badge level-card__badge--advanced">Advanced</div>
+          <h3>Production Ready</h3>
+          <p>You write clean, scalable code. You understand architecture, performance, and real-world constraints.</p>
+          <ul class="level-card__list">
+            <li><i class="fas fa-check"></i> Design system architecture</li>
+            <li><i class="fas fa-check"></i> Write tests and CI/CD</li>
+            <li><i class="fas fa-check"></i> Optimise for performance</li>
+            <li><i class="fas fa-check"></i> Mentor other developers</li>
+          </ul>
+          <div class="level-card__time">
+            <i class="fas fa-clock"></i> 12+ months
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Roadmap -->
+  <section class="guide-section guide-section--alt" id="roadmap">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Roadmap</span>
+        <h2 class="section-title">Suggested Learning Path</h2>
+        <p class="section-subtitle">A step-by-step sequence that takes you from zero to job-ready.</p>
+      </div>
+
+      <div class="roadmap">
+        <div class="roadmap__step reveal">
+          <div class="roadmap__marker">
+            <span>01</span>
+          </div>
+          <div class="roadmap__content">
+            <h3>HTML & CSS</h3>
+            <p>Build the foundation. Learn to structure content and style web pages. You'll see results immediately in your browser.</p>
+            <div class="roadmap__tags">
+              <span>Structure</span><span>Styling</span><span>Responsive Design</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="roadmap__step reveal">
+          <div class="roadmap__marker">
+            <span>02</span>
+          </div>
+          <div class="roadmap__content">
+            <h3>JavaScript Fundamentals</h3>
+            <p>Add interactivity to your pages. Learn variables, functions, events, and DOM manipulation.</p>
+            <div class="roadmap__tags">
+              <span>Logic</span><span>DOM</span><span>Events</span><span>APIs</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="roadmap__step reveal">
+          <div class="roadmap__marker">
+            <span>03</span>
+          </div>
+          <div class="roadmap__content">
+            <h3>Python Basics</h3>
+            <p>Learn one of the most versatile languages. Essential for backend, data, and automation work.</p>
+            <div class="roadmap__tags">
+              <span>Syntax</span><span>OOP</span><span>File I/O</span><span>Libraries</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="roadmap__step reveal">
+          <div class="roadmap__marker">
+            <span>04</span>
+          </div>
+          <div class="roadmap__content">
+            <h3>Databases & SQL</h3>
+            <p>Every application needs data storage. Learn to query, update, and manage relational databases.</p>
+            <div class="roadmap__tags">
+              <span>SQL</span><span>PostgreSQL</span><span>CRUD</span><span>Joins</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="roadmap__step reveal">
+          <div class="roadmap__marker">
+            <span>05</span>
+          </div>
+          <div class="roadmap__content">
+            <h3>Choose a Specialisation</h3>
+            <p>Pick your path — frontend framework, backend API, data science, or mobile. Go deep on one area.</p>
+            <div class="roadmap__tags">
+              <span>React</span><span>Node.js</span><span>Flask</span><span>ML</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="roadmap__step reveal">
+          <div class="roadmap__marker">
+            <span>06</span>
+          </div>
+          <div class="roadmap__content">
+            <h3>Build Real Projects</h3>
+            <p>Apply everything by building projects you'd actually use. A portfolio of real work beats certifications every time.</p>
+            <div class="roadmap__tags">
+              <span>Portfolio</span><span>GitHub</span><span>Deployment</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tips -->
+  <section class="guide-section" id="tips">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Tips</span>
+        <h2 class="section-title">How to Stay Consistent</h2>
+        <p class="section-subtitle">Learning to code is a marathon. These habits will keep you moving forward.</p>
+      </div>
+
+      <div class="tips-grid">
+        <div class="tip-card reveal">
+          <div class="tip-card__icon">
+            <i class="fas fa-calendar-check"></i>
+          </div>
+          <h3>Code Every Day</h3>
+          <p>Even 20–30 minutes daily beats a 5-hour session once a week. Consistency compounds faster than intensity.</p>
+        </div>
+
+        <div class="tip-card reveal">
+          <div class="tip-card__icon">
+            <i class="fas fa-hammer"></i>
+          </div>
+          <h3>Build, Don't Just Watch</h3>
+          <p>Tutorials are a starting point, not a destination. The moment you understand something, close the video and build it yourself.</p>
+        </div>
+
+        <div class="tip-card reveal">
+          <div class="tip-card__icon">
+            <i class="fas fa-bug"></i>
+          </div>
+          <h3>Embrace Bugs</h3>
+          <p>Debugging is not a sign of failure — it's the job. Every bug you fix teaches you something a tutorial never will.</p>
+        </div>
+
+        <div class="tip-card reveal">
+          <div class="tip-card__icon">
+            <i class="fas fa-people-group"></i>
+          </div>
+          <h3>Join a Community</h3>
+          <p>Find others learning the same things. Ask questions, share progress, review code. Learning alone is harder than it needs to be.</p>
+        </div>
+
+        <div class="tip-card reveal">
+          <div class="tip-card__icon">
+            <i class="fas fa-bullseye"></i>
+          </div>
+          <h3>One Language at a Time</h3>
+          <p>Resist the urge to jump between languages. Go deep on one until you can build something real, then branch out.</p>
+        </div>
+
+        <div class="tip-card reveal">
+          <div class="tip-card__icon">
+            <i class="fas fa-book-open"></i>
+          </div>
+          <h3>Read Other People's Code</h3>
+          <p>Browse open source projects on GitHub. Reading good code teaches patterns and conventions you won't find in a beginner tutorial.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="guide-section guide-section--alt" id="faq">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">FAQ</span>
+        <h2 class="section-title">Common Questions</h2>
+        <p class="section-subtitle">Honest answers to the questions every beginner asks.</p>
+      </div>
+
+      <div class="faq-list">
+        <div class="faq-item reveal">
+          <button class="faq-item__question">
+            <span>How long does it take to learn programming?</span>
+            <i class="fas fa-chevron-down"></i>
+          </button>
+          <div class="faq-item__answer">
+            <p>It depends on your goals. Most people can write basic programs within a few weeks. Building production-ready applications typically takes 6–18 months of consistent practice. There's no finish line — experienced developers are always learning.</p>
+          </div>
+        </div>
+
+        <div class="faq-item reveal">
+          <button class="faq-item__question">
+            <span>Do I need a degree to become a developer?</span>
+            <i class="fas fa-chevron-down"></i>
+          </button>
+          <div class="faq-item__answer">
+            <p>No. Many professional developers are self-taught. What matters most is your portfolio — a collection of real projects that demonstrate your ability to solve problems with code. A degree can help, but it's not a requirement.</p>
+          </div>
+        </div>
+
+        <div class="faq-item reveal">
+          <button class="faq-item__question">
+            <span>Is programming hard to learn?</span>
+            <i class="fas fa-chevron-down"></i>
+          </button>
+          <div class="faq-item__answer">
+            <p>The fundamentals are accessible to almost anyone willing to put in consistent effort. The harder part is sticking with it through the frustrating phases — and everyone has them. The difficulty isn't intelligence, it's persistence.</p>
+          </div>
+        </div>
+
+        <div class="faq-item reveal">
+          <button class="faq-item__question">
+            <span>Should I learn multiple languages at once?</span>
+            <i class="fas fa-chevron-down"></i>
+          </button>
+          <div class="faq-item__answer">
+            <p>Not at first. Pick one language, get comfortable building things with it, then add a second. Once you understand programming concepts in one language, picking up another becomes significantly easier.</p>
+          </div>
+        </div>
+
+        <div class="faq-item reveal">
+          <button class="faq-item__question">
+            <span>What computer do I need to start coding?</span>
+            <i class="fas fa-chevron-down"></i>
+          </button>
+          <div class="faq-item__answer">
+            <p>Any modern computer works — Windows, Mac, or Linux. You don't need anything powerful to start. A mid-range laptop from the last 5 years is more than enough. You can even start on a phone using Termux or a browser-based editor.</p>
+          </div>
+        </div>
+
+        <div class="faq-item reveal">
+          <button class="faq-item__question">
+            <span>How do I know when I'm ready to apply for jobs?</span>
+            <i class="fas fa-chevron-down"></i>
+          </button>
+          <div class="faq-item__answer">
+            <p>When you have 2–3 complete projects on GitHub, can explain your code decisions confidently, and can solve basic algorithmic problems — start applying. Most people wait too long. Job experience accelerates growth faster than self-study.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-banner">
+    <div class="container">
+      <div class="cta-content">
+        <h2>Ready to Start Learning?</h2>
+        <p>Pick a language, follow the roadmap, and start building today.</p>
+        <div class="cta-buttons">
+          <a href="languages.html" class="btn btn-primary">
+            <i class="fas fa-code"></i> Browse Languages
+          </a>
+          <a href="register.html" class="btn btn-ghost">
+            <i class="fas fa-user-plus"></i> Create Free Account
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer js-footer-information"></footer>
+
+  <script src="scripts/edu.js"></script>
   <script src="scripts/footer.js"></script>
-  
   <script type="module" src="scripts/newsletter.js"></script>
-  
   <script type="module" src="scripts/header.js"></script>
-  
   <script type="module" src="scripts/apiCheck.js"></script>
-  
+
+  <script>
+    // FAQ accordion
+    document.querySelectorAll('.faq-item__question').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const item = btn.closest('.faq-item');
+        const isOpen = item.classList.contains('open');
+        document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+        if (!isOpen) item.classList.add('open');
+      });
+    });
+
+    // Anchor nav active state on scroll
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.guide-nav__link');
+
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(section => {
+        if (window.scrollY >= section.offsetTop - 120) {
+          current = section.getAttribute('id');
+        }
+      });
+      navLinks.forEach(link => {
+        link.classList.toggle('active', link.getAttribute('href') === `#${current}`);
+      });
+    });
+  </script>
+
 </body>
 </html>
