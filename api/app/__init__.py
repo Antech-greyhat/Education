@@ -1,4 +1,3 @@
-from operator import imod
 from flask import Flask, render_template
 from flask_restx import Api
 from sqlalchemy_utils import database_exists, create_database

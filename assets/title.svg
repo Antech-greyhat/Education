@@ -1,0 +1,39 @@
+<svg width="440" height="58" viewBox="0 0 440 58" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="tg" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#0FA87E"/>
+      <stop offset="65%" style="stop-color:#0FA87E"/>
+      <stop offset="100%" style="stop-color:#F59E0B"/>
+    </linearGradient>
+    <!-- Typing clip — animates width to reveal text letter by letter -->
+    <clipPath id="tc">
+      <rect y="0" height="58">
+        <animate attributeName="width"
+          values="0;21;21;42;42;63;63;84;84;105;105;126;126;147;147;168;168;189;189;210;210;231;231;300;300;300;300;0"
+          keyTimes="0;0.04;0.06;0.10;0.12;0.16;0.18;0.22;0.24;0.28;0.30;0.34;0.36;0.40;0.42;0.46;0.48;0.52;0.54;0.58;0.60;0.64;0.66;0.78;0.88;0.96;1"
+          dur="5s"
+          repeatCount="indefinite"
+          calcMode="discrete"/>
+      </rect>
+    </clipPath>
+  </defs>
+
+  <!-- Revealed text -->
+  <text x="88" y="40" dominant-baseline="middle"
+        font-family="Georgia, serif" font-size="36" font-weight="700"
+        fill="url(#tg)" clip-path="url(#tc)">
+    AntechLearn
+  </text>
+
+  <!-- Blinking cursor -->
+  <text font-family="monospace" font-size="38" font-weight="100" fill="#0FA87E" y="42" dominant-baseline="middle">
+    <animate attributeName="x"
+      values="88;109;109;130;130;151;151;172;172;193;193;214;214;235;235;256;256;277;277;298;298;319;319;388;388;388;388;88"
+      keyTimes="0;0.04;0.06;0.10;0.12;0.16;0.18;0.22;0.24;0.28;0.30;0.34;0.36;0.40;0.42;0.46;0.48;0.52;0.54;0.58;0.60;0.64;0.66;0.78;0.88;0.96;1"
+      dur="5s"
+      repeatCount="indefinite"
+      calcMode="discrete"/>
+    <animate attributeName="opacity" values="1;0;1" dur="0.55s" repeatCount="indefinite"/>
+    |
+  </text>
+</svg>
