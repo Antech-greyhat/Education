@@ -1,12 +1,25 @@
+# Python / Backend
 venv/
-__pycache__/
-*.pyc
-.env
-instance/
-.db
-.pytest_cache/
 env/
 __pycache__/
-tests/
-.vercel
+*.pyc
+instance/
+.pytest_cache/
+.db
+*.sqlite3
+
+# Node / Frontend
+node_modules/
+dist/
+.vite/
+.vercel/
+
+# Environment & Secrets
+.env
+.env.local
+.env.*.local
+
+# Project Specifics
 preview/
+oauth/
+tests/
