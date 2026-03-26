@@ -41,8 +41,8 @@ async function loadAdminDashboard() {
         dataDisplay(data);
       }
     } catch (err) {
-      console.error('Data fetch error:', err);
     }
+      console.error('Data fetch error:', err);
     return;
   }
 
@@ -127,14 +127,16 @@ function getUnauthorizedHTML() {
   `;
 }
 
-document.addEventListener('DOMContentLoaded', loadAdminDashboard);
+document.addEventListener('DOMContentLoaded', async () => {
+  await loadAdminDashboard();
 
-const refreshBtn = document.querySelector('.js-admin-refresh');
-if (refreshBtn) {
-  refreshBtn.addEventListener('click', async () => {
-    const icon = refreshBtn.querySelector('.refresh');
-    icon.classList.add('fa-spin');
-    await loadAdminDashboard();
-    icon.classList.remove('fa-spin');
-  });
-}
+  const refreshBtn = document.querySelector('.js-admin-refresh');
+  if (refreshBtn) {
+    refreshBtn.addEventListener('click', async () => {
+      const icon = refreshBtn.querySelector('.refresh');
+      icon?.classList.add('fa-spin');
+      await loadAdminDashboard();
+      icon?.classList.remove('fa-spin');
+    });
+  }
+});

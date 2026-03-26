@@ -1,18 +1,18 @@
 <svg width="440" height="58" viewBox="0 0 440 58" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <!-- Gradient with smoother transition -->
+    <!-- Gradient -->
     <linearGradient id="tg" x1="0%" y1="0%" x2="100%" y2="0%">
       <stop offset="0%" stop-color="#0FA87E"/>
       <stop offset="60%" stop-color="#0FA87E"/>
       <stop offset="100%" stop-color="#F59E0B"/>
     </linearGradient>
 
-    <!-- Typing clip: simplified timing for smoother reveal -->
+    <!-- Typing clip -->
     <clipPath id="tc">
-      <rect y="0" height="58">
+      <rect x="88" y="0" height="58" width="0">
         <animate attributeName="width"
-          values="0;21;42;63;84;105;126;147;168;189;210;231;252;273;294;315;336;357;378;399;420;440"
-          keyTimes="0;0.05;0.10;0.15;0.20;0.25;0.30;0.35;0.40;0.45;0.50;0.55;0.60;0.65;0.70;0.75;0.80;0.85;0.90;0.95;1"
+          values="0;21;42;63;84;105;126;147;168;189;210;231;252;273;294;315"
+          keyTimes="0;0.06;0.12;0.18;0.24;0.30;0.36;0.42;0.48;0.54;0.60;0.66;0.72;0.78;0.84;0.90;1"
           dur="4s"
           repeatCount="indefinite"
           calcMode="discrete"/>
@@ -20,18 +20,18 @@
     </clipPath>
   </defs>
 
-  <!-- Text with gradient fill -->
+  <!-- Text -->
   <text x="88" y="40" dominant-baseline="middle"
         font-family="Georgia, serif" font-size="36" font-weight="700"
         fill="url(#tg)" clip-path="url(#tc)">
     AntechLearn
   </text>
 
-  <!-- Blinking cursor with smoother opacity cycle -->
+  <!-- Cursor -->
   <text font-family="monospace" font-size="38" font-weight="100" fill="#0FA87E" y="42" dominant-baseline="middle">
     <animate attributeName="x"
-      values="88;109;130;151;172;193;214;235;256;277;298;319;340;361;382;403;424"
-      keyTimes="0;0.06;0.12;0.18;0.24;0.30;0.36;0.42;0.48;0.54;0.60;0.66;0.72;0.78;0.84;0.90;1"
+      values="88;109;130;151;172;193;214;235;256;277;298;319"
+      keyTimes="0;0.08;0.16;0.24;0.32;0.40;0.48;0.56;0.64;0.72;0.80;0.88;1"
       dur="4s"
       repeatCount="indefinite"
       calcMode="discrete"/>
