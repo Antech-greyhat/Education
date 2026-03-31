@@ -765,7 +765,7 @@ export const coursesData = [
     },
 
     // Flask Courses (4 courses)
-    {
+m    {
         id: 45,
         category: courseCategories.flask,
         courseName: 'Flask Full Course',

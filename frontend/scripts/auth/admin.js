@@ -76,7 +76,7 @@ function initMessageFilters() {
     });
   });
 }
-
+/*
 // ── NEWSLETTER FORM ──
 function initNewsletterForm() {
   const form = document.getElementById('newsletterForm');
@@ -92,7 +92,7 @@ function initNewsletterForm() {
     form.reset();
   });
 }
-
+*/
 // ── SETTINGS FORM ──
 function initSettingsForm() {
   const form = document.getElementById('settingsForm');
@@ -154,7 +154,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initLogout();
   initSearch();
   initMessageFilters();
-  initNewsletterForm();
+  // initNewsletterForm();
   initSettingsForm();
   initThemeToggle();
   initHamburger();
