@@ -18,6 +18,7 @@ dist/
 .env
 .env.local
 .env.*.local
+*.pem
 
 # Project Specifics
 preview/
