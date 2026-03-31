@@ -72,8 +72,9 @@ def send_otp(otp, email, name):
   send_email_sync(app, msg)
 
 
-def send_newsletter_update(email, username, subject, body):
+def send_newsletter_update(email, subject, body):
   app = current_app._get_current_object()
+  username = email.split('@')[0]
   msg = Message(
     subject=subject,
     sender=app.config.get("MAIL_DEFAULT_SENDER", 'antechittech@gmail.com'),
