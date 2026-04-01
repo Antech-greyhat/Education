@@ -83,6 +83,11 @@ python main.py
 # Frontend
 cd Education/frontend
 open index.html
+
+# or view static files using vite sever
+npm istall -g vite
+vite --host
+
 ```
 
 ---
@@ -91,7 +96,10 @@ open index.html
 
 <img src="https://raw.githubusercontent.com/Antech-greyhat/Education/main/assets/footer-line.svg" width="400"/>
 
-Made with ♥ by **[BraveraTech](https://github.com/braverachacha)** &  **[Antech-greyhat](https://github.com/Antech-greyhat)** .
+Made with ♥ by
+
+**[BraveraTech](https://github.com/braverachacha)** &  **[Antech-greyhat](https://github.com/Antech-greyhat)**
+
 © 2026 AntechLearn
 
 </div>
