@@ -6,6 +6,8 @@ from dotenv import load_dotenv
 from datetime import timedelta
 import os
 
+load_dotenv()
+
 from .extensions import db, mail, jwt, migrate, limiter
 
 # import Namespace objects
@@ -23,8 +25,10 @@ from .health import health_ns
 from .auth.account_verify import verify_ns
 from .auth.otp_resend import otp_renew_ns
 from .auth.token_renew import refresh_ns
+from .auth.admin_updates import admin_updates_ns
+from .auth.tinnymce import tinnymce_ns
 
-load_dotenv()
+
 
 def create_app():
     app = Flask(__name__)
@@ -73,6 +77,9 @@ def create_app():
     app.config['JWT_ACCESS_TOKEN_EXPIRES'] = timedelta(minutes=30)
     app.config['JWT_REFRESH_TOKEN_EXPIRES'] = timedelta(days=2)
     
+    app.config['TINYMCE_API_KEY'] = os.getenv('TINYMCE_API_KEY')
+    app.config['GROQ_API_KEY'] = os.getenv('GROQ_API_KEY')
+    
     # gmail server config
     app.config['MAIL_SERVER'] = os.getenv('MAIL_SERVER')
     app.config['MAIL_PORT'] = 587
@@ -92,7 +99,7 @@ def create_app():
     from .models import Newsletter, Message, User, Admin
 
     # Add namespaces
-    namespaces = [register_ns, admin_ns, login_ns, news_ns, contact_ns, protected_ns, admin_data, forgot_ns, reset_ns, health_ns, verify_ns, otp_renew_ns, refresh_ns]
+    namespaces = [register_ns, admin_ns, login_ns, news_ns, contact_ns, protected_ns, admin_data, forgot_ns, reset_ns, health_ns, verify_ns, otp_renew_ns, refresh_ns, admin_updates_ns, tinnymce_ns]
     
     # namespace registration
     

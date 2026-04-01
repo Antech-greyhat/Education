@@ -111,8 +111,7 @@ class Admin(db.Model):
 # ADMIN UPDATE MODEL
 class AdminUpdate(db.Model):
   id = db.Column(db.Integer, primary_key=True)
-  subject = db.Column(db.String(200), nullable=False)
-  body = db.Column(db.String(2000), nullable=False)
+  message = db.Column(db.Text, nullable=False)
   admin_id = db.Column(db.Integer, db.ForeignKey('admin.id'), nullable=False)
   sent_at = db.Column(db.DateTime, default=datetime.utcnow)
   is_sent = db.Column(db.Boolean, default=False)

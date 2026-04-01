@@ -1,11 +1,14 @@
-export async function dataSubmit(details, url) {
+export async function dataSubmit(details, url, token) {
   const controller = new AbortController();
   const timer = setTimeout(() => controller.abort(), 60000);
 
   try {
     const response = await fetch(url, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Content-Type': 'application/json',
+        ...(token ? { Authorization: `Bearer ${token}` } : {})
+      },
       body: JSON.stringify(details),
       signal: controller.signal
     });
@@ -13,7 +16,7 @@ export async function dataSubmit(details, url) {
     const data = await response.json();
 
     if (!response.ok) {
-      const error = new Error(data.msg);
+      const error = new Error(data.msg || 'Request failed');
       error.data = data;
       error.status = response.status;
       throw error;
