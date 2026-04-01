@@ -78,6 +78,7 @@ def create_app():
     app.config['JWT_REFRESH_TOKEN_EXPIRES'] = timedelta(days=2)
     
     app.config['TINYMCE_API_KEY'] = os.getenv('TINYMCE_API_KEY')
+    app.config['GROQ_API_KEY'] = os.getenv('GROQ_API_KEY')
     
     # gmail server config
     app.config['MAIL_SERVER'] = os.getenv('MAIL_SERVER')
