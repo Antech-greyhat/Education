@@ -9,9 +9,7 @@
   <link rel="stylesheet" href="styles/spinner.css">
   <link rel="stylesheet" href="styles/admin.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
   <link rel="icon" type="image/svg+xml" href="images/favicon/favicon.svg">
-
   <script src="https://cdn.tiny.cloud/1/eejwjxd9gyuwq9k2m15hpoz61fda8bxowreiu1k8vlfwkmzu/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
 
 </head>
@@ -212,7 +210,7 @@
               </div>
               <div class="info-row">
                 <span class="info-row__label">Admin</span>
-                <span class="info-row__value">antechittech@gmail.com</span>
+                <span class="info-row__value"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="e0818e94858388899494858388a0878d81898cce838f8d">[email&#160;protected]</a></span>
               </div>
             </div>
           </div>
@@ -382,6 +380,13 @@
                       
                     </div>
                     <div class="form-group">
+                      <label>✨ Generate with AI</label>
+                      <div style="display:flex;gap:8px;margin-bottom:8px;">
+                        <input type="text" id="aiPromptInput" placeholder="Describe what to write..." style="flex:1;padding:8px;border:1px solid var(--border-color);border-radius:8px;background:var(--input-bg);color:var(--text-color);">
+                        <button type="button" id="aiGenerateBtn" class="btn btn-secondary">✨ Generate</button>
+                      </div>
+                    </div>
+                    <div class="form-group">
                       <label for="newsletterContent">Message</label>
                       <textarea id="newsletterContent" class="js-newsletter-body" rows="6" placeholder="Enter your message..." required></textarea>
                     </div>
@@ -529,18 +534,14 @@
 
   </div>
 
-  <script type="module" src="scripts/edu.js"></script>
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script type="module" src="scripts/edu.js"></script>
   <script type="module" src="scripts/auth/admin.js"></script>
   <script type="module" src="scripts/auth/getData.js"></script>
   <script type="module" src="scripts/auth/newsletterUpdate.js"></script>
-  <script type="module" src="scripts/apiCheck.js"></script>
-
   <script type="module" src="scripts/auth/tinnymce.js"></script>
   
-  <!-- Dev -->
+  <!-- devlopment console -->
   <script src="https://cdn.jsdelivr.net/npm/eruda"></script>
   <script>eruda.init();</script>
-
-
 </body>
 </html>

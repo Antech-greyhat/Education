@@ -1,18 +1,17 @@
 import { API_URL } from './config.js';
 import { dataSubmit } from './dataSubmit.js';
+import { showMessage } from '../msgDisplay.js';
+const messagwDisplay = document.querySelector('.js-message-display');
 
-const url = `${API_URL}/auth/tinnymce`;
+const generateUrl = `${API_URL}/auth/generate`;
 
-async function getTinymceToken() {
-  try {
-    const data = await dataSubmit({}, url, localStorage.getItem('access_token'));
-    return data.tinnymce_token;
-  } catch (error) {
-    console.error('Error fetching TinyMCE token:', error);
-    throw error;
-  }
+async function generateNewsletterContent(promptText) {
+  return await dataSubmit(
+    { prompt: promptText },
+    generateUrl,
+    localStorage.getItem('admin_token')
+  );
 }
-
 
 document.addEventListener('DOMContentLoaded', () => {
   tinymce.init({
@@ -33,4 +32,29 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
   });
+
+  // AI Generate button
+  const aiBtn = document.getElementById('aiGenerateBtn');
+  if (aiBtn) {
+    aiBtn.addEventListener('click', async () => {
+      const promptText = document.getElementById('aiPromptInput').value.trim();
+      if (!promptText) {
+        showMessage(messagwDisplay, 'Enter a prompt to generate the news letter', true);
+        return;
+      };
+
+      aiBtn.textContent = '⏳ Generating...';
+      aiBtn.disabled = true;
+
+      try {
+        const data = await generateNewsletterContent(promptText);
+        tinymce.get('newsletterContent').setContent(data.content);
+      } catch (err) {
+        console.error('AI generation failed:', err);
+      } finally {
+        aiBtn.textContent = '✨ Generate';
+        aiBtn.disabled = false;
+      }
+    });
+  }
 });
