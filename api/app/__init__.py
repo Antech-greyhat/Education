@@ -28,8 +28,6 @@ from .auth.token_renew import refresh_ns
 from .auth.admin_updates import admin_updates_ns
 from .auth.tinnymce import tinnymce_ns
 
-
-
 def create_app():
     app = Flask(__name__)
     
@@ -51,10 +49,10 @@ def create_app():
     if not frontend_url:
         raise RuntimeError ('FRONTEND_URL is missing in your environment variables!')
     
-    # CORS
+    # CORS, vite, acode & production
     CORS(
         app,
-        origins=[frontend_url, 'http://localhost:8158', 'http://localhost:3000'],
+        origins=[frontend_url, 'http://localhost:8158', 'http://localhost:5173'],
         supports_credentials=True
     )
 
