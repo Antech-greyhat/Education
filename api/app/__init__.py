@@ -31,6 +31,8 @@ from .auth.tinnymce import tinnymce_ns
 def create_app():
     app = Flask(__name__)
     
+    CORS(app);
+    
     @app.route('/')
     def home():
       return render_template('index.html')
@@ -50,11 +52,11 @@ def create_app():
         raise RuntimeError ('FRONTEND_URL is missing in your environment variables!')
     
     # CORS, vite, acode & production
-    CORS(
-        app,
-        origins=[frontend_url, 'http://localhost:8158', 'http://localhost:5173'],
-        supports_credentials=True
-    )
+    # CORS(
+    #     app,
+    #     origins=[frontend_url, 'http://localhost:8158', 'http://localhost:5173'],
+    #     supports_credentials=True
+    # )
 
     # Flask config
     app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
