@@ -32,6 +32,7 @@ def create_app():
     app = Flask(__name__)
     
     # CORS, vite, acode & production
+    frontend_url = os.getenv('FRONTEND_URL')
     CORS(
       app,
       origins=[frontend_url, 'http://localhost:8158', 'http://localhost:5173'],
@@ -49,9 +50,6 @@ def create_app():
       description='Antech Api for managing authentication and authorization',
       doc='/docs'
       )
-    
-
-    frontend_url = os.getenv('FRONTEND_URL')
 
     if not frontend_url:
         raise RuntimeError ('FRONTEND_URL is missing in your environment variables!')
