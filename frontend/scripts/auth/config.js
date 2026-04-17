@@ -1,7 +1,7 @@
 // PRODUCTION
 export let API_URL = 'https://antechapi.vercel.app';
 
-API_URL = "https://blooming-retreat-26758-bc52981bb303.herokuapp.com"
+API_URL = "https://blooming-retreat-26758-bc52981bb303.herokuapp.com";
 
 // FOR TESTING & DEVELOPMENT
 
